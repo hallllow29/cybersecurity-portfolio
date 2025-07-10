@@ -10,6 +10,7 @@ The first step was to perform a full port scan using `nmap` to identify all open
 nmap -sV 10.10.19.34 
 ```
 ![Resultado do Nmap](./images/01-nmap-scan.png)
+
 The scan revealed **7 open ports**. The most promising services for initial enumeration were:
 - **Port 21:** FTP (ProFTPD 1.3.5)
 - **Port 111:** RPCbind
@@ -20,6 +21,7 @@ Given the open SMB port, I proceeded to enumerate it for any accessible network 
 nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse 10.10.19.34
 ```
 The script discovered **3 shares**, including one of particular interest named `anonymous`. I connected to this share using `smbclient`, providing no password.
+
 ![Smbclient shares](./images/02-smblcient-shares.png)
 ```bash
 smbclient //10.10.19.34/anonymous
@@ -28,6 +30,7 @@ Inside the share, I found a file named `log.txt`. I downloaded it for further an
 ![Inside Share](./images/03-inside-share.png)
 ![Get File](./images/04-get-file.png)
 ![Inside file](./images/05-inside-file.png)
+
 This log file contained two critical pieces of information:
 1. The location of a private SSH key for a user named **Kenobi** (`/home/kenobi/.ssh/id_rsa`).
 2. Details about the ProFTPD server software.
@@ -66,12 +69,14 @@ cp /mnt/kenobiNFS/tmp/id_rsa .
 ![Mount](./images/10-mount.png)
 ![View mount](./images/11-view-mount.png)
 ![Cp id_rsa](./images/12-cp-id_rsa.png)
+
 Finally, I set the correct permissions for the private key and used it to log in as the `kenobi` user via SSH.
 ```bash
 chmod 600 id_rsa
 ssh -i id_rsa kenobi@10.10.19.34
 ```
 ![Login SSH](./images/13-login-ssh.png)
+
 Success! I now had a user shell on the machine. The user flag was retrieved from `/home/kenobi/user.txt`.
 
 **User Flag:** `d0b0f3f53b6caa532a83915e19224899`
@@ -81,6 +86,7 @@ The final step was to escalate privileges from `kenobi` to `root`. I started by 
 find / -perm -u=s -type f 2>/dev/null
 ```
 ![Perms](./images/14-perms.png)
+
 The list of SUID files showed a very unusual binary: `/usr/bin/menu`. This is not a standard Linux binary and immediately became my primary target.
 
 Executing the binary revealed it was a simple command-line menu with **3 options**.
@@ -97,12 +103,17 @@ I executed the following steps to exploit this:
 4. Make the file executable with `chmod +x curl`.
 5. Prepend the `/tmp` directory to the system's `PATH` variable. This forces the system to look in `/tmp` for binaries first.
 6. Run the `/usr/bin/menu` binary and select an option that calls `curl`.
+
 ![Create curl](./images/15-create-curl.png)
+
 ![Enter menu](./images/16-enter-menu.png)
+
 ![Root permission](./images/17-root-permision.png)
 
 We select option 1 on the menu, and this successfully spawned a shell with `root` privileges. The root flag was retrieved from `/root/root.txt`.
+
 ![Root Flag](./images/18-root-flag.png)
+
 **Root Flag:** `177b3cd8562289f37382721c28381f02`
 ## **5. Conclusion & Mitigations**
 
