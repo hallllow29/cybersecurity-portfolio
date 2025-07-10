@@ -13,28 +13,44 @@ My goal is to begin a career as a Penetration Tester, where I can apply my analy
 
 ### 🛠️ Technical Skills
 
+My academic background and self-study have provided me with a solid foundation in the following areas:
+
 <p>
-  <b>Languages:</b><br>
+  <b>Languages & Databases:</b><br>
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
   <img src="https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white" alt="Bash" />
+  <img src="https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="SQL" />
   <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
   <img src="https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=white" alt="C" />
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
 </p>
 <p>
-  <b>Tools:</b><br>
+  <b>Offensive Security Tools:</b><br>
   <img src="https://img.shields.io/badge/Nmap-000000?style=for-the-badge&logo=nmap&logoColor=white" alt="Nmap" />
-  <img src="https://img.shields.io/badge/Wireshark-1679A7?style=for-the-badge&logo=wireshark&logoColor=white" alt="Wireshark" />
   <img src="https://img.shields.io/badge/Metasploit-DC2F24?style=for-the-badge&logo=metasploit&logoColor=white" alt="Metasploit" />
   <img src="https://img.shields.io/badge/Burp_Suite-FF7A00?style=for-the-badge&logo=burpsuite&logoColor=white" alt="Burp Suite" />
+  <img src="https://img.shields.io/badge/Wireshark-1679A7?style=for-the-badge&logo=wireshark&logoColor=white" alt="Wireshark" />
   <img src="https://img.shields.io/badge/John_the_Ripper-000?style=for-the-badge&logo=kalilinux&logoColor=white" alt="John the Ripper" />
+  <img src="https://img.shields.io/badge/Gobuster-2E75B5?style=for-the-badge" alt="Gobuster" />
 </p>
 <p>
-  <b>Networking & Concepts:</b><br>
-  <img src="https://img.shields.io/badge/TCP/IP-000?style=for-the-badge" alt="TCP/IP" />
-  <img src="https://img.shields.io/badge/Active_Directory-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Active Directory" />
-  <img src="https.img.shields.io/badge/Vulnerability_Assessment-8A2BE2?style=for-the-badge" alt="Vulnerability Assessment" />
+  <b>Concepts & Methodologies:</b><br>
   <img src="https://img.shields.io/badge/Penetration_Testing-D22B2B?style=for-the-badge" alt="Penetration Testing" />
+  <img src="https://img.shields.io/badge/Network_Security-005571?style=for-the-badge" alt="Network Security" />
+  <img src="https://img.shields.io/badge/Digital_Forensics-663399?style=for-the-badge" alt="Digital Forensics" />
+  <img src="https://img.shields.io/badge/Cryptography-00A86B?style=for-the-badge" alt="Cryptography" />
+  <img src="https://img.shields.io/badge/OWASP_Top_10-000?style=for-the-badge&logo=owasp&logoColor=white" alt="OWASP Top 10" />
+  <img src="https://img.shields.io/badge/Secure_Programming-4B0082?style=for-the-badge" alt="Secure Programming" />
+  <img src="https://img.shields.io/badge/IT_Audit-B5A642?style=for-the-badge" alt="IT Audit" />
+</p>
+<p>
+  <b>Systems & Networking:</b><br>
+  <img src="https://img.shields.io/badge/Linux_Administration-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux Administration" />
+  <img src="https://img.shields.io/badge/Windows_Server-0078D4?style=for-the-badge&logo=windows-server&logoColor=white" alt="Windows Server" />
+  <img src="https://img.shields.io/badge/TCP/IP_Suite-000?style=for-the-badge" alt="TCP/IP Suite" />
+  <img src="https://img.shields.io/badge/Firewalls_&_IDS/IPS-CF3C25?style=for-the-badge" alt="Firewalls & IDS/IPS" />
+  <img src="https://img.shields.io/badge/Network_Design-1f62ac?style=for-the-badge" alt="Network Design" />
+  <img src="https://img.shields.io/badge/Distributed_Systems-6c439c?style=for-the-badge" alt="Distributed Systems" />
 </p>
 
 ---
