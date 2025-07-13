@@ -85,6 +85,10 @@ This repository serves as a collection of my hands-on projects and detailed writ
   * *A detailed report on a beginner-level Linux machine. This project covers enumeration with Nmap, exploiting a known vulnerability in ProFTPD, and escalating privileges via a SUID binary with a Path Hijacking vulnerability.*
   * **Skills Demonstrated:** SMB Enumeration, ProFTPD Exploit (mod_copy), NFS, SUID Binaries, Path Hijacking.
 
+* **[Hack The Box - Jerry Write-up](./Hack%20The%20Box/Jerry/)**
+  * *A comprehensive write-up on an easy-level Windows machine. This project demonstrates initial reconnaissance with Nmap and Gobuster, exploiting a misconfigured Apache Tomcat instance with default credentials, and  deploying a reverse shell via a malicious WAR file to gain nt authority\system privileges.*
+  * **Skills Demonstrated:** Nmap Scanning, Web Enumeration (Gobuster), Default Credential Exploitation, Apache Tomcat WAR File Deployment, Msfvenom Payload Generation, Reverse Shells, Windows Privilege Escalation.
+
 *(More projects will be added here as they are completed...)*
 
 ---
