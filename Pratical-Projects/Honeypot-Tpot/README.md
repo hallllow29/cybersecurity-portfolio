@@ -53,7 +53,7 @@ The following graph shows the number of events captured by each honeypot sensor 
 
 > 🧠 **Insight:** Over 68% of all events were directed at SSH and general network scan traps. This highlights attackers' focus on brute-forcing credentials and discovering exposed services.
 
---
+---
 
 ### 3.2 Attack Type Overview
 
@@ -79,7 +79,7 @@ The histogram below illustrates the number of attack events over time and the nu
 > - Attack traffic fluctuates heavily, with periodic spikes reaching up to **3,000+ attacks/hour**.  
 > - The number of unique IP addresses remains relatively constant, indicating repeated automated probing from specific sources (likely botnets).
 
---
+---
 
 ### 3.4 Targeted Ports Over Time
 
