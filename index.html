@@ -3,203 +3,272 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>O meu Portefólio</title>
+  <title>Pedro Antunes · Portefólio</title>
   <meta name="description" content="Portefólio gerado automaticamente a partir do conteúdo deste repositório." />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <style>
     :root {
-      --bg: #0f172a; /* slate-900 */
-      --card: #111827; /* gray-900 */
-      --muted: #94a3b8; /* slate-400 */
-      --text: #e5e7eb; /* gray-200 */
-      --acc: #38bdf8; /* sky-400 */
-      --ring: #334155; /* slate-700 */
+      --bg: #0f172a;         /* slate-900 */
+      --panel: #0b1220;      /* darker */
+      --card: #111827;       /* gray-900 */
+      --muted: #94a3b8;      /* slate-400 */
+      --text: #e5e7eb;       /* gray-200 */
+      --acc: #38bdf8;        /* sky-400 */
+      --ring: #334155;       /* slate-700 */
     }
     * { box-sizing: border-box; }
+    html, body { height: 100%; }
     body { margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); }
-    header { max-width: 980px; margin: 32px auto 0; padding: 0 16px 16px; border-bottom: 1px solid var(--ring); }
-    header h1 { margin: 0 0 8px; font-size: clamp(28px, 3.2vw, 40px); letter-spacing: -0.02em; }
-    header p { margin: 4px 0 16px; color: var(--muted); }
-    .container { max-width: 980px; margin: 0 auto; padding: 16px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-    .card { background: var(--card); border: 1px solid var(--ring); border-radius: 16px; padding: 16px; box-shadow: 0 8px 18px rgba(0,0,0,.25); }
-    .card h3 { margin: 0 0 8px; font-size: 18px; }
-    .card p { margin: 0; color: var(--muted); font-size: 14px; }
-    .pill { display:inline-block; padding: 4px 10px; border-radius: 999px; border:1px solid var(--ring); color: var(--muted); font-size: 12px; }
+
+    .layout { display:grid; grid-template-columns: 280px 1fr; min-height:100vh; }
+
+    /* Sidebar */
+    aside { border-right:1px solid var(--ring); background: linear-gradient(180deg, #0e1628, #0a101d); padding: 16px; position: sticky; top:0; align-self:start; height:100vh; overflow:auto; }
+    .brand { display:flex; align-items:center; gap:10px; margin-bottom: 16px; }
+    .dot { width:10px; height:10px; border-radius:50%; background: var(--acc); box-shadow: 0 0 20px rgba(56,189,248,.6); }
+    .brand h1 { font-size: 18px; margin:0; letter-spacing:.2px; }
+    .muted { color: var(--muted); }
+
+    .search { width:100%; margin:12px 0 16px; }
+    .search input { width:100%; padding:10px 12px; border:1px solid var(--ring); background: var(--panel); color: var(--text); border-radius: 12px; outline: none; }
+
+    .nav { display:flex; flex-direction:column; gap:6px; }
+    .nav a { display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:10px; color: var(--text); text-decoration:none; border:1px solid transparent; }
+    .nav a:hover { background: rgba(148,163,184,.08); border-color: var(--ring); }
+    .nav a.active { background:#101828; border-color: var(--ring); }
+
+    .tree { margin-top: 10px; border-top:1px solid var(--ring); padding-top:10px; }
+    details { border-radius:10px; }
+    summary { list-style:none; cursor:pointer; padding:6px 8px; border-radius:8px; }
+    summary:hover { background: rgba(148,163,184,.08); }
+    .items { margin-left: 14px; }
+    .item { display:block; padding:6px 8px; border-radius:8px; text-decoration:none; color:var(--text); }
+    .item:hover { background: rgba(148,163,184,.08); }
+
+    /* Main */
+    header { padding: 24px 24px 12px; border-bottom: 1px solid var(--ring); }
+    header h2 { margin:0 0 6px; font-size: clamp(24px, 2.6vw, 36px); letter-spacing: -0.02em; }
+
+    .meta { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .pill { display:inline-flex; align-items:center; gap:6px; padding: 4px 10px; border-radius: 999px; border:1px solid var(--ring); color: var(--muted); font-size: 12px; }
+
+    .container { padding: 18px 24px 32px; }
+    .two { display:grid; grid-template-columns: 1.2fr .8fr; gap: 16px; }
+
+    .panel { background: var(--panel); border: 1px solid var(--ring); border-radius: 16px; padding: 16px; }
+    .panel h3 { margin-top:0; }
+
     .list { border: 1px solid var(--ring); border-radius: 12px; overflow: hidden; }
     .row { display:flex; align-items:center; justify-content:space-between; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--ring); background: #0b1220; }
     .row:last-child { border-bottom: 0; }
     .row a { color: var(--text); text-decoration: none; }
     .row a:hover { color: var(--acc); }
+
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; color: var(--muted); }
+
     .readme { background: #0b1220; border-radius: 16px; border: 1px solid var(--ring); padding: 16px; }
-    .readme h1, .readme h2, .readme h3 { scroll-margin-top: 80px; }
-    footer { color: var(--muted); text-align:center; padding: 32px 16px; }
-    .hidden { display:none; }
+    .readme h1,.readme h2,.readme h3 { scroll-margin-top: 80px; }
+
+    .breadcrumb { font-size: 13px; margin-top: 8px; color: var(--muted); }
+    .breadcrumb a { color: var(--text); text-decoration:none; }
+    .breadcrumb a:hover { color: var(--acc); }
+
+    footer { color: var(--muted); text-align:center; padding: 18px; border-top:1px solid var(--ring); }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { position:relative; height:auto; }
+      .two { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1 id="title">Portefólio</h1>
-    <p>Gerado automaticamente a partir deste repositório.<span id="repoMeta" class="mono"></span></p>
-    <div class="pill" id="branchPill">branch: <span id="branchName">main</span></div>
-  </header>
+  <div class="layout">
+    <aside>
+      <div class="brand">
+        <div class="dot"></div>
+        <h1>Portefólio <span class="muted">· GitHub</span></h1>
+      </div>
+      <div class="search"><input id="search" placeholder="Filtrar ficheiros…" /></div>
+      <nav class="nav" id="quickNav">
+        <a href="#/" data-path="" class="active">🏠 Início</a>
+        <a href="#/README" data-path="README">🧑 Sobre</a>
+      </nav>
+      <div class="tree" id="tree"></div>
+    </aside>
 
-  <main class="container">
-    <section id="aboutSection" class="hidden">
-      <h2 id="readmeTitle">README</h2>
-      <div class="readme" id="readme"></div>
-    </section>
+    <main>
+      <header>
+        <h2 id="title">hallllow29/cybersecurity-portfolio</h2>
+        <div class="meta">
+          <span class="pill">branch: <strong id="branchName">main</strong></span>
+          <span class="pill mono" id="repoMeta"></span>
+        </div>
+        <div class="breadcrumb" id="breadcrumb"></div>
+      </header>
 
-    <section>
-      <h2>Conteúdo do repositório</h2>
-      <div class="list" id="list"></div>
-    </section>
+      <div class="container">
+        <div class="two">
+          <section class="panel">
+            <h3>Conteúdo</h3>
+            <div class="list" id="list"></div>
+          </section>
+          <section class="panel">
+            <h3 id="readmeTitle">Sobre</h3>
+            <div class="readme" id="readme">(sem README)</div>
+          </section>
+        </div>
+      </div>
 
-    <section id="projectsSection" class="hidden">
-      <h2>Projetos (diretórios com README)</h2>
-      <div class="grid" id="projects"></div>
-    </section>
-  </main>
+      <footer>
+        <span class="mono">Feito com HTML + GitHub API • Sem build • Publicável no GitHub Pages</span>
+      </footer>
+    </main>
+  </div>
 
-  <footer>
-    <span class="mono">Feito com HTML + GitHub API • Sem build • Pode ser publicado no GitHub Pages</span>
-  </footer>
-
-  <!-- Renderizador de Markdown (leve) -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" integrity="sha384-ojl1C9dC3cXJq9eHqoz2sW9Q2K5TUnf0r/3RLdA2XvA2G3xW1k+0H9QhD5J9u7Cm" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" crossorigin="anonymous"></script>
   <script>
-    // 👉 Configure aqui
-    const owner = "hallllow29"; // o teu utilizador do GitHub
-    const repo  = "cybersecurity-portfolio";       // só o nome do repositório, sem URL       // p.ex. "portfolio"
-    const branch = "main";          // mude se o padrão do repo for outro
+    // ===== Configurações do repositório =====
+    const owner = "hallllow29";
+    const repo  = "cybersecurity-portfolio";
+    const branch = "main";
 
+    // ===== Elementos =====
     const els = {
       title: document.getElementById('title'),
-      readme: document.getElementById('readme'),
       list: document.getElementById('list'),
-      projects: document.getElementById('projects'),
-      aboutSection: document.getElementById('aboutSection'),
-      projectsSection: document.getElementById('projectsSection'),
+      readme: document.getElementById('readme'),
+      readmeTitle: document.getElementById('readmeTitle'),
       branchName: document.getElementById('branchName'),
       repoMeta: document.getElementById('repoMeta'),
+      breadcrumb: document.getElementById('breadcrumb'),
+      tree: document.getElementById('tree'),
+      quickNav: document.getElementById('quickNav'),
+      search: document.getElementById('search'),
     };
 
+    // ===== Helpers =====
     const api = (path="") => `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(branch)}`;
     const raw = (path="") => `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
+    const readmeNames = ['README.md','Readme.md','README.MD','readme.md','ReadMe.md'];
 
-    const readmeNames = [
-      'README.md','Readme.md','README.MD','readme.md','ReadMe.md'
-    ];
+    async function fetchJSON(url){ const r = await fetch(url); if(!r.ok) throw new Error(url+" ("+r.status+")"); return r.json(); }
+    async function fetchText(url){ const r = await fetch(url); if(!r.ok) throw new Error(url+" ("+r.status+")"); return r.text(); }
 
-    async function fetchJSON(url) {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`Falha ao obter ${url} (${res.status})`);
-      return res.json();
-    }
+    function ext(name){ const i = name.lastIndexOf('.'); return i>0 ? name.slice(i+1).toLowerCase() : ''; }
+    function fileIcon(name, type){ if(type==='dir') return '📁'; const e=ext(name); if(['png','jpg','jpeg','gif','webp','svg'].includes(e)) return '🖼️'; if(['md'].includes(e)) return '📝'; if(['html','css','js','ts'].includes(e)) return '💻'; if(['json','yml','yaml'].includes(e)) return '⚙️'; return '📄'; }
 
-    async function fetchText(url) {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`Falha ao obter ${url} (${res.status})`);
-      return res.text();
-    }
-
-    function ext(name){
-      const i = name.lastIndexOf('.');
-      return i>0 ? name.slice(i+1).toLowerCase() : '';
-    }
-
-    function fileIcon(name, type){
-      if(type==='dir') return '📁';
-      const e = ext(name);
-      if(['png','jpg','jpeg','gif','webp','svg'].includes(e)) return '🖼️';
-      if(['md'].includes(e)) return '📝';
-      if(['html','css','js','ts'].includes(e)) return '💻';
-      if(['json','yml','yaml'].includes(e)) return '⚙️';
-      return '📄';
-    }
-
-    function row({name, path, type, size, html_url}){
-      const el = document.createElement('div');
-      el.className = 'row';
+    function makeRow({name, path, type, size, html_url}){
+      const el = document.createElement('div'); el.className='row';
       const left = document.createElement('div');
-      if (type==='dir') {
-        left.innerHTML = `${fileIcon(name,type)}\u00A0 <a href="#">${name}</a>`;
-        left.querySelector('a').onclick = (e)=>{ e.preventDefault(); renderPath(path); };
-      } else if (name.toLowerCase().endsWith('.md')) {
-        left.innerHTML = `${fileIcon(name,type)}\u00A0 <a href="#">${name}</a>`;
-        left.querySelector('a').onclick = async (e)=>{ e.preventDefault(); await renderReadmeAt(path); };
-      } else {
-        left.innerHTML = `${fileIcon(name,type)}\u00A0 <a href="${html_url}" target="_blank" rel="noopener">${name}</a>`;
-      }
-      const right = document.createElement('div');
-      right.className = 'mono';
-      right.textContent = size ? `${size} B` : '';
-      el.append(left,right);
-      return el;
-    }(name, type){
-      if(type==='dir') return '📁';
-      const e = ext(name);
-      if(['png','jpg','jpeg','gif','webp','svg'].includes(e)) return '🖼️';
-      if(['md'].includes(e)) return '📝';
-      if(['html','css','js','ts'].includes(e)) return '💻';
-      if(['json','yml','yaml'].includes(e)) return '⚙️';
-      return '📄';
+      let link = document.createElement('a'); link.textContent = name; link.href = '#';
+      if (type==='dir') { link.onclick = (e)=>{ e.preventDefault(); navigate(path); }; }
+      else if (name.toLowerCase().endsWith('.md')) { link.onclick = (e)=>{ e.preventDefault(); showReadmeAt(path); } }
+      else { link.href = html_url; link.target = '_blank'; link.rel='noopener'; }
+      left.innerHTML = `${fileIcon(name,type)}  `; left.appendChild(link);
+      const right = document.createElement('div'); right.className='mono'; right.textContent = size ? `${size} B` : '';
+      el.append(left,right); return el;
     }
 
-    function row({name, path, type, size, html_url}){
-      const el = document.createElement('div');
-      el.className = 'row';
-      const left = document.createElement('div');
-      left.innerHTML = `${fileIcon(name,type)}\u00A0 <a href="${type==='dir' ? `https://github.com/${owner}/${repo}/tree/${branch}/${path}` : html_url}" target="_blank" rel="noopener">${name}</a>`;
-      const right = document.createElement('div');
-      right.className = 'mono';
-      right.textContent = size ? `${size} B` : '';
-      el.append(left,right);
-      return el;
+    function setBreadcrumb(path){
+      const parts = path ? path.split('/') : [];
+      els.breadcrumb.innerHTML = '';
+      const home = document.createElement('a'); home.textContent = 'Início'; home.href='#/'; home.onclick=(e)=>{e.preventDefault(); navigate('');};
+      els.breadcrumb.appendChild(home);
+      let acc = '';
+      parts.forEach((p,i)=>{
+        els.breadcrumb.append(' / ');
+        acc += (i?'/':'') + p;
+        const a = document.createElement('a'); a.textContent=p; a.href='#/'; a.onclick=(e)=>{e.preventDefault(); navigate(acc);};
+        els.breadcrumb.appendChild(a);
+      });
     }
 
-    async function renderReadmeAt(path=""){
-      // path pode ser "" (raiz) ou "dir/subdir"
+    async function showReadmeAt(path=""){
       for (const n of readmeNames) {
         try {
           const md = await fetchText(raw(path ? `${path}/${n}` : n));
-          els.readme.innerHTML = marked.parse(md, { breaks: true });
-          els.aboutSection.classList.remove('hidden');
-          document.getElementById('readmeTitle').textContent = path ? `README — ${path}` : 'Sobre';
-          return;
-        } catch(_) { /* tenta próximo nome */ }
+          els.readme.innerHTML = marked.parse(md, { breaks:true });
+          els.readmeTitle.textContent = path ? `README — ${path}` : 'Sobre';
+          return true;
+        } catch(_){}
       }
-      // se não achou README nesta pasta
-      els.aboutSection.classList.add('hidden');
+      els.readme.innerHTML = '<span class="mono">(sem README aqui)</span>';
+      els.readmeTitle.textContent = path ? `README — ${path}` : 'Sobre';
+      return false;
     }
 
-    async function renderPath(path=""){
+    async function renderList(path=""){
       const data = await fetchJSON(api(path));
       els.list.innerHTML = '';
-
-      (Array.isArray(data) ? data : [data])
-        .sort((a,b)=> (a.type===b.type ? a.name.localeCompare(b.name) : a.type.localeCompare(b.type)))
-        .forEach(item=> els.list.appendChild(row(item)));
-
-      // tenta mostrar README desta pasta
-      await renderReadmeAt(path);
+      (Array.isArray(data)?data:[data])
+        .sort((a,b)=> (a.type===b.type? a.name.localeCompare(b.name): a.type.localeCompare(b.type)))
+        .forEach(item=> els.list.appendChild(makeRow(item)));
     }
 
-    async function hydrateMeta(){
-      els.title.textContent = `${owner}/${repo}`;
-      els.branchName.textContent = branch;
-      els.repoMeta.textContent = ` • ${new Date().toLocaleDateString()} • origem: GitHub`;
-    }(){
-      els.title.textContent = `${owner}/${repo}`;
-      els.branchName.textContent = branch;
-      els.repoMeta.textContent = ` • ${new Date().toLocaleDateString()} • origem: GitHub`;
+    async function buildTree(){
+      // Árvore só de primeiro nível para simplicidade
+      const root = await fetchJSON(api(''));
+      const dirs = root.filter(x=>x.type==='dir');
+      const wrap = document.createElement('div');
+      for (const d of dirs){
+        const det = document.createElement('details');
+        const sum = document.createElement('summary'); sum.textContent = `📁 ${d.name}`; det.appendChild(sum);
+        const items = document.createElement('div'); items.className='items';
+        try {
+          const inside = await fetchJSON(api(d.path));
+          inside.sort((a,b)=> a.name.localeCompare(b.name)).forEach(f=>{
+            const a = document.createElement('a'); a.className='item'; a.href='#'; a.textContent = (f.type==='dir'? '📁 ' : fileIcon(f.name,f.type)+' ') + f.name;
+            if (f.type==='dir') a.onclick=(e)=>{e.preventDefault(); navigate(f.path);};
+            else if (f.name.toLowerCase().endsWith('.md')) a.onclick=(e)=>{e.preventDefault(); navigate(d.path); showReadmeAt(f.path.replace(/\/README\.md$/i, d.path)); };
+            else { a.href=f.html_url; a.target='_blank'; a.rel='noopener'; }
+            items.appendChild(a);
+          });
+        } catch {}
+        det.appendChild(items); wrap.appendChild(det);
+      }
+      els.tree.innerHTML=''; els.tree.appendChild(wrap);
     }
 
-    (async function init(){
-      await hydrateMeta();
-      await renderPath("");
-    })();
+    async function navigate(path){
+      window.location.hash = '#/' + encodeURIComponent(path);
+      setBreadcrumb(path);
+      await renderList(path);
+      await showReadmeAt(path);
+    }
+
+    function applyFilter(){
+      const q = (els.search.value||'').toLowerCase();
+      const rows = els.list.querySelectorAll('.row');
+      rows.forEach(r=>{ const text = r.textContent.toLowerCase(); r.style.display = text.includes(q)?'flex':'none'; });
+    }
+
+    async function init(){
+      els.title.textContent = `${owner}/${repo}`;
+      els.branchName.textContent = branch;
+      els.repoMeta.textContent = new Date().toLocaleDateString();
+
+      await buildTree();
+
+      // Navegação por hash (#/pasta/subpasta)
+      window.addEventListener('hashchange', ()=>{
+        const hash = decodeURIComponent((location.hash||'').replace(/^#\//,''));
+        navigate(hash);
+      });
+
+      // rota inicial
+      const start = decodeURIComponent((location.hash||'').replace(/^#\//,''));
+      await navigate(start);
+
+      els.search.addEventListener('input', applyFilter);
+
+      // Quick nav
+      els.quickNav.querySelectorAll('a').forEach(a=>{
+        a.onclick=(e)=>{ e.preventDefault(); const p = a.dataset.path==='README'? '' : ''; navigate(p); showReadmeAt(p); els.quickNav.querySelectorAll('a').forEach(x=>x.classList.remove('active')); a.classList.add('active'); };
+      });
+    }
+
+    init();
   </script>
 </body>
 </html>
