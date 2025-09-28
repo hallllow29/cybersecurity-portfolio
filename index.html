@@ -5,308 +5,231 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pedro Antunes · Portefólio</title>
   <meta name="description" content="Portefólio gerado automaticamente a partir do conteúdo deste repositório." />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <style>
-    :root {
-      --bg: #0f172a;         /* slate-900 */
-      --panel: #0b1220;      /* darker */
-      --card: #111827;       /* gray-900 */
-      --muted: #94a3b8;      /* slate-400 */
-      --text: #e5e7eb;       /* gray-200 */
-      --acc: #38bdf8;        /* sky-400 */
-      --ring: #334155;       /* slate-700 */
-    }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body { margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); }
-
-    .layout { display:grid; grid-template-columns: 280px 1fr; min-height:100vh; }
-
-    /* Sidebar */
-    aside { border-right:1px solid var(--ring); background: linear-gradient(180deg, #0e1628, #0a101d); padding: 16px; position: sticky; top:0; align-self:start; height:100vh; overflow:auto; }
-    .brand { display:flex; align-items:center; gap:10px; margin-bottom: 16px; }
-    .dot { width:10px; height:10px; border-radius:50%; background: var(--acc); box-shadow: 0 0 20px rgba(56,189,248,.6); }
-    .brand h1 { font-size: 18px; margin:0; letter-spacing:.2px; }
-    .muted { color: var(--muted); }
-
-    .search { width:100%; margin:12px 0 16px; }
-    .search input { width:100%; padding:10px 12px; border:1px solid var(--ring); background: var(--panel); color: var(--text); border-radius: 12px; outline: none; }
-
-    .nav { display:flex; flex-direction:column; gap:6px; }
-    .nav a { display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:10px; color: var(--text); text-decoration:none; border:1px solid transparent; }
-    .nav a:hover { background: rgba(148,163,184,.08); border-color: var(--ring); }
-    .nav a.active { background:#101828; border-color: var(--ring); }
-
-    .tree { margin-top: 10px; border-top:1px solid var(--ring); padding-top:10px; }
-    details { border-radius:10px; }
-    summary { list-style:none; cursor:pointer; padding:6px 8px; border-radius:8px; }
-    summary:hover { background: rgba(148,163,184,.08); }
-    .items { margin-left: 14px; }
-    .item { display:block; padding:6px 8px; border-radius:8px; text-decoration:none; color:var(--text); }
-    .item:hover { background: rgba(148,163,184,.08); }
-
-    /* Main */
-    header { padding: 24px 24px 12px; border-bottom: 1px solid var(--ring); }
-    header h2 { margin:0 0 6px; font-size: clamp(24px, 2.6vw, 36px); letter-spacing: -0.02em; }
-
-    .meta { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-    .pill { display:inline-flex; align-items:center; gap:6px; padding: 4px 10px; border-radius: 999px; border:1px solid var(--ring); color: var(--muted); font-size: 12px; }
-
-    .container { padding: 18px 24px 32px; }
-    .two { display:grid; grid-template-columns: 1.2fr .8fr; gap: 16px; }
-
-    .panel { background: var(--panel); border: 1px solid var(--ring); border-radius: 16px; padding: 16px; }
-    .panel h3 { margin-top:0; }
-
-    .list { border: 1px solid var(--ring); border-radius: 12px; overflow: hidden; }
-    .row { display:flex; align-items:center; justify-content:space-between; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--ring); background: #0b1220; }
-    .row:last-child { border-bottom: 0; }
-    .row a { color: var(--text); text-decoration: none; }
-    .row a:hover { color: var(--acc); }
-
-    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; color: var(--muted); }
-
-    .readme { background: #0b1220; border-radius: 16px; border: 1px solid var(--ring); padding: 16px; }
-    .readme h1,.readme h2,.readme h3 { scroll-margin-top: 80px; }
-
-    .breadcrumb { font-size: 13px; margin-top: 8px; color: var(--muted); }
-    .breadcrumb a { color: var(--text); text-decoration:none; }
-    .breadcrumb a:hover { color: var(--acc); }
-
-    footer { color: var(--muted); text-align:center; padding: 18px; border-top:1px solid var(--ring); }
-
-    @media (max-width: 900px) {
-      .layout { grid-template-columns: 1fr; }
-      aside { position:relative; height:auto; }
-      .two { grid-template-columns: 1fr; }
-    }
+    :root { --bg:#0f172a; --panel:#0b1220; --ring:#334155; --text:#e5e7eb; --mut:#94a3b8; --acc:#38bdf8; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+    header{padding:24px 16px 8px;border-bottom:1px solid var(--ring)}
+    header h1{margin:0 0 6px;font-size:clamp(24px,2.6vw,36px)}
+    .pill{display:inline-block;border:1px solid var(--ring);border-radius:999px;padding:4px 10px;color:var(--mut);font-size:12px;margin-right:8px}
+    .container{max-width:1000px;margin:0 auto;padding:18px 16px 40px}
+    .panel{background:var(--panel);border:1px solid var(--ring);border-radius:16px;padding:16px;margin-bottom:16px}
+    .list{border:1px solid var(--ring);border-radius:12px;overflow:hidden}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-bottom:1px solid var(--ring);background:#0b1220}
+    .row:last-child{border-bottom:0}
+    .row a{color:var(--text);text-decoration:none}
+    .row a:hover{color:var(--acc)}
+    .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:var(--mut)}
+    .readme{background:#0b1220;border:1px solid var(--ring);border-radius:16px;padding:16px}
+    .readme h1,.readme h2,.readme h3{scroll-margin-top:80px}
+    .readme img{max-width:100%;height:auto;border-radius:8px;display:block;margin:10px 0}
+    .breadcrumb{font-size:13px;color:var(--mut);margin-top:6px}
+    .breadcrumb a{color:var(--text);text-decoration:none}
+    .breadcrumb a:hover{color:var(--acc)}
+    footer{color:var(--mut);text-align:center;padding:18px;border-top:1px solid var(--ring)}
   </style>
 </head>
 <body>
-  <div class="layout">
-    <aside>
-      <div class="brand">
-        <div class="dot"></div>
-        <h1>Portefólio <span class="muted">· GitHub</span></h1>
-      </div>
-      <div class="search"><input id="search" placeholder="Filtrar ficheiros…" /></div>
-      <nav class="nav" id="quickNav">
-        <a href="#/" data-path="" class="active">🏠 Início</a>
-        <a href="#/README" data-path="README">🧑 Sobre</a>
-      </nav>
-      <div class="tree" id="tree"></div>
-    </aside>
+  <header>
+    <h1 id="title">hallllow29/cybersecurity-portfolio</h1>
+    <span class="pill">branch: <b id="branchName">main</b></span>
+    <span class="pill mono" id="repoMeta"></span>
+    <div class="breadcrumb" id="breadcrumb"></div>
+  </header>
 
-    <main>
-      <header>
-        <h2 id="title">hallllow29/cybersecurity-portfolio</h2>
-        <div class="meta">
-          <span class="pill">branch: <strong id="branchName">main</strong></span>
-          <span class="pill mono" id="repoMeta"></span>
-        </div>
-        <div class="breadcrumb" id="breadcrumb"></div>
-      </header>
-
-      <div class="container">
-        <div class="two">
-          <section class="panel">
-            <h3>Conteúdo</h3>
-            <div class="list" id="list"></div>
-          </section>
-          <section class="panel">
-            <h3 id="readmeTitle">Sobre</h3>
-            <div class="readme" id="readme">(sem README)</div>
-          </section>
-        </div>
-      </div>
-
-      <footer>
-        <span class="mono">Feito com HTML + GitHub API • Sem build • Publicável no GitHub Pages</span>
-      </footer>
-    </main>
+  <div class="container">
+    <section class="panel">
+      <h3>Conteúdo</h3>
+      <div class="list" id="list"></div>
+    </section>
+    <section class="panel">
+      <h3 id="readmeTitle">Sobre</h3>
+      <div class="readme" id="readme">(sem README)</div>
+    </section>
   </div>
+
+  <footer><span class="mono">HTML + GitHub API • Sem build • GitHub Pages</span></footer>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" crossorigin="anonymous"></script>
   <script>
-    // ===== Configurações do repositório =====
-    const owner = "hallllow29";
-    const repo  = "cybersecurity-portfolio";
-    const branch = "main";
+  // ===== Config do repo =====
+  const owner = "hallllow29";
+  const repo  = "cybersecurity-portfolio";
+  const branch = "main";
 
-    // ===== Elementos =====
-    const els = {
-      title: document.getElementById('title'),
-      list: document.getElementById('list'),
-      readme: document.getElementById('readme'),
-      readmeTitle: document.getElementById('readmeTitle'),
-      branchName: document.getElementById('branchName'),
-      repoMeta: document.getElementById('repoMeta'),
-      breadcrumb: document.getElementById('breadcrumb'),
-      tree: document.getElementById('tree'),
-      quickNav: document.getElementById('quickNav'),
-      search: document.getElementById('search'),
-    };
+  // ===== Elements =====
+  const els = {
+    title: document.getElementById('title'),
+    branchName: document.getElementById('branchName'),
+    repoMeta: document.getElementById('repoMeta'),
+    list: document.getElementById('list'),
+    readme: document.getElementById('readme'),
+    readmeTitle: document.getElementById('readmeTitle'),
+    breadcrumb: document.getElementById('breadcrumb'),
+  };
 
-    // ===== Helpers =====
-    const api = (path="") => `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(branch)}`;
-    const raw = (path="") => `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
-    const readmeNames = ['README.md','Readme.md','README.MD','readme.md','ReadMe.md'];
+  // ===== Utils =====
+  const readmeNames = ['README.md','Readme.md','README.MD','readme.md','ReadMe.md'];
 
-    async function fetchJSON(url){ const r = await fetch(url); if(!r.ok) throw new Error(url+" ("+r.status+")"); return r.json(); }
-    async function fetchText(url){ const r = await fetch(url); if(!r.ok) throw new Error(url+" ("+r.status+")"); return r.text(); }
+  // encode path but keep slashes
+  const encPath = p => encodeURI(p).replace(/#/g, '%23');
 
-    function ext(name){ const i = name.lastIndexOf('.'); return i>0 ? name.slice(i+1).toLowerCase() : ''; }
-    function fileIcon(name, type){ if(type==='dir') return '📁'; const e=ext(name); if(['png','jpg','jpeg','gif','webp','svg'].includes(e)) return '🖼️'; if(['md'].includes(e)) return '📝'; if(['html','css','js','ts'].includes(e)) return '💻'; if(['json','yml','yaml'].includes(e)) return '⚙️'; return '📄'; }
+  function api(path=""){
+    const p = path ? encPath(path) : "";
+    return `https://api.github.com/repos/${owner}/${repo}/contents/${p}?ref=${encodeURIComponent(branch)}`;
+  }
+  function raw(path=""){
+    const p = path ? encPath(path) : "";
+    return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${p}`;
+  }
 
-    function makeRow({name, path, type, size, html_url}){
-      const el = document.createElement('div'); el.className='row';
-      const left = document.createElement('div');
-      let link = document.createElement('a'); link.textContent = name; link.href = '#';
-      if (type==='dir') { link.onclick = (e)=>{ e.preventDefault(); navigate(path); }; }
-      else if (name.toLowerCase().endsWith('.md')) {
-        link.onclick = (e)=>{ e.preventDefault(); const dir = path.replace(/\/[^\/]+$/, ''); navigate(dir); };
-      } }
-      else { link.href = html_url; link.target = '_blank'; link.rel='noopener'; }
-      left.innerHTML = `${fileIcon(name,type)}  `; left.appendChild(link);
-      const right = document.createElement('div'); right.className='mono'; right.textContent = size ? `${size} B` : '';
-      el.append(left,right); return el;
+  async function j(url){ const r = await fetch(url); if(!r.ok) throw new Error(url+" ("+r.status+")"); return r.json(); }
+  async function t(url){ const r = await fetch(url); if(!r.ok) throw new Error(url+" ("+r.status+")"); return r.text(); }
+
+  function isAbsUrl(s){ return /^([a-z]+:)?\/\//i.test(s) || s.startsWith('data:'); }
+  function dirOf(p){ const i = p.lastIndexOf('/'); return i>=0 ? p.slice(0,i) : ""; }
+
+  // normaliza "a/b/../c/./d.png" e lida com caminhos que começam por "/"
+  function normalizePath(p){
+    const absRepoRoot = p.startsWith('/');
+    const parts = [];
+    p.replace(/^\/+/, '').split('/').forEach(seg=>{
+      if(!seg || seg === '.') return;
+      if(seg === '..') parts.pop(); else parts.push(seg);
+    });
+    return (absRepoRoot ? '/' : '') + parts.join('/');
+  }
+
+  // resolve rel em relação à pasta base, suportando "../" e "/"
+  function resolveRel(basePath, rel){
+    if (isAbsUrl(rel)) return rel;
+    if (rel.startsWith('/')) return normalizePath(rel); // raiz do repositório
+    const base = basePath ? basePath.split('/') : [];
+    rel.split('/').forEach(seg=>{
+      if(!seg || seg === '.') return;
+      if(seg === '..') base.pop(); else base.push(seg);
+    });
+    return normalizePath(base.join('/'));
+  }
+
+  function setBreadcrumb(path){
+    const parts = path ? path.split('/') : [];
+    els.breadcrumb.innerHTML = "";
+    const a = document.createElement('a'); a.textContent = 'Início'; a.href = "#";
+    a.onclick = (e)=>{e.preventDefault(); navigate("");};
+    els.breadcrumb.appendChild(a);
+    let acc = "";
+    parts.forEach((p,i)=>{
+      els.breadcrumb.append(" / ");
+      acc += (i?"/":"") + p;
+      const link = document.createElement('a'); link.textContent = p; link.href="#";
+      link.onclick = (e)=>{ e.preventDefault(); navigate(acc); };
+      els.breadcrumb.appendChild(link);
+    });
+  }
+
+  function fileIcon(name, type){
+    if(type==='dir') return '📁';
+    const e = name.split('.').pop().toLowerCase();
+    if(['png','jpg','jpeg','gif','webp','svg'].includes(e)) return '🖼️';
+    if(['md'].includes(e)) return '📝';
+    if(['html','css','js','ts'].includes(e)) return '💻';
+    if(['json','yml','yaml'].includes(e)) return '⚙️';
+    return '📄';
+  }
+
+  function row({name, path, type, size, html_url}){
+    const el = document.createElement('div'); el.className='row';
+    const left = document.createElement('div');
+    const link = document.createElement('a'); link.textContent = name; link.href="#";
+    if(type==='dir'){
+      link.onclick = (e)=>{ e.preventDefault(); navigate(path); };
+    }else if(name.toLowerCase().endsWith('.md')){
+      link.onclick = async (e)=>{ e.preventDefault(); await showMarkdownFile(path); };
+    }else{
+      link.href = html_url; link.target = "_blank"; link.rel = "noopener";
     }
+    left.innerHTML = `${fileIcon(name,type)}&nbsp;`; left.appendChild(link);
+    const right = document.createElement('div'); right.className = 'mono'; right.textContent = size ? `${size} B` : '';
+    el.append(left,right); return el;
+  }
 
-    function setBreadcrumb(path){
-      const parts = path ? path.split('/') : [];
-      els.breadcrumb.innerHTML = '';
-      const home = document.createElement('a'); home.textContent = 'Início'; home.href='#/'; home.onclick=(e)=>{e.preventDefault(); navigate('');};
-      els.breadcrumb.appendChild(home);
-      let acc = '';
-      parts.forEach((p,i)=>{
-        els.breadcrumb.append(' / ');
-        acc += (i?'/':'') + p;
-        const a = document.createElement('a'); a.textContent=p; a.href='#/'; a.onclick=(e)=>{e.preventDefault(); navigate(acc);};
-        els.breadcrumb.appendChild(a);
-      });
+  async function renderList(path=""){
+    const data = await j(api(path));
+    els.list.innerHTML = "";
+    (Array.isArray(data)?data:[data])
+      .sort((a,b)=> (a.type===b.type ? a.name.localeCompare(b.name) : a.type.localeCompare(b.type)))
+      .forEach(item => els.list.appendChild(row(item)));
+  }
+
+  // tenta mostrar README dessa pasta (várias capitalizações)
+  async function showReadmeAt(path=""){
+    for(const n of readmeNames){
+      try{
+        const md = await t(raw(path ? `${path}/${n}` : n));
+        await renderMarkdown(md, path);
+        els.readmeTitle.textContent = path ? `README — ${path}` : 'Sobre';
+        return true;
+      }catch{ /* tenta próximo nome */ }
     }
+    els.readme.innerHTML = '<span class="mono">(sem README aqui)</span>';
+    els.readmeTitle.textContent = path ? `README — ${path}` : 'Sobre';
+    return false;
+  }
 
-    async function showReadmeAt(path=""){
-      function joinRepoPath(basePath, rel){
-        // basePath: 'dir/subdir' (no trailing slash). rel: may start with '/', './', '../'
-        if (!rel) return basePath;
-        if (rel.startsWith('data:') || /^([a-z]+:)?\/\//i.test(rel)) return rel; // absolute
-        const base = basePath ? basePath.split('/') : [];
-        let parts = rel.replace(/^\/+/, '').split('/');
-        for (const seg of parts){
-          if (!seg || seg === '.') continue;
-          if (seg === '..') base.pop();
-          else base.push(seg);
-        }
-        return base.join('/');
+  // mostra QUALQUER .md (não só README), respeitando links/imagens relativas
+  async function showMarkdownFile(filePath){
+    const md = await t(raw(filePath));
+    await renderMarkdown(md, dirOf(filePath));
+    els.readmeTitle.textContent = filePath;
+  }
+
+  // renderiza markdown e reescreve caminhos relativos (imgs e links)
+  async function renderMarkdown(md, basePath){
+    const html = marked.parse(md, { breaks:true });
+    els.readme.innerHTML = html;
+
+    // imagens relativas → raw
+    els.readme.querySelectorAll('img').forEach(img=>{
+      const src = img.getAttribute('src') || '';
+      if (isAbsUrl(src)) return;
+      const joined = resolveRel(basePath, src);
+      // se começou por '/', tira a barra para montar URL raw
+      const finalPath = joined.startsWith('/') ? joined.slice(1) : joined;
+      img.src = raw(finalPath);
+    });
+
+    // links relativos: .md navega dentro do site, resto abre raw
+    els.readme.querySelectorAll('a').forEach(a=>{
+      const href = a.getAttribute('href') || '';
+      if (!href || href.startsWith('#') || isAbsUrl(href)) return;
+      const joined = resolveRel(basePath, href);
+      const finalPath = joined.startsWith('/') ? joined.slice(1) : joined;
+
+      if (/\.md($|[?#])/i.test(href)){
+        a.href="#"; a.onclick=(e)=>{ e.preventDefault();
+          const folder = finalPath.replace(/\/?README\.md$/i,'').replace(/\.md$/i,'');
+          navigate(folder);
+        };
+      }else{
+        a.href = raw(finalPath); a.target = "_blank"; a.rel = "noopener";
       }
-      for (const n of readmeNames) {
-        try {
-          const md = await fetchText(raw(path ? `${path}/${n}` : n));
-          const html = marked.parse(md, { breaks:true });
-          els.readme.innerHTML = html;
-          const base = path || '';
-          // imagens
-          els.readme.querySelectorAll('img').forEach(img=>{
-            const src = img.getAttribute('src')||'';
-            if (!src || src.startsWith('data:') || /^https?:\/\//i.test(src)) return;
-            const joined = joinRepoPath(base, src);
-            img.src = raw(joined);
-          });
-          // links
-          els.readme.querySelectorAll('a').forEach(a=>{
-            const href = a.getAttribute('href')||'';
-            if (!href) return;
-            if (/\.md($|[?#])/i.test(href) && !/^([a-z]+:)?\/\//i.test(href)){
-              const joined = joinRepoPath(base, href).replace(/\/?README\.md$/i,'').replace(/\.md$/i,'');
-              a.href = '#/';
-              a.onclick = (e)=>{ e.preventDefault(); navigate(joined.replace(/\/$/,'')); };
-            } else if (!/^([a-z]+:)?\/\//i.test(href) && !href.startsWith('data:')) {
-              const joined = joinRepoPath(base, href);
-              a.href = raw(joined);
-              a.target = '_blank'; a.rel='noopener';
-            }
-          });
-          els.readmeTitle.textContent = path ? `README — ${path}` : 'Sobre';
-          return true;
-        } catch(_){}
-      }
-      els.readme.innerHTML = '<span class="mono">(sem README aqui)</span>';
-      els.readmeTitle.textContent = path ? `README — ${path}` : 'Sobre';
-      return false;
-    }
+    });
+  }
 
-    async function renderList(path=""){
-      const data = await fetchJSON(api(path));
-      els.list.innerHTML = '';
-      (Array.isArray(data)?data:[data])
-        .sort((a,b)=> (a.type===b.type? a.name.localeCompare(b.name): a.type.localeCompare(b.type)))
-        .forEach(item=> els.list.appendChild(makeRow(item)));
-    }
+  async function navigate(path){
+    setBreadcrumb(path);
+    await renderList(path);
+    await showReadmeAt(path);
+  }
 
-    async function buildTree(){
-      // Árvore só de primeiro nível para simplicidade
-      const root = await fetchJSON(api(''));
-      const dirs = root.filter(x=>x.type==='dir');
-      const wrap = document.createElement('div');
-      for (const d of dirs){
-        const det = document.createElement('details');
-        const sum = document.createElement('summary'); sum.textContent = `📁 ${d.name}`; det.appendChild(sum);
-        const items = document.createElement('div'); items.className='items';
-        try {
-          const inside = await fetchJSON(api(d.path));
-          inside.sort((a,b)=> a.name.localeCompare(b.name)).forEach(f=>{
-            const a = document.createElement('a'); a.className='item'; a.href='#'; a.textContent = (f.type==='dir'? '📁 ' : fileIcon(f.name,f.type)+' ') + f.name;
-            if (f.type==='dir') a.onclick=(e)=>{e.preventDefault(); navigate(f.path);};
-            else if (f.name.toLowerCase().endsWith('.md')) a.onclick=(e)=>{e.preventDefault(); navigate(d.path);}; navigate(d.path); showReadmeAt(f.path.replace(/\/README\.md$/i, d.path)); };
-            else { a.href=f.html_url; a.target='_blank'; a.rel='noopener'; }
-            items.appendChild(a);
-          });
-        } catch {}
-        det.appendChild(items); wrap.appendChild(det);
-      }
-      els.tree.innerHTML=''; els.tree.appendChild(wrap);
-    }
-
-    async function navigate(path){
-      window.location.hash = '#/' + encodeURIComponent(path);
-      setBreadcrumb(path);
-      await renderList(path);
-      await showReadmeAt(path);
-    }
-
-    function applyFilter(){
-      const q = (els.search.value||'').toLowerCase();
-      const rows = els.list.querySelectorAll('.row');
-      rows.forEach(r=>{ const text = r.textContent.toLowerCase(); r.style.display = text.includes(q)?'flex':'none'; });
-    }
-
-    async function init(){
-      els.title.textContent = `${owner}/${repo}`;
-      els.branchName.textContent = branch;
-      els.repoMeta.textContent = new Date().toLocaleDateString();
-
-      await buildTree();
-
-      // Navegação por hash (#/pasta/subpasta)
-      window.addEventListener('hashchange', ()=>{
-        const hash = decodeURIComponent((location.hash||'').replace(/^#\//,''));
-        navigate(hash);
-      });
-
-      // rota inicial
-      const start = decodeURIComponent((location.hash||'').replace(/^#\//,''));
-      await navigate(start);
-
-      els.search.addEventListener('input', applyFilter);
-
-      // Quick nav
-      els.quickNav.querySelectorAll('a').forEach(a=>{
-        a.onclick=(e)=>{ e.preventDefault(); const p = a.dataset.path==='README'? '' : ''; navigate(p); showReadmeAt(p); els.quickNav.querySelectorAll('a').forEach(x=>x.classList.remove('active')); a.classList.add('active'); };
-      });
-    }
-
-    init();
+  // ===== init =====
+  (async function(){
+    els.title.textContent = `${owner}/${repo}`;
+    els.branchName.textContent = branch;
+    els.repoMeta.textContent = new Date().toLocaleDateString();
+    await navigate("");
+  })();
   </script>
 </body>
 </html>
