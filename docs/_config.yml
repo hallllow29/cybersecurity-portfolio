@@ -1,5 +1,13 @@
-title: My Portfolio
+title: Hallllow29 Portfolio
 theme: minima
-plugins: []
-collections: {}
+url: "https://hallllow29.github.io"
+baseurl: "/cybersecurity-portfolio"
 
+collections:
+  projects:
+    output: true
+  ctfs:
+    output: true
+
+# opcional: configurações de permalinks
+permalink: /:collection/:path/
