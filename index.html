@@ -47,7 +47,7 @@
 
   <main class="container">
     <section id="aboutSection" class="hidden">
-      <h2>Sobre</h2>
+      <h2 id="readmeTitle">README</h2>
       <div class="readme" id="readme"></div>
     </section>
 
@@ -88,6 +88,10 @@
     const api = (path="") => `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(branch)}`;
     const raw = (path="") => `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
 
+    const readmeNames = [
+      'README.md','Readme.md','README.MD','readme.md','ReadMe.md'
+    ];
+
     async function fetchJSON(url) {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`Falha ao obter ${url} (${res.status})`);
@@ -119,6 +123,34 @@
       const el = document.createElement('div');
       el.className = 'row';
       const left = document.createElement('div');
+      if (type==='dir') {
+        left.innerHTML = `${fileIcon(name,type)}\u00A0 <a href="#">${name}</a>`;
+        left.querySelector('a').onclick = (e)=>{ e.preventDefault(); renderPath(path); };
+      } else if (name.toLowerCase().endsWith('.md')) {
+        left.innerHTML = `${fileIcon(name,type)}\u00A0 <a href="#">${name}</a>`;
+        left.querySelector('a').onclick = async (e)=>{ e.preventDefault(); await renderReadmeAt(path); };
+      } else {
+        left.innerHTML = `${fileIcon(name,type)}\u00A0 <a href="${html_url}" target="_blank" rel="noopener">${name}</a>`;
+      }
+      const right = document.createElement('div');
+      right.className = 'mono';
+      right.textContent = size ? `${size} B` : '';
+      el.append(left,right);
+      return el;
+    }(name, type){
+      if(type==='dir') return '📁';
+      const e = ext(name);
+      if(['png','jpg','jpeg','gif','webp','svg'].includes(e)) return '🖼️';
+      if(['md'].includes(e)) return '📝';
+      if(['html','css','js','ts'].includes(e)) return '💻';
+      if(['json','yml','yaml'].includes(e)) return '⚙️';
+      return '📄';
+    }
+
+    function row({name, path, type, size, html_url}){
+      const el = document.createElement('div');
+      el.className = 'row';
+      const left = document.createElement('div');
       left.innerHTML = `${fileIcon(name,type)}\u00A0 <a href="${type==='dir' ? `https://github.com/${owner}/${repo}/tree/${branch}/${path}` : html_url}" target="_blank" rel="noopener">${name}</a>`;
       const right = document.createElement('div');
       right.className = 'mono';
@@ -127,47 +159,38 @@
       return el;
     }
 
-    async function renderReadme() {
-      try {
-        const md = await fetchText(raw('README.md'));
-        els.readme.innerHTML = marked.parse(md, { breaks: true });
-        els.aboutSection.classList.remove('hidden');
-      } catch(err) {
-        // Sem README — tudo bem
-        console.info('README não encontrado.');
+    async function renderReadmeAt(path=""){
+      // path pode ser "" (raiz) ou "dir/subdir"
+      for (const n of readmeNames) {
+        try {
+          const md = await fetchText(raw(path ? `${path}/${n}` : n));
+          els.readme.innerHTML = marked.parse(md, { breaks: true });
+          els.aboutSection.classList.remove('hidden');
+          document.getElementById('readmeTitle').textContent = path ? `README — ${path}` : 'Sobre';
+          return;
+        } catch(_) { /* tenta próximo nome */ }
       }
+      // se não achou README nesta pasta
+      els.aboutSection.classList.add('hidden');
     }
 
-    async function renderRoot() {
-      const data = await fetchJSON(api());
+    async function renderPath(path=""){
+      const data = await fetchJSON(api(path));
       els.list.innerHTML = '';
 
-      data.sort((a,b)=> (a.type===b.type? a.name.localeCompare(b.name) : a.type.localeCompare(b.type)) )
-          .forEach(item=> els.list.appendChild(row(item)));
+      (Array.isArray(data) ? data : [data])
+        .sort((a,b)=> (a.type===b.type ? a.name.localeCompare(b.name) : a.type.localeCompare(b.type)))
+        .forEach(item=> els.list.appendChild(row(item)));
 
-      // Projetos = diretórios que têm README.md
-      const dirs = data.filter(x=>x.type==='dir');
-      const cards = [];
-      for (const d of dirs) {
-        try {
-          const files = await fetchJSON(api(d.path));
-          const hasReadme = files.some(f=> f.name.toLowerCase()==='readme.md');
-          if (hasReadme) {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `<h3>${d.name}</h3><p class="mono">${d.path}</p><p><a href="https://github.com/${owner}/${repo}/tree/${branch}/${d.path}" target="_blank" rel="noopener">Abrir no GitHub →</a></p>`;
-            cards.push(card);
-          }
-        } catch {}
-      }
-      if (cards.length) {
-        els.projects.innerHTML = '';
-        cards.forEach(c=> els.projects.appendChild(c));
-        els.projectsSection.classList.remove('hidden');
-      }
+      // tenta mostrar README desta pasta
+      await renderReadmeAt(path);
     }
 
     async function hydrateMeta(){
+      els.title.textContent = `${owner}/${repo}`;
+      els.branchName.textContent = branch;
+      els.repoMeta.textContent = ` • ${new Date().toLocaleDateString()} • origem: GitHub`;
+    }(){
       els.title.textContent = `${owner}/${repo}`;
       els.branchName.textContent = branch;
       els.repoMeta.textContent = ` • ${new Date().toLocaleDateString()} • origem: GitHub`;
@@ -175,10 +198,8 @@
 
     (async function init(){
       await hydrateMeta();
-      await renderReadme();
-      await renderRoot();
+      await renderPath("");
     })();
   </script>
 </body>
 </html>
-
