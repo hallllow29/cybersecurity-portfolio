@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>O meu Portefólio</title>
+  <meta name="description" content="Portefólio gerado automaticamente a partir do conteúdo deste repositório." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <style>
+    :root {
+      --bg: #0f172a; /* slate-900 */
+      --card: #111827; /* gray-900 */
+      --muted: #94a3b8; /* slate-400 */
+      --text: #e5e7eb; /* gray-200 */
+      --acc: #38bdf8; /* sky-400 */
+      --ring: #334155; /* slate-700 */
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); }
+    header { max-width: 980px; margin: 32px auto 0; padding: 0 16px 16px; border-bottom: 1px solid var(--ring); }
+    header h1 { margin: 0 0 8px; font-size: clamp(28px, 3.2vw, 40px); letter-spacing: -0.02em; }
+    header p { margin: 4px 0 16px; color: var(--muted); }
+    .container { max-width: 980px; margin: 0 auto; padding: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .card { background: var(--card); border: 1px solid var(--ring); border-radius: 16px; padding: 16px; box-shadow: 0 8px 18px rgba(0,0,0,.25); }
+    .card h3 { margin: 0 0 8px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .pill { display:inline-block; padding: 4px 10px; border-radius: 999px; border:1px solid var(--ring); color: var(--muted); font-size: 12px; }
+    .list { border: 1px solid var(--ring); border-radius: 12px; overflow: hidden; }
+    .row { display:flex; align-items:center; justify-content:space-between; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--ring); background: #0b1220; }
+    .row:last-child { border-bottom: 0; }
+    .row a { color: var(--text); text-decoration: none; }
+    .row a:hover { color: var(--acc); }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; color: var(--muted); }
+    .readme { background: #0b1220; border-radius: 16px; border: 1px solid var(--ring); padding: 16px; }
+    .readme h1, .readme h2, .readme h3 { scroll-margin-top: 80px; }
+    footer { color: var(--muted); text-align:center; padding: 32px 16px; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">Portefólio</h1>
+    <p>Gerado automaticamente a partir deste repositório.<span id="repoMeta" class="mono"></span></p>
+    <div class="pill" id="branchPill">branch: <span id="branchName">main</span></div>
+  </header>
+
+  <main class="container">
+    <section id="aboutSection" class="hidden">
+      <h2>Sobre</h2>
+      <div class="readme" id="readme"></div>
+    </section>
+
+    <section>
+      <h2>Conteúdo do repositório</h2>
+      <div class="list" id="list"></div>
+    </section>
+
+    <section id="projectsSection" class="hidden">
+      <h2>Projetos (diretórios com README)</h2>
+      <div class="grid" id="projects"></div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="mono">Feito com HTML + GitHub API • Sem build • Pode ser publicado no GitHub Pages</span>
+  </footer>
+
+  <!-- Renderizador de Markdown (leve) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" integrity="sha384-ojl1C9dC3cXJq9eHqoz2sW9Q2K5TUnf0r/3RLdA2XvA2G3xW1k+0H9QhD5J9u7Cm" crossorigin="anonymous"></script>
+  <script>
+    // 👉 Configure aqui
+    const owner = "hallllow29"; // o teu utilizador do GitHub
+    const repo  = "cybersecurity-portfolio";       // só o nome do repositório, sem URL       // p.ex. "portfolio"
+    const branch = "main";          // mude se o padrão do repo for outro
+
+    const els = {
+      title: document.getElementById('title'),
+      readme: document.getElementById('readme'),
+      list: document.getElementById('list'),
+      projects: document.getElementById('projects'),
+      aboutSection: document.getElementById('aboutSection'),
+      projectsSection: document.getElementById('projectsSection'),
+      branchName: document.getElementById('branchName'),
+      repoMeta: document.getElementById('repoMeta'),
+    };
+
+    const api = (path="") => `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(branch)}`;
+    const raw = (path="") => `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
+
+    async function fetchJSON(url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Falha ao obter ${url} (${res.status})`);
+      return res.json();
+    }
+
+    async function fetchText(url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Falha ao obter ${url} (${res.status})`);
+      return res.text();
+    }
+
+    function ext(name){
+      const i = name.lastIndexOf('.');
+      return i>0 ? name.slice(i+1).toLowerCase() : '';
+    }
+
+    function fileIcon(name, type){
+      if(type==='dir') return '📁';
+      const e = ext(name);
+      if(['png','jpg','jpeg','gif','webp','svg'].includes(e)) return '🖼️';
+      if(['md'].includes(e)) return '📝';
+      if(['html','css','js','ts'].includes(e)) return '💻';
+      if(['json','yml','yaml'].includes(e)) return '⚙️';
+      return '📄';
+    }
+
+    function row({name, path, type, size, html_url}){
+      const el = document.createElement('div');
+      el.className = 'row';
+      const left = document.createElement('div');
+      left.innerHTML = `${fileIcon(name,type)}\u00A0 <a href="${type==='dir' ? `https://github.com/${owner}/${repo}/tree/${branch}/${path}` : html_url}" target="_blank" rel="noopener">${name}</a>`;
+      const right = document.createElement('div');
+      right.className = 'mono';
+      right.textContent = size ? `${size} B` : '';
+      el.append(left,right);
+      return el;
+    }
+
+    async function renderReadme() {
+      try {
+        const md = await fetchText(raw('README.md'));
+        els.readme.innerHTML = marked.parse(md, { breaks: true });
+        els.aboutSection.classList.remove('hidden');
+      } catch(err) {
+        // Sem README — tudo bem
+        console.info('README não encontrado.');
+      }
+    }
+
+    async function renderRoot() {
+      const data = await fetchJSON(api());
+      els.list.innerHTML = '';
+
+      data.sort((a,b)=> (a.type===b.type? a.name.localeCompare(b.name) : a.type.localeCompare(b.type)) )
+          .forEach(item=> els.list.appendChild(row(item)));
+
+      // Projetos = diretórios que têm README.md
+      const dirs = data.filter(x=>x.type==='dir');
+      const cards = [];
+      for (const d of dirs) {
+        try {
+          const files = await fetchJSON(api(d.path));
+          const hasReadme = files.some(f=> f.name.toLowerCase()==='readme.md');
+          if (hasReadme) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `<h3>${d.name}</h3><p class="mono">${d.path}</p><p><a href="https://github.com/${owner}/${repo}/tree/${branch}/${d.path}" target="_blank" rel="noopener">Abrir no GitHub →</a></p>`;
+            cards.push(card);
+          }
+        } catch {}
+      }
+      if (cards.length) {
+        els.projects.innerHTML = '';
+        cards.forEach(c=> els.projects.appendChild(c));
+        els.projectsSection.classList.remove('hidden');
+      }
+    }
+
+    async function hydrateMeta(){
+      els.title.textContent = `${owner}/${repo}`;
+      els.branchName.textContent = branch;
+      els.repoMeta.textContent = ` • ${new Date().toLocaleDateString()} • origem: GitHub`;
+    }
+
+    (async function init(){
+      await hydrateMeta();
+      await renderReadme();
+      await renderRoot();
+    })();
+  </script>
+</body>
+</html>
+
