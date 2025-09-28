@@ -163,7 +163,9 @@
       const left = document.createElement('div');
       let link = document.createElement('a'); link.textContent = name; link.href = '#';
       if (type==='dir') { link.onclick = (e)=>{ e.preventDefault(); navigate(path); }; }
-      else if (name.toLowerCase().endsWith('.md')) { link.onclick = (e)=>{ e.preventDefault(); showReadmeAt(path); } }
+      else if (name.toLowerCase().endsWith('.md')) {
+        link.onclick = (e)=>{ e.preventDefault(); const dir = path.replace(/\/[^\/]+$/, ''); navigate(dir); };
+      } }
       else { link.href = html_url; link.target = '_blank'; link.rel='noopener'; }
       left.innerHTML = `${fileIcon(name,type)}  `; left.appendChild(link);
       const right = document.createElement('div'); right.className='mono'; right.textContent = size ? `${size} B` : '';
@@ -185,16 +187,18 @@
     }
 
     async function showReadmeAt(path=""){
-      function normalizePath(p){
-        const out=[]; p.split('/').forEach(seg=>{ if(!seg||seg==='.') return; if(seg==='..') out.pop(); else out.push(seg); });
-        return out.join('/');
-      }
-      function resolveRel(basePath, rel){
-        try {
-          const base = 'https://local/' + (basePath? basePath.replace(/^\/+|\/+$/g,'') + '/' : '');
-          const u = new URL(rel, base);
-          return u.pathname.replace(/^\//,'');
-        } catch { return rel; }
+      function joinRepoPath(basePath, rel){
+        // basePath: 'dir/subdir' (no trailing slash). rel: may start with '/', './', '../'
+        if (!rel) return basePath;
+        if (rel.startsWith('data:') || /^([a-z]+:)?\/\//i.test(rel)) return rel; // absolute
+        const base = basePath ? basePath.split('/') : [];
+        let parts = rel.replace(/^\/+/, '').split('/');
+        for (const seg of parts){
+          if (!seg || seg === '.') continue;
+          if (seg === '..') base.pop();
+          else base.push(seg);
+        }
+        return base.join('/');
       }
       for (const n of readmeNames) {
         try {
@@ -202,26 +206,24 @@
           const html = marked.parse(md, { breaks:true });
           els.readme.innerHTML = html;
           const base = path || '';
-          // imagens relativas → raw github (normaliza + codifica)
+          // imagens
           els.readme.querySelectorAll('img').forEach(img=>{
             const src = img.getAttribute('src')||'';
-            if (!/^([a-z]+:)?\/\//i.test(src) && !src.startsWith('data:')) {
-              const joined = normalizePath(resolveRel(base, src));
-              img.src = raw(encodeURI(joined));
-            }
+            if (!src || src.startsWith('data:') || /^https?:\/\//i.test(src)) return;
+            const joined = joinRepoPath(base, src);
+            img.src = raw(joined);
           });
-          // links relativos
+          // links
           els.readme.querySelectorAll('a').forEach(a=>{
             const href = a.getAttribute('href')||'';
             if (!href) return;
-            if (/\.md($|#|\?)/i.test(href) && !/^([a-z]+:)?\/\//i.test(href)) {
-              const joined = normalizePath(resolveRel(base, href));
-              const folder = joined.replace(/\/?README\.md$/i,'').replace(/\.md$/i,'');
+            if (/\.md($|[?#])/i.test(href) && !/^([a-z]+:)?\/\//i.test(href)){
+              const joined = joinRepoPath(base, href).replace(/\/?README\.md$/i,'').replace(/\.md$/i,'');
               a.href = '#/';
-              a.onclick = (e)=>{ e.preventDefault(); navigate(folder.replace(/\/$/,'')); };
+              a.onclick = (e)=>{ e.preventDefault(); navigate(joined.replace(/\/$/,'')); };
             } else if (!/^([a-z]+:)?\/\//i.test(href) && !href.startsWith('data:')) {
-              const joined = normalizePath(resolveRel(base, href));
-              a.href = raw(encodeURI(joined));
+              const joined = joinRepoPath(base, href);
+              a.href = raw(joined);
               a.target = '_blank'; a.rel='noopener';
             }
           });
@@ -256,7 +258,7 @@
           inside.sort((a,b)=> a.name.localeCompare(b.name)).forEach(f=>{
             const a = document.createElement('a'); a.className='item'; a.href='#'; a.textContent = (f.type==='dir'? '📁 ' : fileIcon(f.name,f.type)+' ') + f.name;
             if (f.type==='dir') a.onclick=(e)=>{e.preventDefault(); navigate(f.path);};
-            else if (f.name.toLowerCase().endsWith('.md')) a.onclick=(e)=>{e.preventDefault(); navigate(d.path); showReadmeAt(f.path.replace(/\/README\.md$/i, d.path)); };
+            else if (f.name.toLowerCase().endsWith('.md')) a.onclick=(e)=>{e.preventDefault(); navigate(d.path);}; navigate(d.path); showReadmeAt(f.path.replace(/\/README\.md$/i, d.path)); };
             else { a.href=f.html_url; a.target='_blank'; a.rel='noopener'; }
             items.appendChild(a);
           });
