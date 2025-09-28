@@ -185,9 +185,14 @@
     }
 
     async function showReadmeAt(path=""){
+      function normalizePath(p){
+        const out=[]; p.split('/').forEach(seg=>{ if(!seg||seg==='.') return; if(seg==='..') out.pop(); else out.push(seg); });
+        return out.join('/');
+      }
       function resolveRel(basePath, rel){
         try {
-          const u = new URL(rel, 'https://local/'+(basePath?basePath.replace(/\/+/, '/')+'/':''));
+          const base = 'https://local/' + (basePath? basePath.replace(/^\/+|\/+$/g,'') + '/' : '');
+          const u = new URL(rel, base);
           return u.pathname.replace(/^\//,'');
         } catch { return rel; }
       }
@@ -197,12 +202,12 @@
           const html = marked.parse(md, { breaks:true });
           els.readme.innerHTML = html;
           const base = path || '';
-          // imagens relativas → raw github
+          // imagens relativas → raw github (normaliza + codifica)
           els.readme.querySelectorAll('img').forEach(img=>{
             const src = img.getAttribute('src')||'';
             if (!/^([a-z]+:)?\/\//i.test(src) && !src.startsWith('data:')) {
-              const joined = resolveRel(base, src);
-              img.src = raw(joined);
+              const joined = normalizePath(resolveRel(base, src));
+              img.src = raw(encodeURI(joined));
             }
           });
           // links relativos
@@ -210,12 +215,13 @@
             const href = a.getAttribute('href')||'';
             if (!href) return;
             if (/\.md($|#|\?)/i.test(href) && !/^([a-z]+:)?\/\//i.test(href)) {
-              const joined = resolveRel(base, href).replace(/\/?README\.md$/i,'');
+              const joined = normalizePath(resolveRel(base, href));
+              const folder = joined.replace(/\/?README\.md$/i,'').replace(/\.md$/i,'');
               a.href = '#/';
-              a.onclick = (e)=>{ e.preventDefault(); navigate(joined.replace(/\/$/,'')); };
+              a.onclick = (e)=>{ e.preventDefault(); navigate(folder.replace(/\/$/,'')); };
             } else if (!/^([a-z]+:)?\/\//i.test(href) && !href.startsWith('data:')) {
-              const joined = resolveRel(base, href);
-              a.href = raw(joined);
+              const joined = normalizePath(resolveRel(base, href));
+              a.href = raw(encodeURI(joined));
               a.target = '_blank'; a.rel='noopener';
             }
           });
