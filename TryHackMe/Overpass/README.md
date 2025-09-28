@@ -4,14 +4,14 @@
 - Difficulty: Easy
 - Platform: Try Hack Me
 
-# # 1. Introduction 
+# 1. Introduction 
 
 This report documents a Capture The Flag (CTF) exercise against the target `overpass.thm`. The engagement was performed as a single-machine jeopardy-style challenge focused on web and local privilege escalation. The main objective was to enumerate running services, discover and exploit application vulnerabilities to gain user access, and escalate to root to capture the flags.
 
 The testing took place during the CTF session on 2025-09-28. The primary tools used were `nmap` for service discovery, `gobuster` for web directory enumeration, Burp Suite for HTTP interception and manipulation, John the Ripper for password/passphrase cracking, and standard Linux tooling (SSH, curl, python3 simple HTTP server) for exploitation and local enumeration.
 
 ____
-# # 2. Methodology & Tools
+# 2. Methodology & Tools
 
 **Objective:** discover open services and web endpoints, then investigate any interesting web paths.
 
