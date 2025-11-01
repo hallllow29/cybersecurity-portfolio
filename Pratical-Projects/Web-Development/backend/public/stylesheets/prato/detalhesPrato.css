@@ -1,0 +1,48 @@
+body {
+  background-color: #fffaf5;
+  font-family: "PT Sans", sans-serif;
+  padding: 40px;
+}
+
+.btn-orange {
+  background-color: rgb(255, 102, 0);
+  border-color: rgb(255, 102, 0);
+  color: white;
+}
+
+.btn-orange:hover {
+  background-color: rgb(230, 92, 0);
+  border-color: rgb(230, 92, 0);
+}
+
+.img-prato {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  border: 2px solid #ffc299;
+}
+
+.section {
+  margin-bottom: 25px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #ffd9b3;
+  box-shadow: 0px 0px 5px rgba(255, 102, 0, 0.1);
+}
+
+h2 {
+  color: rgb(255, 102, 0);
+  font-weight: 700;
+}
+
+h5 {
+  color: rgb(255, 102, 0);
+  font-weight: 600;
+}
+
+.back-button {
+  margin-bottom: 30px;
+}

@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap");
+
+body {
+  background-color: #fffaf5;
+  font-family: "PT Sans", sans-serif;
+  padding: 40px;
+}
+
+.page-title {
+  color: rgb(255, 102, 0);
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.menu-card {
+  background: #ffffff;
+  border: 1px solid #ffc299;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.menu-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(255, 102, 0, 0.2);
+}
+
+.menu-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(255, 102, 0);
+}
+
+.prato-lista {
+  font-size: 14px;
+  padding-left: 15px;
+  list-style: none;
+}
+
+.prato-lista li {
+  position: relative;
+  margin-bottom: 4px;
+  padding-left: 1em;
+}
+
+.prato-lista li::before {
+  content: "🍽️";
+  position: absolute;
+  left: 0;
+}
+
+.btn-orange {
+  background-color: rgb(255, 102, 0);
+  border-color: rgb(255, 102, 0);
+  color: white;
+}
+
+.btn-orange:hover {
+  background-color: rgb(230, 92, 0);
+  border-color: rgb(230, 92, 0);
+}
+
+.menu-actions {
+  margin-top: auto;
+}
+
+.menu-actions .btn:not(:last-child) {
+  margin-right: 5px;
+}
+
+.menu-fallback-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #ffe8d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #ff7300;
+}
+
+.no-pratos {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.menu-img-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+}
+
+.menu-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

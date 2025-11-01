@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="header">
+    <button class="logo">Serve <span class="highlight">Point</span></button>
+    <button class="back-btn" (click)="voltar()">&lt;- Voltar</button>
+  </div>
+  <div class="main-content">
+    <!-- Coluna Esquerda -->
+    <div class="sidebar">
+      <input
+        type="text"
+        placeholder="Filtrar por nome"
+        [(ngModel)]="filtroNome"
+        (ngModelChange)="atualizarMapa()"
+        class="filter-input"
+      />
+
+      <div *ngFor="let restaurante of restaurantesFiltrados()" class="restaurante-item">
+        <button class="restaurante-item" (click)="abrirModal(restaurante)">
+          {{ restaurante.nome }}
+          <span class="badge">{{ restaurante.distancia }}Km</span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- Coluna Direita -->
+    <div class="map-section">
+      <label for="distancia">Filtro por distância</label>
+      <input
+        type="range"
+        id="distancia"
+        min="0"
+        max="100"
+        [(ngModel)]="filtroDistancia"
+        (ngModelChange)="atualizarMapa()"
+      />
+      <span>{{ filtroDistancia }}Km</span>
+      <div id="map" style="height: 500px; margin-top: 10px"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" *ngIf="modalAberto" (click)="fecharModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="fecharModal()" aria-label="Fechar">&times;</button>
+    <h2>{{ restauranteSelecionado?.nome }}</h2>
+    <p><strong>Distância:</strong> {{ restauranteSelecionado?.distancia }} Km</p>
+    <p><strong>Endereço:</strong> {{ restauranteSelecionado?.morada }}</p>
+    <button (click)="fecharModal()">Fechar</button>
+  </div>
+</div>

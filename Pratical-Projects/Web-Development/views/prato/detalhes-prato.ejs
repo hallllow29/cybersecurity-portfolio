@@ -1,0 +1,54 @@
+<% layout('layout') %>
+<% title = prato.nome + ' - Detalhes do Prato' %>
+<% styles = `<link href="/stylesheets/prato/detalhesPrato.css" rel="stylesheet" />` %>
+
+<a href="/prato/listar" class="btn btn-orange back-button">← Voltar aos Pratos</a>
+
+<img src="<%= prato.imagem %>" alt="Imagem do prato" class="img-prato" />
+
+<h2 class="mb-4"><%= prato.nome %></h2>
+
+<% if (prato.descricao) { %>
+  <div class="section">
+    <h5>📝 Descrição</h5>
+    <p><%= prato.descricao %></p>
+  </div>
+<% } %>
+
+<% if (prato.infoNutricional) { %>
+  <div class="section">
+    <h5>🍎 Informação Nutricional</h5>
+    <p><%= prato.infoNutricional %></p>
+  </div>
+<% } %>
+
+<% if (prato.alergenios && prato.alergenios.length > 0) { %>
+  <div class="section">
+    <h5>⚠️ Alergénios</h5>
+    <ul>
+      <% prato.alergenios.forEach(al => { %>
+        <li><%= al %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>
+
+<% if (prato.tipoDose && prato.tipoDose.length > 0) { %>
+  <div class="section">
+    <h5>🍽️ Tipo de Dose</h5>
+    <ul>
+      <% prato.tipoDose.forEach(dose => { %>
+        <li><%= dose %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>
+
+<div class="section">
+  <h5>💰 Preço</h5>
+  <p class="fs-4 fw-bold"><%= prato.preco.toFixed(2) %> €</p>
+</div>
+
+<% scripts = `
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+` %>

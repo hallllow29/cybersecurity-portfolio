@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || "App" %></title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- CSS Libraries -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- Page-specific styles -->
+    <% if (typeof styles !== 'undefined') { %> <%- styles %> <% } %>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+
+  <body>
+    <%- body %>
+
+    <!-- JS Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Page-specific scripts -->
+    <% if (typeof scripts !== 'undefined') { %> <%- scripts %> <% } %>
+  </body>
+</html>

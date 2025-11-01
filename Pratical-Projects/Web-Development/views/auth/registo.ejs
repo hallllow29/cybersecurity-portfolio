@@ -1,0 +1,481 @@
+<% layout('layout') %>
+<% title = 'Registar Utilizador' %>
+<% styles = `<link href="/stylesheets/formStyle.css" rel="stylesheet" />` %>
+
+<div class="form-container">
+  <h2>Criar Conta</h2>
+
+  <% if (erros?.geral) { %>
+    <div class="alert alert-danger text-center fw-bold"><%= erros.geral %></div>
+  <% } %>
+
+  <form action="/registar" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            value="<%= dados.email || '' %>"
+            required
+          />
+          <% if (erros?.email) { %>
+          <p class="text-danger fw-bold"><%= erros.email %></p>
+          <% } %>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="form-control"
+              required
+            />
+            <% if (erros?.password) { %>
+            <p class="text-danger fw-bold"><%= erros.password %></p>
+            <% } %>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Confirmar Password</label>
+            <input
+              type="password"
+              name="conf_password"
+              id="conf_password"
+              class="form-control"
+              required
+            />
+            <% if (erros?.conf_password) { %>
+            <p class="text-danger fw-bold"><%= erros.conf_password %></p>
+            <% } %>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Tipo de Conta</label>
+          <select class="form-control" id="tipoConta" name="tipo" onchange="atualizarform()">
+            <option value="">Seleciona</option>
+            <option value="cliente" <%= dados.tipo === "cliente" ? "selected" : "" %>>Cliente</option>
+            <option value="restaurante" <%= dados.tipo === "restaurante" ? "selected" : "" %>>Restaurante</option>
+          </select>
+          <% if (erros?.tipo) { %>
+            <p class="text-danger fw-bold"><%= erros.tipo %></p>
+          <% } %>
+        </div>
+
+        <div id="form-cliente">
+          <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input
+              type="text"
+              name="cliente_nome"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Telefone</label>
+              <input
+                type="tel"
+                name="cliente_telefone"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">NIF</label>
+              <input
+                type="number"
+                name="cliente_nif"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Morada</label>
+            <input
+              type="text"
+              name="cliente_morada"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+
+        <div id="form-restaurante">
+          <div class="mb-3">
+            <label class="form-label">Nome do Restaurante</label>
+            <input
+              type="text"
+              name="restaurante_nome"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Nome do Responsavel</label>
+            <input
+              type="text"
+              name="restaurante_nomeResponsavel"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Contacto</label>
+              <input
+                type="tel"
+                name="restaurante_telefone"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">NIF</label>
+              <input
+                type="number"
+                name="restaurante_nif"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Morada</label>
+            <input
+              type="text"
+              name="restaurante_morada"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Código Postal</label>
+            <input
+              type="text"
+              name="restaurante_codigoPostal"
+              class="form-control"
+              pattern="\d{4}-\d{3}"
+              required
+              placeholder="Ex: 1234-567"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Tipo de Cozinha</label>
+            <select class="form-control" value="restaurante_tipoCozinha">
+              <option value="Portuguesa">Portuguesa</option>
+              <option value="Italiana">Italiana</option>
+              <option value="Japonesa">Japonesa</option>
+              <option value="Vegetariana">Vegetariana</option>
+              <option value="Outros">Outro</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Tempo de Confeção</label>
+              <input
+                type="number"
+                name="restaurante_tempoConfecao"
+                class="form-control"
+                value="0"
+                min="0"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Tempo de Entrega</label>
+              <input
+                type="number"
+                name="restaurante_tempoEntrega"
+                class="form-control"
+                value="0"
+                min="0"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Raio de Entrega</label>
+              <input
+                type="number"
+                name="restaurante_raioEntrega"
+                class="form-control"
+                value="0"
+                min="0"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Máximo de Encomendas Por Hora</label>
+              <input
+                type="number"
+                name="restaurante_maxEncomendas"
+                class="form-control"
+                value="1"
+                min="1"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Horário de Funcionamento</label>
+            <div class="border rounded p-3 bg-light">
+              <% const dias = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"]; %>
+          
+              <% dias.forEach((dia, index) => { %>
+                <div class="row align-items-center mb-3">
+                  <div class="col-md-3">
+                    <strong><%= dia %></strong>
+                  </div>
+          
+                  <div class="col-md-3">
+                    <label class="form-label mb-0">Abre</label>
+                    <input type="time" name="horario_<%= dia.replace(/\s/g, "").replace("-", "") %>_abre" class="form-control" />
+                  </div>
+          
+                  <div class="col-md-3">
+                    <label class="form-label mb-0">Fecha</label>
+                    <input type="time" name="horario_<%= dia.replace(/\s/g, "").replace("-", "") %>_fecha" class="form-control" />
+                  </div>
+          
+                  <div class="col-md-3 d-flex align-items-center">
+                    <input type="checkbox" name="horario_<%= dia.replace(/\s/g, "").replace("-", "") %>_fechado" class="form-check-input me-2" id="fechado_<%= index %>">
+                    <label class="form-check-label" for="fechado_<%= index %>">Fechado</label>
+                  </div>
+                </div>
+              <% }); %>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Logo</label>
+            <input type="file" name="logo" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Capa</label>
+            <input type="file" name="capa" class="form-control" required />
+          </div>
+
+          <label class="form-label">Métodos de Pagamento</label>
+          <div class="border rounded p-3 bg-light">
+            <div class="mb-2">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                name="metodosPagamento[]"
+                value="Dinheiro"
+                id="dinheiro"
+              />
+              <label
+                class="form-check-label"
+                for="dinheiro"
+                style="font-size: 16px"
+                >Dinheiro</label
+              >
+            </div>
+
+            <div class="mb-2">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                name="metodosPagamento[]"
+                value="MB Way"
+                id="mbway"
+              />
+              <label
+                class="form-check-label"
+                for="mbway"
+                style="font-size: 16px"
+                >MB Way</label
+              >
+            </div>
+
+            <div class="mb-2">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                name="metodosPagamento[]"
+                value="Cartão de Crédito/Débito"
+                id="cartão"
+              />
+              <label
+                class="form-check-label"
+                for="cartão"
+                style="font-size: 16px"
+                >Cartão de Crédito/Débito</label
+              >
+            </div>
+
+            <div class="mb-2">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                name="metodosPagamento[]"
+                value="Multibanco"
+                id="multibanco"
+              />
+              <label
+                class="form-check-label"
+                for="multibanco"
+                style="font-size: 16px"
+                >Multibanco</label
+              >
+            </div>
+
+            <div class="mb-2">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                name="metodosPagamento[]"
+                value="Outro"
+                id="outro"
+              />
+              <label
+                class="form-check-label"
+                for="outro"
+                style="font-size: 16px"
+                >Outro</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="buttons-container">
+          <button class="create-btn" type="submit" disabled>
+            <span id="btn-text">Criar Conta</span>
+            <span
+              id="btn-spinner"
+              class="spinner-border spinner-border-sm d-none"
+              role="status"
+              aria-hidden="true"
+            ></span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <p class="text-center mt-4">
+      Já tens conta?
+      <a href="/login" class="text-decoration-none">Faz login</a>
+    </p>
+    
+    <script>
+      function atualizarform() {
+        const tipo = document.getElementById("tipoConta").value;
+        const formCliente = document.getElementById("form-cliente");
+        const formRestaurante = document.getElementById("form-restaurante");
+    
+        formCliente.style.display = "none";
+        formRestaurante.style.display = "none";
+        formCliente.querySelectorAll("input, select").forEach(i => i.disabled = true);
+        formRestaurante.querySelectorAll("input, select").forEach(i => i.disabled = true);
+    
+        if (tipo === "cliente") {
+          formCliente.style.display = "block";
+          formCliente.querySelectorAll("input, select").forEach(i => i.disabled = false);
+        } else if (tipo === "restaurante") {
+          formRestaurante.style.display = "block";
+          formRestaurante.querySelectorAll("input, select").forEach(i => i.disabled = false);
+        }
+      }
+    
+      document.addEventListener("DOMContentLoaded", () => {
+        atualizarform();
+    
+        const password = document.getElementById("password");
+        const confPassword = document.getElementById("conf_password");
+        const submitBtn = document.querySelector(".create-btn");
+        const btnText = document.getElementById("btn-text");
+        const btnSpinner = document.getElementById("btn-spinner");
+        const form = document.querySelector("form");
+    
+        function validarPasswords() {
+          const pass = password.value;
+          const conf = confPassword.value;
+    
+          if (!pass && !conf) {
+            password.style.borderColor = "";
+            confPassword.style.borderColor = "";
+            submitBtn.disabled = false;
+            return;
+          }
+    
+          if (pass === conf) {
+            password.style.borderColor = "green";
+            confPassword.style.borderColor = "green";
+            submitBtn.disabled = false;
+          } else {
+            password.style.borderColor = "red";
+            confPassword.style.borderColor = "red";
+            submitBtn.disabled = true;
+          }
+        }
+    
+        password.addEventListener("input", validarPasswords);
+        confPassword.addEventListener("input", validarPasswords);
+    
+        const dias = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"];
+    
+        dias.forEach((dia) => {
+          const nome = dia.replace(/\s/g, "").replace("-", "");
+          const fechadoInput = document.querySelector(`input[name="horario_${nome}_fechado"]`);
+          const abreInput = document.querySelector(`input[name="horario_${nome}_abre"]`);
+          const fechaInput = document.querySelector(`input[name="horario_${nome}_fecha"]`);
+    
+          if (fechadoInput) {
+            fechadoInput.addEventListener("change", () => {
+              if (fechadoInput.checked) {
+                abreInput.disabled = true;
+                fechaInput.disabled = true;
+                abreInput.value = "";
+                fechaInput.value = "";
+              } else {
+                abreInput.disabled = false;
+                fechaInput.disabled = false;
+              }
+            });
+          }
+        });
+    
+        form.addEventListener("submit", (e) => {
+          for (const dia of dias) {
+            const nome = dia.replace(/\s/g, "").replace("-", "");
+            const abreInput = document.querySelector(`input[name="horario_${nome}_abre"]`);
+            const fechaInput = document.querySelector(`input[name="horario_${nome}_fecha"]`);
+            const fechadoInput = document.querySelector(`input[name="horario_${nome}_fechado"]`);
+    
+            if (abreInput && fechaInput && !fechadoInput.checked) {
+              if (abreInput.value && fechaInput.value && abreInput.value >= fechaInput.value) {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Horário Inválido',
+                  text: `No dia ${dia}, a hora de abertura deve ser antes da hora de fecho.`,
+                  });
+                e.preventDefault();
+                return;
+              }
+            }
+          }
+    
+          submitBtn.disabled = true;
+          btnText.textContent = "A criar...";
+          btnSpinner.classList.remove("d-none");
+        });
+      });
+    </script>
+    

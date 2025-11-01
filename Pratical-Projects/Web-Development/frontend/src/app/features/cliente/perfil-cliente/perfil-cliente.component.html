@@ -1,0 +1,164 @@
+<div class="container py-4">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3 mb-4">
+      <div class="list-group">
+        <button
+          class="list-group-item list-group-item-action"
+          [class.active]="secaoAtual === 'casa'"
+          (click)="mudarSecao('casa')"
+        >
+          🏠 Casa
+        </button>
+        <button
+          class="list-group-item list-group-item-action"
+          [class.active]="secaoAtual === 'info'"
+          (click)="mudarSecao('info')"
+        >
+          👤 Informações pessoais
+        </button>
+        <button
+          class="list-group-item list-group-item-action"
+          [class.active]="secaoAtual === 'seguranca'"
+          (click)="mudarSecao('seguranca')"
+        >
+          🔒 Segurança
+        </button>
+        <button
+          class="list-group-item list-group-item-action"
+          [class.active]="secaoAtual === 'encomendas'"
+          (click)="mudarSecao('encomendas')"
+        >
+          📦 Histórico de Encomendas
+        </button>
+      </div>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="col-md-9 text-center">
+      <!-- Casa -->
+      <ng-container *ngIf="secaoAtual === 'casa'">
+        <img
+          src="https://via.placeholder.com/100x100?text=👤"
+          class="rounded-circle mb-3"
+          alt="Foto de perfil"
+        />
+        <h3>{{ utilizador?.nome || "Utilizador" }}</h3>
+        <p class="text-muted">{{ utilizador?.email || "email@exemplo.com" }}</p>
+        <p class="text-muted">
+          Escolhe uma das opções à esquerda para veres ou editares a tua conta.
+        </p>
+      </ng-container>
+
+      <!-- Informações pessoais -->
+      <ng-container *ngIf="secaoAtual === 'info'">
+        <div
+          class="card text-start shadow-sm p-4 mx-auto"
+          style="max-width: 600px"
+        >
+          <h5 class="mb-3">📄 Dados Pessoais</h5>
+          <p><strong>Telefone:</strong> {{ utilizador?.telefone }}</p>
+          <p><strong>Morada:</strong> {{ utilizador?.morada }}</p>
+          <p><strong>NIF:</strong> {{ utilizador?.nif }}</p>
+          <p>
+            <strong>Data de Registo:</strong>
+            {{ utilizador?.dataRegisto | date : "dd/MM/yyyy HH:mm" }}
+          </p>
+        </div>
+      </ng-container>
+
+      <!-- Segurança -->
+      <ng-container *ngIf="secaoAtual === 'seguranca'">
+        <div
+          class="card text-start shadow-sm p-4 mx-auto"
+          style="max-width: 600px"
+        >
+          <h5 class="mb-3">🔒 Segurança</h5>
+          <p><strong>Email atual:</strong> {{ utilizador?.email }}</p>
+
+          <form (ngSubmit)="alterarCredenciais()" #form="ngForm">
+            <div class="mb-2">
+              <label class="form-label">Novo Email</label>
+              <input
+                type="email"
+                class="form-control"
+                [(ngModel)]="novoEmail"
+                name="novoEmail"
+                placeholder="novoemail@exemplo.com"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Nova Password</label>
+              <input
+                type="password"
+                class="form-control"
+                [(ngModel)]="novaPassword"
+                name="novaPassword"
+                placeholder="********"
+              />
+            </div>
+
+            <button class="btn btn-outline-primary">
+              💾 Guardar Alterações
+            </button>
+          </form>
+        </div>
+      </ng-container>
+
+      <!-- Histórico de Encomendas -->
+      <ng-container *ngIf="secaoAtual === 'encomendas'">
+        <div
+          class="card text-start shadow-sm p-4 mx-auto"
+          style="max-width: 800px"
+        >
+          <h5 class="mb-3">📦 Histórico de Encomendas</h5>
+
+          <div *ngIf="encomendasAgrupadas.length === 0" class="text-muted">
+            Ainda não fizeste nenhuma encomenda.
+          </div>
+
+          <div *ngFor="let grupo of encomendasAgrupadas">
+            <h6 class="text-primary mt-4">{{ grupo.data }}</h6>
+
+            <div *ngFor="let e of grupo.encomendas" class="card mb-2">
+              <div
+                class="card-header"
+                (click)="toggleDetalhes(e._id)"
+                style="cursor: pointer"
+              >
+                <strong>{{
+                  e.restaurante?.nome || "Restaurante desconhecido"
+                }}</strong>
+                <span class="text-muted float-end">{{ e.status }}</span>
+              </div>
+
+              <div class="card-body" *ngIf="encomendaAbertaId === e._id">
+                <p><strong>Morada:</strong> {{ e.moradaEntrega }}</p>
+                <p><strong>Pagamento:</strong> {{ e.metodoPagamento }}</p>
+                <p><strong>Total:</strong> €{{ e.total?.toFixed(2) }}</p>
+
+                <div *ngIf="e.pratos?.length">
+                  <p><strong>Pratos:</strong></p>
+                  <ul>
+                    <li *ngFor="let p of e.pratos">
+                      {{ p.prato?.nome || "Desconhecido" }} – Dose:
+                      {{ p.dose }} – Qtd: {{ p.quantidade }} – €{{
+                        p.precoUnitario?.toFixed(2)
+                      }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="text-start mt-4">
+        <button class="btn btn-sm btn-outline-dark" (click)="voltar()">
+          ← Voltar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

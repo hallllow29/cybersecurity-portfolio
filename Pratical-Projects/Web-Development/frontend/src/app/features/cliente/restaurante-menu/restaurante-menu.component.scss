@@ -1,0 +1,115 @@
+.container {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h2, h4, h5, h6 {
+  font-weight: 600;
+  color: #333;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  }
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.card-body {
+  background-color: #fff;
+}
+
+button.btn-primary {
+  background-color: #007bff;
+  border: none;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+button.btn-danger {
+  background-color: #dc3545;
+
+  &:hover {
+    background-color: #b02a37;
+  }
+}
+
+input.form-control {
+  font-size: 0.9rem;
+}
+
+.select.form-select {
+  font-size: 0.95rem;
+}
+
+.list-group-item {
+  font-size: 0.9rem;
+}
+
+.modal-content {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.modal-header, .modal-footer {
+  background-color: #f8f9fa;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.badge.bg-warning {
+  font-size: 0.8rem;
+  padding: 0.4em 0.6em;
+}
+
+.text-muted {
+  font-size: 0.9rem;
+}
+
+span.text-primary {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+button.btn-close {
+  filter: brightness(0.7);
+  &:hover {
+    filter: brightness(0.4);
+  }
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+
+  &:hover {
+    background-color: #218838;
+  }
+}
+
+// Responsive tweaks
+@media (max-width: 768px) {
+  .col-md-8, .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+}

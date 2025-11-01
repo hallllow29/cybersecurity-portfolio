@@ -1,0 +1,1059 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentação da API para autenticação (login) e registo de utilizadores (clientes e restaurantes).",
+    "version": "1.0.0",
+    "title": "API Restaurante - Autenticação",
+    "contact": {
+      "name": "Responsáveis do Projeto",
+      "email": "8230068@estg.ipp.pt",
+      "url": "mailto:8230068@estg.ipp.pt,8230255@estg.ipp.pt"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": ["http"],
+  "tags": [
+    {
+      "name": "Autenticação",
+      "description": "Login e Registo de Utilizadores"
+    },
+    {
+      "name": "Menu",
+      "description": "Operações relacionadas com o menu do restaurante"
+    },
+    {
+      "name": "Admim",
+      "description": "Operações do painel de administração (utilizadores, restaurantes, etc)"
+    },
+    {
+      "name": "Utilizador",
+      "description": "Operações relacionadas com o utilizador (cliente)"
+    },
+    {
+      "name": "Encomendas",
+      "description": "Operações relacionadas com as encomendas"
+    },
+    {
+      "name": "Restaurante",
+      "description": "Operações relacionadas com o restaurante (dashboard, perfil, menus, pratos)"
+    },
+    {
+      "name": "Admin",
+      "description": "Operações administrativas (gestão de utilizadores e restaurantes)"
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": ["Autenticação"],
+        "summary": "Login de Utilizador",
+        "description": "Autentica um utilizador existente (cliente, restaurante ou admin).",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Email do utilizador",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Password do utilizador",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login efetuado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": { "type": "string" },
+                "userId": { "type": "string" }
+              }
+            }
+          },
+          "400": {
+            "description": "Email ou password inválidos"
+          }
+        }
+      }
+    },
+    "/auth/registar": {
+      "post": {
+        "tags": ["Autenticação"],
+        "summary": "Registo de Utilizador",
+        "description": "Regista um novo cliente ou restaurante.",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Email do novo utilizador",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Password do novo utilizador",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tipo",
+            "in": "formData",
+            "description": "Tipo de conta (cliente ou restaurante)",
+            "required": true,
+            "type": "string",
+            "enum": ["cliente", "restaurante"]
+          },
+          {
+            "name": "pessoa_responsavel",
+            "in": "formData",
+            "description": "Nome da pessoa responsável pelo restaurante (se aplicável)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "telefone",
+            "in": "formData",
+            "description": "Telefone do utilizador (opcional)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tipo_cozinha",
+            "in": "formData",
+            "description": "Tipo de cozinha do restaurante (se aplicável)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tempo_confecao",
+            "in": "formData",
+            "description": "Tempo médio de confecção dos pratos (em minutos, se aplicável)",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "tempo_entrega",
+            "in": "formData",
+            "description": "Tempo médio de entrega (em minutos, se aplicável)",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "raio_entrega_km",
+            "in": "formData",
+            "description": "Raio de entrega em km (se aplicável)",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "max_encomendas_por_hora",
+            "in": "formData",
+            "description": "(Restaurante) Máximo de encomendas por hora",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "metodos_de_pagamento",
+            "in": "formData",
+            "description": "Métodos de pagamento aceites (separados por vírgulas, se aplicável)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "horario_funcionamento",
+            "in": "formData",
+            "description": "Horário de funcionamento do restaurante (JSON com dias e horários, se aplicável)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "localizacao",
+            "in": "formData",
+            "description": "Localização do restaurante (JSON com tipo e coordenadas, se aplicável)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "restaurante_nome",
+            "in": "formData",
+            "description": "Nome do restaurante",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "restaurante_morada",
+            "in": "formData",
+            "description": "Morada do restaurante",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "restaurante_nif",
+            "in": "formData",
+            "description": "NIF do restaurante",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "restaurante_telefone",
+            "in": "formData",
+            "description": "Telefone do restaurante",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "logo",
+            "in": "formData",
+            "description": "Logo do restaurante",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "capa",
+            "in": "formData",
+            "description": "Imagem de capa do restaurante",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registo efetuado com sucesso"
+          },
+          "400": {
+            "description": "Dados inválidos ou conta já existente"
+          }
+        }
+      }
+    },
+    "/menu/listar": {
+      "get": {
+        "tags": ["Menu"],
+        "summary": "Listar pratos",
+        "description": "Lista todos os pratos do restaurante autenticado.",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Lista de pratos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Prato"
+              }
+            }
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      }
+    },
+    "/menu/adicionar": {
+      "post": {
+        "tags": ["Menu"],
+        "summary": "Adicionar prato",
+        "description": "Adiciona um novo prato ao menu do restaurante.",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "descricao",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "preco",
+            "in": "formData",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "categoria",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "infoNutricional",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "alergenios",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "Separados por vírgulas"
+          },
+          {
+            "name": "tipoDose",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "Separados por vírgulas"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Prato adicionado com sucesso"
+          },
+          "400": {
+            "description": "Erro nos dados"
+          }
+        }
+      }
+    },
+    "/menu/{id}/editar": {
+      "post": {
+        "tags": ["Menu"],
+        "summary": "Editar prato",
+        "description": "Edita um prato existente no menu.",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "nome",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "descricao",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "preco",
+            "in": "formData",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "categoria",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "infoNutricional",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "alergenios",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tipoDose",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Prato editado com sucesso"
+          },
+          "400": {
+            "description": "Erro ao editar prato"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      }
+    },
+    "/menu/{id}/apagar": {
+      "post": {
+        "tags": ["Menu"],
+        "summary": "Apagar prato",
+        "description": "Remove um prato do menu.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Prato apagado com sucesso"
+          },
+          "400": {
+            "description": "Erro ao apagar prato"
+          },
+          "401": {
+            "description": "Não autenticado"
+          }
+        }
+      }
+    },
+    "/menu/{id}/detalhes": {
+      "get": {
+        "tags": ["Menu"],
+        "summary": "Ver detalhes do prato",
+        "description": "Mostra os detalhes de um prato.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detalhes do prato",
+            "schema": {
+              "$ref": "#/definitions/Prato"
+            }
+          },
+          "401": {
+            "description": "Não autenticado"
+          },
+          "404": {
+            "description": "Prato não encontrado"
+          }
+        }
+      }
+    },
+    "/prato/adicionar": {
+      "post": {
+        "tags": ["Menu"],
+        "summary": "Adicionar prato (com imagem)",
+        "description": "Adiciona um novo prato com imagem ao menu do restaurante autenticado.",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "descricao",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "preco",
+            "in": "formData",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "categoria",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "infoNutricional",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "alergenios",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "Separados por vírgulas"
+          },
+          {
+            "name": "tipoDose",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "Separados por vírgulas"
+          },
+          {
+            "name": "imagem",
+            "in": "formData",
+            "required": true,
+            "type": "file",
+            "description": "Imagem do prato"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Prato adicionado com sucesso" },
+          "400": { "description": "Erro nos dados ou imagem faltando" }
+        }
+      }
+    },
+    "/prato/editar/{id}": {
+      "post": {
+        "tags": ["Menu"],
+        "summary": "Editar prato",
+        "description": "Edita um prato existente no menu.",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          {
+            "name": "nome",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "descricao",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "preco",
+            "in": "formData",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "categoria",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "infoNutricional",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "alergenios",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "Separados por vírgulas"
+          },
+          {
+            "name": "tipoDose",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "Separados por vírgulas"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Prato editado com sucesso" },
+          "400": { "description": "Erro ao editar prato" },
+          "401": { "description": "Não autenticado" }
+        }
+      }
+    },
+    "/prato/apagar-selecionados": {
+      "post": {
+        "tags": ["Menu"],
+        "summary": "Apagar pratos selecionados",
+        "description": "Apaga múltiplos pratos selecionados pelo utilizador.",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          {
+            "name": "pratosSelecionados",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "IDs dos pratos separados por vírgulas ou múltiplos valores"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Pratos apagados com sucesso" },
+          "400": { "description": "Erro ao apagar pratos" }
+        }
+      }
+    },
+    "/prato/apagar/{id}": {
+      "post": {
+        "tags": ["Menu"],
+        "summary": "Apagar prato",
+        "description": "Remove um prato do menu.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Prato apagado com sucesso" },
+          "400": { "description": "Erro ao apagar prato" }
+        }
+      }
+    },
+    "/prato/detalhes/{id}": {
+      "get": {
+        "tags": ["Menu"],
+        "summary": "Ver detalhes do prato",
+        "description": "Mostra os detalhes de um prato específico.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detalhes do prato",
+            "schema": {
+              "$ref": "#/definitions/Prato"
+            }
+          },
+          "404": { "description": "Prato não encontrado" }
+        }
+      }
+    },
+    "/dashboard/encomendas": {
+      "get": {
+        "tags": ["Encomendas"],
+        "summary": "Listar encomendas",
+        "description": "Lista todas as encomendas do restaurante autenticado. Pode ser filtrado por estado.",
+        "parameters": [
+          {
+            "name": "estado",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filtrar encomendas por estado (ex: pendente, entregue)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de encomendas obtida com sucesso"
+          },
+          "500": {
+            "description": "Erro ao buscar encomendas"
+          }
+        }
+      }
+    },
+    "/dashboard/encomendas/{id}": {
+      "get": {
+        "tags": ["Encomendas"],
+        "summary": "Ver detalhes da encomenda",
+        "description": "Mostra os detalhes de uma encomenda específica.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detalhes da encomenda"
+          },
+          "404": {
+            "description": "Encomenda não encontrada"
+          },
+          "500": {
+            "description": "Erro ao buscar detalhes da encomenda"
+          }
+        }
+      }
+    },
+    "/dashboard/encomendas/{id}/status": {
+      "post": {
+        "tags": ["Encomendas"],
+        "summary": "Atualizar estado da encomenda",
+        "description": "Atualiza o estado de uma encomenda específica.",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "novoEstado",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "Novo estado da encomenda"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estado atualizado com sucesso"
+          },
+          "404": {
+            "description": "Encomenda não encontrada"
+          },
+          "500": {
+            "description": "Erro ao atualizar estado"
+          }
+        }
+      }
+    },
+    "/utilizador/restaurantes": {
+      "get": {
+        "tags": ["Utilizador"],
+        "summary": "Listar restaurantes validados",
+        "description": "Lista todos os restaurantes validados disponíveis para o cliente.",
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Lista de restaurantes" }
+        }
+      }
+    },
+    "/utilizador/restaurantes/{id}": {
+      "get": {
+        "tags": ["Utilizador"],
+        "summary": "Detalhes de restaurante",
+        "description": "Obtém detalhes de um restaurante pelo ID.",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Detalhes do restaurante" },
+          "404": { "description": "Restaurante não encontrado" }
+        }
+      }
+    },
+    "/utilizador/restaurantes/{id}/menu": {
+      "get": {
+        "tags": ["Utilizador"],
+        "summary": "Ver menu de um restaurante",
+        "description": "Obtém o menu e métodos de pagamento de um restaurante.",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Menu do restaurante" },
+          "404": { "description": "Restaurante não encontrado" }
+        }
+      }
+    },
+    "/utilizador/encomendar": {
+      "post": {
+        "tags": ["Utilizador"],
+        "summary": "Criar encomenda",
+        "description": "Cria uma nova encomenda para o cliente.",
+        "consumes": ["application/json"],
+        "parameters": [
+          { "name": "body", "in": "body", "required": true, "schema": { "$ref": "#/definitions/Encomenda" } }
+        ],
+        "responses": {
+          "201": { "description": "Encomenda criada com sucesso" },
+          "400": { "description": "Dados inválidos" }
+        }
+      }
+    },
+    "/utilizador/encomendas": {
+      "get": {
+        "tags": ["Utilizador"],
+        "summary": "Listar encomendas do cliente",
+        "description": "Lista todas as encomendas do cliente autenticado.",
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Lista de encomendas" }
+        }
+      }
+    },
+    "/utilizador/encomendas/{id}/cancelar": {
+      "post": {
+        "tags": ["Utilizador"],
+        "summary": "Cancelar encomenda",
+        "description": "Cancela uma encomenda pendente do cliente.",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "200": { "description": "Encomenda cancelada" },
+          "400": { "description": "Não é possível cancelar" },
+          "404": { "description": "Encomenda não encontrada" }
+        }
+      }
+    },
+    "/restaurante/dashboard": {
+      "get": {
+        "tags": ["Restaurante"],
+        "summary": "Dashboard do restaurante",
+        "description": "Obtém estatísticas, menus e pratos do restaurante autenticado.",
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Dashboard do restaurante" },
+          "400": { "description": "Restaurante não autenticado" }
+        }
+      }
+    },
+    "/restaurante/perfil": {
+      "get": {
+        "tags": ["Restaurante"],
+        "summary": "Perfil do restaurante",
+        "description": "Obtém o perfil do restaurante autenticado.",
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Perfil do restaurante" },
+          "400": { "description": "Restaurante não autenticado" }
+        }
+      }
+    },
+    "/restaurante/menus": {
+      "get": {
+        "tags": ["Restaurante"],
+        "summary": "Listar menus do restaurante",
+        "description": "Lista todos os menus do restaurante autenticado.",
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Lista de menus" }
+        }
+      }
+    },
+    "/restaurante/pratos": {
+      "get": {
+        "tags": ["Restaurante"],
+        "summary": "Listar pratos do restaurante",
+        "description": "Lista todos os pratos do restaurante autenticado.",
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Lista de pratos" }
+        }
+      }
+    },
+    "/admin/dashboard": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "Dashboard do admin",
+        "description": "Obtém estatísticas e listas de utilizadores e restaurantes.",
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Dashboard do admin" }
+        }
+      }
+    },
+    "/admin/restaurantes/{id}/validar": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Validar restaurante",
+        "description": "Valida um restaurante pelo ID.",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "200": { "description": "Restaurante validado" },
+          "404": { "description": "Restaurante não encontrado" }
+        }
+      }
+    },
+    "/admin/restaurantes/{id}/remover": {
+      "delete": {
+        "tags": ["Admin"],
+        "summary": "Remover restaurante",
+        "description": "Remove um restaurante pelo ID.",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "200": { "description": "Restaurante removido" },
+          "404": { "description": "Restaurante não encontrado" }
+        }
+      }
+    },
+    "/admin/utilizadores/{id}/remover": {
+      "delete": {
+        "tags": ["Admin"],
+        "summary": "Remover utilizador",
+        "description": "Remove um utilizador pelo ID.",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "200": { "description": "Utilizador removido" },
+          "404": { "description": "Utilizador não encontrado" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Prato": {
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string" },
+        "nome": { "type": "string" },
+        "descricao": { "type": "string" },
+        "preco": { "type": "number" },
+        "categoria": { "type": "string" },
+        "infoNutricional": { "type": "string" },
+        "alergenios": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "tipoDose": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Restaurante": {
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string" },
+        "ownerId": {
+          "type": "string",
+          "description": "ID do utilizador dono do restaurante"
+        },
+        "nome": { "type": "string" },
+        "morada": { "type": "string" },
+        "nif": { "type": "string" },
+        "pessoaResponsavel": { "type": "string" },
+        "telefone": { "type": "string" },
+        "tipoCozinha": {
+          "type": "string",
+          "enum": [
+            "Italiana",
+            "Japonesa",
+            "Portuguesa",
+            "Vegetariana",
+            "Outros"
+          ]
+        },
+        "tempoConfecao": { "type": "number", "minimum": 0 },
+        "tempoEntrega": { "type": "number", "minimum": 0 },
+        "raioEntregaKm": { "type": "number", "minimum": 0 },
+        "maxEncomendasPorHora": { "type": "number", "minimum": 1 },
+        "metodosDePagamento": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "logoUrl": { "type": "string" },
+        "capaUrl": { "type": "string" },
+        "ipRegisto": { "type": "string" },
+        "horarioFuncionamento": {
+          "type": "object",
+          "properties": {
+            "dias": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Segunda-feira",
+                  "Terça-feira",
+                  "Quarta-feira",
+                  "Quinta-feira",
+                  "Sexta-feira",
+                  "Sábado",
+                  "Domingo"
+                ]
+              }
+            },
+            "abre": { "type": "string" },
+            "fecha": { "type": "string" }
+          }
+        },
+        "localizacao": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["Point"],
+              "default": "Point"
+            },
+            "coordinates": {
+              "type": "array",
+              "items": { "type": "number" },
+              "description": "Coordenadas [longitude, latitude]"
+            }
+          }
+        },
+        "validado": { "type": "boolean" },
+        "ativo": { "type": "boolean" },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Encomenda": {
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string" },
+        "cliente": {
+          "type": "string",
+          "description": "ID do utilizador cliente"
+        },
+        "restaurante": {
+          "type": "string",
+          "description": "ID do restaurante associado"
+        },
+        "pratos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "prato": { "type": "string" },
+              "nome": { "type": "string" },
+              "dose": { "type": "string" },
+              "quantidade": { "type": "number" },
+              "precoUnitario": { "type": "number" }
+            }
+          }
+        },
+        "total": {
+          "type": "number",
+          "description": "Preço total da encomenda"
+        },
+        "estado": {
+          "type": "string",
+          "enum": [
+            "pendente",
+            "preparação",
+            "expedida",
+            "entregue",
+            "cancelada"
+          ],
+          "description": "Estado atual da encomenda"
+        },
+        "metodoPagamento": {
+          "type": "string"
+        },
+        "localEntrega": {
+          "type": "string"
+        },
+        "criadoEm": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

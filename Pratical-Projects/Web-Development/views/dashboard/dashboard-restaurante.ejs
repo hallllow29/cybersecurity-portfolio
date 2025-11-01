@@ -1,0 +1,245 @@
+<% layout('layout') %>
+<% title = 'Dashboard Restaurante' %>
+<% styles = `
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="/stylesheets/restaurante/restauranteDashboard.css" rel="stylesheet" />
+` %>
+    <!-- NAVBAR -->
+    <div class="navbar">
+      <div class="logo">
+        <a href="/restaurante/dashboard" style="text-decoration: none">
+          <img
+            src="\images\website\ServeLogo.png"
+            alt="Serve Point"
+            style="height: 60px; object-fit: contain"
+          />
+        </a>
+      </div>
+      
+      <div class="links">
+        <a href="/menu/listar">Menus</a>
+        <a href="/prato/listar">Pratos</a>
+        <a href="#/encomendas">Encomendas</a>
+      </div>
+      
+      <div class="profile-container">
+        <div class="profile-image" id="profileDropdown">
+          <img src="<%= restaurante.logoUrl %>" alt="Perfil" />
+        </div>
+        <div class="dropdown-menu" id="profileMenu">
+          <a href="/perfil/visualizar">Ver Perfil</a>
+          <a href="/restaurante/editar">Editar Perfil</a>
+          <div class="dropdown-divider"></div>
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+    </div><!--Navbar-->
+
+    <div class="text-center mb-5">
+      <h1 class="text-primary" style="color: rgb(227, 105, 17) !important">
+        Olá, <%= restaurante.nome %>
+      </h1>
+      <p class="text-muted">Bem-vindo ao seu painel de controlo</p>
+    </div>
+    <div class="container">
+      <!-- Estatísticas -->
+      <div
+        class="row content-container"
+        style="margin-right: 30px"
+        id="estatisticas"
+      >
+        <div class="container-title">ESTATÍSTICAS</div>
+        <div class="cards-container">
+          <div class="col-4 estatistica-card">
+            <div class="card-title">Nº Encomendas:</div>
+            <div class="valor"><%= estatisticas.numEncomendas %></div>
+          </div>
+          <div class="col-4 estatistica-card">
+            <div class="card-title">Pratos Ativos:</div>
+            <div class="valor"><%= estatisticas.pratosAtivos %></div>
+          </div>
+          <div class="col-4 estatistica-card">
+            <div class="card-title">Menus Ativos:</div>
+            <div class="valor"><%= estatisticas.menusAtivos %></div>
+          </div>
+        </div>
+        <!--Estatisticas Container-->
+      </div>
+    </div>
+    <!--Content Container-->
+
+    <div class="container">
+      <div class="coluna-esquerda">
+        <!--Menus-->
+        <div class="row content-container" id="menus">
+          <div class="container-title">MENUS</div>
+          <div class="cards-container">
+            <% menus.forEach(menu => { %>
+            <div class="col-4 menu-card" 
+                 data-menu-id="<%= menu.id %>" 
+                 data-menu-nome="<%= menu.nome ? menu.nome : 'Sem Nome' %>" 
+                 data-menu-descricao="<%= menu.descricao ? menu.descricao : 'Sem descrição' %>" 
+                 data-menu-imagem="<%= menu.imagem %>" 
+                 data-menu-disponivel="<%= menu.disponivel ? 'Sim' : 'Não' %>">
+              <div class="menu-image-container">
+                <img src="<%= menu.imagem %>" alt="Imagem do Menu" />
+              </div>
+              <div class="menu-content">
+                <div class="menu-title">
+                  <%= menu.nome ? menu.nome: 'Sem Nome' %>
+                </div>
+                <div class="menu-description">
+                  <%= menu.descricao ? menu.descricao: 'Sem descrição' %>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+          <!--Menus Container-->
+        </div>
+        <!--Content Container-->
+
+        <div class="row content-container" id="pratos">
+          <div class="container-title">PRATOS</div>
+          <div class="cards-container">
+            <% pratos.forEach(prato => { %>
+            <div class="col-4 menu-card" 
+                 data-prato-id="<%= prato.id %>" 
+                 data-prato-nome="<%= prato.nome ? prato.nome : 'Sem Nome' %>" 
+                 data-prato-descricao="<%= prato.descricao ? prato.descricao : 'Sem descrição' %>" 
+                 data-prato-imagem="<%= prato.imagem %>" 
+                 data-prato-disponivel="<%= prato.disponivel ? 'Sim' : 'Não' %>">
+              <div class="menu-image-container">
+                <img src="<%= prato.imagem %>" alt="Imagem do Menu" />
+              </div>
+              <div class="menu-content">
+                <div class="menu-title">
+                  <%= prato.nome ? prato.nome.substring(0, 30) + '...' : 'Sem Nome' %>
+                </div>
+                <div class="menu-description">
+                  <%= prato.descricao ? prato.descricao.substring(0, 60) + '...' : 'Sem descrição' %>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+          <!--Menus Container-->
+        </div>
+        <!--Content Container-->
+      </div>
+      <!-- Coluna Esquerda -->
+
+      <div class="coluna-direita">
+        <div class="col encomendas-container" id="encomendas">
+          <div class="container-title">ENCOMENDAS</div>
+          <div class="row mt-3 justify-content-center">
+            <% encomendas.forEach(e => { %>
+            <div class="col-10 mb-3 d-flex justify-content-center">
+              <div class="encomenda-card">
+                <div class="encomenda-nome"><%= e.nomeCliente %></div>
+                <div class="status-dot" data-status="<%= e.status %>"></div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+      <!-- Coluna Direita -->
+    </div>
+    <!-- CONTEÚDO -->
+
+    <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="menuModalLabel">Detalhes do Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6">
+                <img id="modalImagem" src="" alt="Imagem do Menu" class="modal-img">
+              </div>
+              <div class="col-md-6">
+                <div class="detalhe-titulo">Nome:</div>
+                <div id="modalNome" class="detalhe-conteudo"></div>
+                
+                <div class="detalhe-titulo">Descrição:</div>
+                <div id="modalDescricao" class="detalhe-conteudo"></div>
+                
+                <div class="detalhe-titulo">Disponível:</div>
+                <div id="modalDisponivel" class="detalhe-conteudo"></div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <a href="#" class="btn btn-detalhes" id="btnVerDetalhes">Ver Detalhes</a>
+            <a href="#" class="btn btn-laranja" id="btnEditar">Editar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const menuCards = document.querySelectorAll('.menu-card');
+        
+        const menuModal = new bootstrap.Modal(document.getElementById('menuModal'));
+        
+        const btnVerDetalhes = document.getElementById('btnVerDetalhes');
+        const btnEditar = document.getElementById('btnEditar');
+        
+        menuCards.forEach(card => {
+          card.addEventListener('click', function() {
+            const isMenu = this.hasAttribute('data-menu-id');
+            let id;
+            
+            if (isMenu) {
+              id = this.getAttribute('data-menu-id');
+              
+              document.getElementById('menuModalLabel').textContent = 'Detalhes do Menu';
+              document.getElementById('modalImagem').src = this.getAttribute('data-menu-imagem');
+              document.getElementById('modalNome').textContent = this.getAttribute('data-menu-nome');
+              document.getElementById('modalDescricao').textContent = this.getAttribute('data-menu-descricao');
+              document.getElementById('modalDisponivel').textContent = this.getAttribute('data-menu-disponivel');
+              
+              btnVerDetalhes.href = `/menu/detalhes/${id}`;
+              btnEditar.href = `/menu/${id}/editar`;
+            } else {
+              id = this.getAttribute('data-prato-id');
+              
+              document.getElementById('menuModalLabel').textContent = 'Detalhes do Prato';
+              document.getElementById('modalImagem').src = this.getAttribute('data-prato-imagem');
+              document.getElementById('modalNome').textContent = this.getAttribute('data-prato-nome');
+              document.getElementById('modalDescricao').textContent = this.getAttribute('data-prato-descricao');
+              document.getElementById('modalDisponivel').textContent = this.getAttribute('data-prato-disponivel');
+              
+              btnVerDetalhes.href = `/prato/detalhes/${id}`;
+              btnEditar.href = `/prato/editar/${id}`;
+            }
+            
+            menuModal.show();
+          });
+        });
+        
+        const profileDropdown = document.getElementById('profileDropdown');
+        const profileMenu = document.getElementById('profileMenu');
+        
+        profileDropdown.addEventListener('click', function() {
+          profileMenu.classList.toggle('show');
+        });
+        
+        window.addEventListener('click', function(event) {
+          if (!event.target.closest('#profileDropdown')) {
+            profileMenu.classList.remove('show');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

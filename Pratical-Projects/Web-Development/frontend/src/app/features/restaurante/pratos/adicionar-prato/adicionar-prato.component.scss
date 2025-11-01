@@ -1,0 +1,298 @@
+.adicionar-prato-container {
+	max-width: 800px;
+	margin: 40px auto;
+	background: #fffaf5;
+	padding: 40px;
+	border-radius: 20px;
+	box-shadow: 0 8px 20px rgba(255, 102, 0, 0.1);
+	font-family: "PT Sans", sans-serif;
+}
+
+fieldset {
+	border: 1px solid #ffd7ba;
+	padding: 20px;
+	margin-bottom: 30px;
+	border-radius: 12px;
+}
+
+legend {
+	font-weight: bold;
+	color: rgb(255, 102, 0);
+	padding: 0 10px;
+	font-size: 16px;
+}
+
+.form-title {
+	text-align: center;
+	color: rgb(255, 102, 0);
+	margin-bottom: 30px;
+	font-size: 24px;
+}
+
+.form-group {
+	margin-bottom: 15px;
+	display: flex;
+	flex-direction: column;
+}
+
+.form-group-grouped {
+	display: flex;
+	gap: 15px;
+	flex-wrap: wrap;
+}
+
+input, textarea, select {
+	padding: 10px;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	font-family: inherit;
+	font-size: 14px;
+}
+
+input:focus, textarea:focus, select:focus {
+	outline: none;
+	border-color: rgb(255, 102, 0);
+	box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.2);
+}
+
+.checkbox-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	margin-top: 10px;
+}
+
+.checkbox-group input[type="text"] {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.dose-container {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.imagem-preview {
+	width: 150px;
+	margin-top: 10px;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+}
+
+.btn-laranja {
+	background-color: rgb(255, 102, 0);
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	font-weight: bold;
+	font-size: 16px;
+	border-radius: 8px;
+	cursor: pointer;
+	margin-top: 20px;
+	display: block;
+	width: 100%;
+}
+
+.btn-laranja:hover {
+	background-color: rgb(230, 92, 0);
+}
+
+.modal-backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.4);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+	animation: fadeIn 0.3s ease-in;
+}
+
+.modal-content-sucesso {
+	background: white;
+	border-radius: 20px;
+	padding: 40px;
+	max-width: 400px;
+	text-align: center;
+	box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+	animation: slideUp 0.4s ease-out;
+}
+
+.botoes-modal button {
+	margin: 10px;
+	padding: 10px 20px;
+	font-weight: bold;
+	border-radius: 10px;
+	transition: all 0.2s ease;
+}
+
+.botoes-modal .btn-laranja {
+	background-color: #ff7300;
+	color: white;
+	border: none;
+}
+
+.botoes-modal .btn-laranja:hover {
+	background-color: #e36911;
+}
+
+.botoes-modal .btn {
+	background: transparent;
+	border: 1px solid #ccc;
+	color: #333;
+}
+
+.botoes-modal .btn:hover {
+	background: #f4f4f4;
+}
+
+@keyframes fadeIn {
+	from { opacity: 0 }
+	to { opacity: 1 }
+}
+
+@keyframes slideUp {
+	from { transform: translateY(20px); opacity: 0 }
+	to { transform: translateY(0); opacity: 1 }
+}
+
+.btn-voltar {
+	background-color: transparent;
+	border: none;
+	color: #ff6600;
+	font-weight: bold;
+	cursor: pointer;
+	margin-bottom: 1rem;
+	font-size: 1.1rem;
+	transition: all 0.2s ease;
+}
+
+.btn-voltar {
+	background: none;
+	border: none;
+	color: #ff6600;
+	font-weight: 600;
+	cursor: pointer;
+	font-size: 1rem;
+	padding: 8px 0;
+	transition: color 0.2s;
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.btn-voltar::before {
+	content: '←';
+	font-size: 1.1rem;
+}
+
+.btn-voltar:hover {
+	color: #cc5200;
+	text-decoration: none;
+}
+
+input, textarea, select {
+	background-color: #fff;
+	transition: border 0.3s, box-shadow 0.3s;
+}
+
+.dose-container button {
+	background-color: #ff7300;
+	color: white;
+	font-weight: bold;
+	border: none;
+	border-radius: 8px;
+	padding: 8px 16px;
+	cursor: pointer;
+	align-self: start;
+	margin-top: 10px;
+	transition: background-color 0.2s ease;
+}
+
+.dose-container button:hover {
+	background-color: #e36000;
+}
+
+@media (max-width: 768px) {
+	.adicionar-prato-container {
+		padding: 20px;
+		margin: 20px;
+	}
+
+	.form-group-grouped {
+		flex-direction: column;
+	}
+
+	.modal-content-sucesso {
+		width: 90%;
+		padding: 20px;
+	}
+}
+
+input, textarea, select, .btn-laranja {
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:hover, textarea:hover, select:hover, .btn-laranja:hover {
+	transform: scale(1.01);
+}
+
+.erro-campo {
+	color: red;
+	font-size: 13px;
+	margin-top: 5px;
+}
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+	border-color: red;
+	box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.1);
+}
+
+.loader {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border: 3px solid #ccc;
+	border-top-color: #ff6600; /* cor do spinner */
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+	margin-left: 8px;
+	vertical-align: middle;
+}
+
+.msg-verde {
+	color: green;
+	font-weight: 600;
+	margin-left: 8px;
+}
+
+.msg-alerta {
+	color: orange;
+	font-weight: 600;
+	margin-left: 8px;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.imagem-api-preview {
+	margin-top: 1rem;
+	text-align: center;
+
+	.img-preview {
+		max-width: 100%;
+		max-height: 200px;
+		border: 1px solid #ccc;
+		border-radius: 8px;
+		background: #f9f9f9;
+		padding: 5px;
+	}
+}

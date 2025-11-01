@@ -1,0 +1,145 @@
+<% layout('layout') %>
+<% title = 'Dashboard Admin' %>
+<% styles = `
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="/stylesheets/admin/adminDashboard.css" rel="stylesheet" />
+` %>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">
+    <a href="/admin/dashboard" style="text-decoration: none">
+      <img src="/images/website/ServeLogo.png" alt="Serve Point" style="height: 60px; object-fit: contain" />
+    </a>
+  </div>
+
+  <div class="links">
+    <a href="/admin/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+  </div>
+
+  <div class="profile-container">
+    <div class="profile-image" id="profileDropdown">
+      <img src="/images/website/admin-icon.png" alt="Perfil Admin" />
+    </div>
+    <div class="dropdown-menu" id="profileMenu">
+      <a href="/logout">Logout</a>
+    </div>
+  </div>
+</div><!-- Navbar -->
+
+<!-- Conteúdo -->
+<div class="text-center mb-5">
+  <h1 class="text-primary" style="color: rgb(227, 105, 17) !important">
+    Bem-vindo, Admin!
+  </h1>
+  <p class="text-muted">Aqui podes gerir toda a plataforma.</p>
+</div>
+
+<div class="container">
+  <!-- Estatísticas -->
+  <div class="row content-container mb-5" id="estatisticas">
+    <div class="container-title">📊 Estatísticas</div>
+    <div class="cards-container">
+      <div class="col-4 estatistica-card">
+        <div class="card-title">Utilizadores</div>
+        <div class="valor"><%= utilizadores.length %></div>
+      </div>
+      <div class="col-4 estatistica-card">
+        <div class="card-title">Restaurantes</div>
+        <div class="valor"><%= restaurantes.length %></div>
+      </div>
+      <div class="col-4 estatistica-card">
+        <div class="card-title">Pendentes</div>
+        <div class="valor">
+          <%= restaurantes.filter(r => !r.validado).length %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Listagem de Utilizadores -->
+  <div class="row content-container mb-5" id="utilizadores">
+    <div class="container-title">👥 Utilizadores</div>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>Email</th>
+            <th>Tipo</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% utilizadores.forEach(user => { %>
+            <tr>
+              <td><%= user.email %></td>
+              <td><%= user.role %></td>
+              <td>
+                <form action="/admin/utilizador/<%= user._id %>/remover" method="POST" style="display:inline;">
+                  <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tens a certeza?')">Remover</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Listagem de Restaurantes -->
+  <div class="row content-container" id="restaurantes">
+    <div class="container-title">🍽️ Restaurantes</div>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>Nome</th>
+            <th>Responsável</th>
+            <th>Telefone</th>
+            <th>Validado</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% restaurantes.forEach(r => { %>
+            <tr>
+              <td><%= r.nome %></td>
+              <td><%= r.pessoaResponsavel %></td>
+              <td><%= r.telefone %></td>
+              <td><%= r.validado ? "✅" : "❌" %></td>
+              <td>
+                <% if (!r.validado) { %>
+                  <form action="/admin/restaurante/<%= r._id %>/validar" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-success">Validar</button>
+                  </form>
+                <% } %>
+                <form action="/admin/restaurante/<%= r._id %>/remover" method="POST" style="display:inline;">
+                  <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tens a certeza?')">Remover</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<% scripts = `
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const profileDropdown = document.getElementById('profileDropdown');
+  const profileMenu = document.getElementById('profileMenu');
+
+  profileDropdown.addEventListener('click', function() {
+    profileMenu.classList.toggle('show');
+  });
+
+  window.addEventListener('click', function(event) {
+    if (!event.target.closest('#profileDropdown')) {
+      profileMenu.classList.remove('show');
+    }
+  });
+</script>
+` %>

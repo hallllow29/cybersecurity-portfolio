@@ -1,0 +1,110 @@
+body, html {
+    background-color: #faf3eb;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; // ou center se quiser totalmente central
+    padding-top: 40px;
+  }
+  .form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    margin-top: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 600px;
+    margin-bottom: 40px;
+  }
+  
+  .form-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffa647;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="file"],
+  select,
+  textarea {
+    background-color: #fffdf9;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #ffa647;
+    box-shadow: 0 0 0 4px rgba(255, 166, 71, 0.25);
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+  }
+  
+  button[type="submit"] {
+    background-color: rgb(255, 102, 0);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: rgb(230, 92, 0);
+  }
+  
+  .alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .alert-danger {
+    background-color: #ffd6cc;
+    color: #d9534f;
+  }
+  
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .text-danger {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+  
+  .wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .is-invalid {
+    border-color: red !important;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
+  }

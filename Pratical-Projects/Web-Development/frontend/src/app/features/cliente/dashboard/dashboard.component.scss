@@ -1,0 +1,81 @@
+// Título
+h2 {
+  font-weight: 600;
+}
+
+// Filtros (tipos de cozinha)
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+
+  button {
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 8px 16px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+
+    &.ativo {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+}
+
+.ver-mapa-btn {
+  white-space: nowrap;
+  border-radius: 30px;
+  font-size: 14px;
+  padding: 8px 16px;
+  transition: all 0.2s ease;
+}
+
+// Cartões de restaurante
+.card {
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .card-text {
+    font-size: 0.95rem;
+    color: #666;
+  }
+
+  .badge {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border-radius: 12px;
+  }
+
+  button {
+    border-radius: 20px;
+    padding: 6px 14px;
+  }
+}
+
+// Responsivo
+@media (max-width: 768px) {
+  .filtros {
+    justify-content: center;
+  }
+
+  .card {
+    text-align: center;
+  }
+}

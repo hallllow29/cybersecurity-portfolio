@@ -1,0 +1,127 @@
+<% layout('layout') %>
+<% title = 'Editar Menu' %>
+<% styles = `
+  <link href="/stylesheets/menu/editarMenu.css" rel="stylesheet" />
+  <style>
+    .titulo {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 30px 0 20px;
+      text-align: center;
+      color: #ff7300;
+    }
+
+    .prato-box {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+    }
+
+    .prato-box:hover {
+      background-color: #fff5e6;
+    }
+
+    .form-check-input:checked + .form-check-label .prato-box {
+      background-color: #ffe3c4;
+      border-color: #ff7300;
+    }
+
+    .form-check-input {
+      display: none;
+    }
+
+    .pratos-scroll {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ff9b30;
+      border-radius: 10px;
+      padding: 15px;
+      background-color: #fffdf9;
+    }
+
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      background-color: #fffdf9;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      z-index: 1;
+      font-weight: bold;
+    }
+
+    .contador-pratos {
+      font-size: 0.9rem;
+      color: #888;
+      margin-bottom: 10px;
+    }
+  </style>
+` %>
+
+<h1 class="titulo">✏️ Editar Menu</h1>
+
+<div class="form-container">
+  <% if (erro) { %>
+    <div class="alert alert-danger text-center"><%= erro %></div>
+  <% } %>
+
+  <form action="/menu/<%= menu._id %>/editar" method="POST">
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome do Menu</label>
+      <input type="text" class="form-control" name="nome" id="nome" value="<%= menu.nome %>" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="descricao" class="form-label">Descrição</label>
+      <textarea class="form-control" name="descricao" id="descricao" rows="3" required><%= menu.descricao %></textarea>
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label">Selecionar Pratos</label>
+      <div class="pratos-scroll">
+        <div class="sticky-header">Pratos Disponíveis</div>
+        <div class="contador-pratos" id="contadorSelecionados">Selecionados: 0</div>
+
+        <% pratos.forEach(prato => { %>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              name="pratos"
+              value="<%= prato._id %>"
+              id="prato-<%= prato._id %>"
+              <% if (menu.pratos.some(p => p._id.toString() === prato._id.toString())) { %> checked <% } %>
+              onchange="atualizarContador()"
+            />
+            <label class="form-check-label w-100" for="prato-<%= prato._id %>">
+              <div class="prato-box">
+                🍽️ <span class="ms-2"><%= prato.nome %></span>
+              </div>
+            </label>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-laranja px-4 me-2">💾 Guardar</button>
+      <a href="/menu/listar" class="btn btn-secondary px-4">Cancelar</a>
+    </div>
+  </form>
+</div>
+
+<% scripts = `
+<script>
+  function atualizarContador() {
+    const selecionados = document.querySelectorAll('.form-check-input:checked').length;
+    document.getElementById('contadorSelecionados').textContent = "Selecionados: " + selecionados;
+  }
+
+  document.addEventListener('DOMContentLoaded', atualizarContador);
+</script>
+` %>

@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+:host {
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.hero-section {
+  background: linear-gradient(90deg, #00c46a 0%, #1cb5e0 100%);
+  color: #fff;
+  border-radius: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 32px #0001;
+}
+
+.hero-section h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.hero-section p.lead {
+  font-size: 1.3rem;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+.filtros, .categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+
+  button {
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 8px 16px;
+    transition: all 0.2s ease;
+    &:hover {
+      background-color: #f0f0f0;
+    }
+    &.ativo, &.btn-primary.text-white {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+}
+
+.btn-primary, .btn-outline-primary {
+  border-radius: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.card {
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  }
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .card-text {
+    font-size: 0.95rem;
+    color: #666;
+  }
+  .badge {
+    font-size: 0.85rem;
+  }
+}
+
+.bg-light {
+  background: #f8f9fa !important;
+}
+
+.btn-success {
+  border-radius: 2rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  .hero-section img {
+    margin-top: 2rem;
+  }
+}

@@ -1,0 +1,91 @@
+<% layout('layout') %>
+<% title = 'Login' %>
+<% styles = `<link href="/stylesheets/login.css" rel="stylesheet" />` %>
+
+<div class="content">
+  <div class="second-column">
+    <h2 class="title title-second">Entrar</h2>
+
+    <% if (erros?.geral) { %>
+      <p class="error-message text-center"><%= erros.geral %></p>
+    <% } %>
+
+    <form class="form" action="/login" method="POST" aria-label="Formulário de Login">
+      <label class="label-input <%= erros?.email ? 'input-error' : '' %>" for="email">
+        <i class="far fa-envelope icon-modify"></i>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          value="<%= dados.email || '' %>"
+          required
+          aria-invalid="<%= erros?.email ? 'true' : 'false' %>"
+        />
+      </label>
+      <% if (erros?.email) { %>
+        <p class="error-message"><%= erros.email %></p>
+      <% } %>
+
+      <label class="label-input <%= erros?.password ? 'input-error' : '' %>" for="password">
+        <i class="fas fa-lock icon-modify"></i>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          required
+          aria-invalid="<%= erros?.password ? 'true' : 'false' %>"
+        />
+      </label>
+      <% if (erros?.password) { %>
+        <p class="error-message"><%= erros.password %></p>
+      <% } %>
+
+      <div class="text-end mb-2">
+        <a href="/recuperar-password" class="text-muted small">Esqueceu-se da password?</a>
+      </div>
+
+      <button class="btn btn-second" id="login-btn" type="submit">
+        <span id="btn-text">Entrar</span>
+        <span
+          id="btn-spinner"
+          class="spinner-border spinner-border-sm d-none"
+          role="status"
+          aria-hidden="true"
+        ></span>
+      </button>
+    </form>
+  </div>
+
+  <div class="first-column">
+    <h2 class="title title-primary">Junte-se a Nós</h2>
+    <p class="description">Ainda não faz parte?</p>
+    <p class="description">Não perca mais tempo!</p>
+    <p class="description">
+      Crie a sua conta agora e descubra todas as vantagens
+    </p>
+    <a
+      href="/registar"
+      class="btn btn-primary mt-3"
+      style="text-decoration: none"
+    >
+      Registar
+    </a>
+  </div>
+</div>
+
+<% scripts = `
+<script>
+  const form = document.querySelector("form");
+  const btn = document.getElementById("login-btn");
+  const btnText = document.getElementById("btn-text");
+  const btnSpinner = document.getElementById("btn-spinner");
+
+  form.addEventListener("submit", () => {
+    btn.disabled = true;
+    btnText.textContent = "A entrar...";
+    btnSpinner.classList.remove("d-none");
+  });
+</script>
+` %>

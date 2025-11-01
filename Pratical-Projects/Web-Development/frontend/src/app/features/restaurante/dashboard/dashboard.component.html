@@ -1,0 +1,341 @@
+<!-- Navbar -->
+<div class="navbar">
+	<div class="logo">
+		<a routerLink="/restaurante/dashboard" style="text-decoration: none">
+			<img
+				src="assets/images/ServeLogo.png"
+				alt="Serve Point"
+				style="height: 60px; object-fit: contain"
+			/>
+		</a>
+	</div>
+
+	<div class="links" style="display: flex; align-items: center; gap: 30px">
+		<!-- MENUS -->
+		<div
+			id="menus-dropdown"
+			style="position: relative"
+			(click)="toggleDropdown('menus', $event)"
+		>
+			<span style="cursor: pointer; font-weight: bold">Menus ▾</span>
+			<ul
+				*ngIf="dropdowns.menus"
+				style="
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background: white;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          padding: 8px 0;
+          z-index: 999;
+        "
+			>
+				<li>
+					<a class="dropdown-item" routerLink="/menu/listar">Ver Menus</a>
+				</li>
+				<li>
+					<a class="dropdown-item" routerLink="/menu/adicionar">Criar Menu</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- PRATOS -->
+		<div
+			id="pratos-dropdown"
+			style="position: relative"
+			(click)="toggleDropdown('pratos', $event)"
+		>
+			<span style="cursor: pointer; font-weight: bold">Pratos ▾</span>
+			<ul
+				*ngIf="dropdowns.pratos"
+				style="
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background: white;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          padding: 8px 0;
+          z-index: 999;
+        "
+			>
+				<li>
+					<a class="dropdown-item" routerLink="/prato/listar">Ver Pratos</a>
+				</li>
+				<li>
+					<a class="dropdown-item" routerLink="/prato/adicionar">Criar Prato</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- ENCOMENDAS -->
+		<div style="position: relative">
+			<a
+				class="btn btn-link"
+				routerLink="/restaurante/encomendas"
+				style="font-weight: bold; text-decoration: none; cursor: pointer"
+				>Encomendas</a
+			>
+		</div>
+	</div>
+
+	<div
+		class="notification-wrapper"
+		(click)="toggleDropdownNotificacoes($event)"
+	>
+		<i
+			class="bi bi-bell notification-icon"
+			[class.text-warning]="notificacoesNaoLidas > 0"
+			aria-label="Notificações"
+		></i>
+
+		<span
+			*ngIf="notificacoesNaoLidas > 0"
+			class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+			style="font-size: 0.7rem"
+			[attr.aria-label]="notificacoesNaoLidas + ' notificações não lidas'"
+		>
+			{{ notificacoesNaoLidas }}
+		</span>
+
+		<div
+			*ngIf="dropdownNotificacoesVisivel"
+			class="notification-dropdown"
+			(click)="$event.stopPropagation()"
+		>
+			<div class="notification-header p-3 border-bottom">
+				<h6 class="mb-0">Notificações</h6>
+				<small class="text-muted">{{ notificacoesNaoLidas }} por ler</small>
+			</div>
+
+			<div
+				*ngIf="notificacoes.length === 0"
+				class="notification-item text-center text-muted"
+			>
+				Não há notificações
+			</div>
+
+			<div
+				*ngFor="let notif of notificacoes.slice(0, 10)"
+				class="notification-item"
+				(click)="verNotificacao(notif, $event)"
+			>
+				<div class="d-flex align-items-start">
+					<div class="me-3">
+						<i class="bi bi-bag-check text-success"></i>
+					</div>
+					<div class="flex-grow-1">
+						<p class="mb-1 fw-semibold">Nova encomenda</p>
+						<p class="mb-1 text-muted small">
+							Cliente: {{ notif.nomeCliente || "Anónimo" }}
+						</p>
+						<p class="mb-0 text-success small">
+							Total: €{{ (notif.total || 0).toFixed(2) }}
+						</p>
+					</div>
+					<small class="text-muted">
+						{{ formatarDataNotificacao(notif.timestamp) }}
+					</small>
+				</div>
+			</div>
+
+			<div class="notification-footer p-2 border-top">
+				<button
+					class="btn btn-sm btn-outline-primary w-100"
+					(click)="verTodasNotificacoes($event)"
+				>
+					Ver todas as notificações
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Perfil -->
+	<div class="profile-container">
+		<div class="profile-image" (click)="togglePerfilDropdown()">
+			<img [src]="getLogoUrl()" (error)="usarImagemPadrao($event)" />
+		</div>
+		<div class="dropdown-menu" [class.show]="dropdownVisible">
+			<a (click)="verPerfil()">Ver Perfil</a>
+			<a (click)="editarPerfil()">Editar Perfil</a>
+			<div class="dropdown-divider"></div>
+			<a (click)="logout()">Logout</a>
+		</div>
+	</div>
+</div>
+
+<!-- Boas Vindas -->
+<div class="text-center mb-5">
+	<div *ngIf="restaurante">
+		<h1 class="text-primary" style="color: rgb(227, 105, 17) !important">
+			Olá, {{ restaurante.nome }}
+		</h1>
+	</div>
+	<p class="text-muted">Bem-vindo ao seu painel de controlo</p>
+</div>
+
+<!-- Estatísticas -->
+<div class="container">
+	<div
+		class="row content-container"
+		style="margin-right: 30px"
+		id="estatisticas"
+	>
+		<div class="container-title">ESTATÍSTICAS</div>
+		<div class="cards-container">
+			<div class="col-4 estatistica-card">
+				<div class="card-title">Nº Encomendas:</div>
+				<div class="valor">{{ estatisticas.numEncomendas }}</div>
+			</div>
+			<div class="col-4 estatistica-card">
+				<div class="card-title">Pratos Ativos:</div>
+				<div class="valor">{{ estatisticas.pratosAtivos }}</div>
+			</div>
+			<div class="col-4 estatistica-card">
+				<div class="card-title">Menus Ativos:</div>
+				<div class="valor">{{ estatisticas.menusAtivos }}</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Conteúdo principal -->
+<div class="container">
+	<div class="coluna-esquerda">
+		<!-- MENUS -->
+		<div class="row content-container" id="menus">
+			<div class="container-title">MENUS</div>
+			<div class="cards-container">
+				<div
+					class="col-4 menu-card"
+					*ngFor="let menu of menus"
+					(click)="abrirModal(menu, 'menu')"
+				>
+					<div class="menu-image-container">
+						<img [src]="'http://localhost:3000' + menu.imagem" />
+					</div>
+					<div class="menu-content">
+						<div class="menu-title">{{ menu.nome || "Sem Nome" }}</div>
+						<div class="menu-description">
+							{{ menu.descricao || "Sem descrição" }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- PRATOS -->
+		<div class="row content-container" id="pratos">
+			<div class="container-title">PRATOS</div>
+			<div class="cards-container">
+				<div
+					class="col-4 menu-card"
+					*ngFor="let prato of pratos"
+					(click)="abrirModal(prato, 'prato')"
+				>
+					<div class="menu-image-container">
+						<img [src]="'http://localhost:3000' + prato.imagem" />
+					</div>
+					<div class="menu-content">
+						<div class="menu-title">
+							{{ prato.nome.slice(0, 30) || "Sem Nome" }}
+						</div>
+						<div class="menu-description">
+							{{ prato.descricao?.slice(0, 60) || "Sem descrição" }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- MODAL DE DETALHES -->
+<!-- MODAL BACKDROP -->
+<div class="modal-backdrop fade show" *ngIf="modalVisible"></div>
+
+<!-- MODAL -->
+<div
+	class="modal show d-block"
+	tabindex="-1"
+	*ngIf="modalVisible"
+	style="z-index: 1055"
+>
+	<div class="modal-dialog modal-lg modal-dialog-centered mx-auto">
+
+		<div class="modal-content shadow">
+			<div class="modal-header">
+				<h5 class="modal-title">🔍 Detalhes do {{ modalTipo | titlecase }}</h5>
+				<button
+					type="button"
+					class="btn-close"
+					aria-label="Close"
+					(click)="fecharModal()"
+				></button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<!-- IMAGEM -->
+					<div class="col-md-5 mb-3">
+						<img
+		[src]="getImagemSrc(modalItem?.imagem)"
+		alt="Imagem do Prato"
+		class="modal-img w-100 rounded"
+		*ngIf="modalItem?.imagem"
+/>
+	</div>
+
+	<!-- INFO -->
+	<div class="col-md-7">
+		<h4>{{ modalItem?.nome }}</h4>
+		<p class="text-muted">{{ modalItem?.descricao }}</p>
+
+		<!-- DOSES -->
+		<div *ngIf="modalItem?.doses?.length">
+			<h6 class="fw-bold mt-3">🍽️ Doses:</h6>
+			<ul class="list-group list-group-flush">
+				<li
+					class="list-group-item px-0 py-1"
+					*ngFor="let d of modalItem?.doses || []"
+				>
+					{{ d.nome }} – <strong>€{{ d.preco.toFixed(2) }}</strong>
+				</li>
+			</ul>
+		</div>
+
+		<!-- DISPONIBILIDADE -->
+		<span
+			class="badge mt-3"
+			[ngClass]="modalItem?.disponivel ? 'bg-success' : 'bg-danger'"
+		>
+			{{ modalItem?.disponivel ? "Disponível" : "Indisponível" }}
+		</span>
+	</div>
+	</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-secondary" (click)="fecharModal()">
+			Fechar
+		</button>
+		<a
+			[routerLink]="[
+            '/',
+            modalTipo,
+            'detalhes',
+            modalItem?._id || modalItem?.id
+          ]"
+			class="btn btn-primary"
+		>
+			Ver Detalhes
+		</a>
+		<a
+			[routerLink]="['/', modalTipo, modalItem?.id, 'editar']"
+			class="btn btn-warning text-white"
+		>
+			Editar
+		</a>
+	</div>
+	</div>
+	</div>
+</div>

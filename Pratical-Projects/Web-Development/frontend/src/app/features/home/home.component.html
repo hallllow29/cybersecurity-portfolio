@@ -1,0 +1,121 @@
+<!-- HERO SECTION -->
+<div class="hero-section bg-primary text-white py-5 mb-5 rounded shadow-sm">
+  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
+    <div>
+      <h1 class="display-4 fw-bold mb-3">ServePoint</h1>
+      <p class="lead mb-4">Descobre restaurantes perto de ti e encomenda online, rápido e fácil!</p>
+      <a routerLink="/login" class="btn btn-light btn-lg fw-bold shadow me-2">Entrar</a>
+      <a routerLink="/registo" class="btn btn-outline-light btn-lg fw-bold shadow">Criar Conta</a>
+    </div>
+    <img src="assets/images/uber-eats-hero.png" alt="Comida delivery" style="max-width: 350px; border-radius: 1rem; box-shadow: 0 0 24px #0002;" />
+  </div>
+</div>
+
+<!-- CATEGORIAS -->
+<div class="container mb-5">
+  <h2 class="mb-4">Categorias</h2>
+  <div class="d-flex flex-wrap gap-3 mb-4">
+    <button class="btn btn-outline-primary px-4 py-2" [ngClass]="{ 'btn-primary text-white': !filtro }" (click)="filtro = ''">🍽️ Todas</button>
+    <button *ngFor="let cat of categorias" class="btn btn-outline-primary px-4 py-2" [ngClass]="{ 'btn-primary text-white': filtro === cat.nome }" (click)="filtro = cat.nome">{{ cat.icon }} {{ cat.nome }}</button>
+  </div>
+
+  <!-- RESTAURANTES -->
+  <div *ngIf="erro" class="alert alert-danger text-center my-5">{{ erro }}</div>
+  <div *ngIf="loading && !erro" class="text-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">A carregar...</span>
+    </div>
+    <p class="mt-3">A carregar restaurantes...</p>
+  </div>
+  <div *ngIf="!loading && !erro">
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let restaurante of restaurantesFiltrados()">
+        <div class="card h-100 shadow-sm">
+          <img [src]="getImagemCompleta(restaurante.capaUrl)" class="card-img-top" alt="Capa de {{ restaurante.nome }}" style="height: 180px; object-fit: cover" />
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex align-items-center mb-2">
+              <img [src]="getImagemCompleta(restaurante.logoUrl)" alt="Logo de {{ restaurante.nome }}" class="me-2 rounded-circle border" style="width: 40px; height: 40px; object-fit: cover" />
+              <h5 class="card-title mb-0">{{ restaurante.nome }}</h5>
+            </div>
+            <p class="text-muted small">{{ restaurante.tipoCozinha }}</p>
+            <p class="mb-2">Restaurante disponível para encomendas.</p>
+            <button class="btn btn-outline-secondary mt-auto" (click)="abrirDetalhes(restaurante)">ℹ️ Ver Detalhes</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="restaurantesFiltrados().length === 0" class="text-muted">Nenhum restaurante disponível nesta categoria.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CALL TO ACTION -->
+<div class="bg-light py-5 mt-5 border-top">
+  <div class="container text-center">
+    <h3 class="mb-3">Queres vender no ServePoint?</h3>
+    <p class="mb-4">Regista o teu restaurante e começa já a receber encomendas online!</p>
+    <a routerLink="/registo" class="btn btn-success btn-lg">Registar Restaurante</a>
+  </div>
+</div>
+
+<!-- MODAL DETALHES RESTAURANTE -->
+<div class="modal fade show" tabindex="-1" [ngStyle]="{ display: mostrarModalDetalhes ? 'block' : 'none', background: 'rgba(0,0,0,0.4)' }" *ngIf="mostrarModalDetalhes">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ restauranteSelecionado?.nome }}</h5>
+        <button type="button" class="btn-close" (click)="fecharModalDetalhes()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <img [src]="getImagemCompleta(restauranteSelecionado?.capaUrl)" class="img-fluid rounded mb-3" alt="Capa" />
+            <p *ngIf="restauranteSelecionado?.nome"><strong>Nome:</strong> {{ restauranteSelecionado.nome }}</p>
+            <p *ngIf="restauranteSelecionado?.tipoCozinha"><strong>Tipo de Cozinha:</strong> {{ restauranteSelecionado.tipoCozinha }}</p>
+            <p *ngIf="restauranteSelecionado?.pessoaResponsavel"><strong>Responsável:</strong> {{ restauranteSelecionado.pessoaResponsavel }}</p>
+            <p *ngIf="restauranteSelecionado?.telefone"><strong>Telefone:</strong> {{ restauranteSelecionado.telefone }}</p>
+            <p *ngIf="restauranteSelecionado?.nif"><strong>NIF:</strong> {{ restauranteSelecionado.nif }}</p>
+            <p *ngIf="restauranteSelecionado?.morada"><strong>Morada:</strong> {{ restauranteSelecionado.morada }}</p>
+            <p *ngIf="restauranteSelecionado?.codigoPostal"><strong>Código Postal:</strong> {{ restauranteSelecionado.codigoPostal }}</p>
+            <p *ngIf="restauranteSelecionado?.metodosPagamento"><strong>Pagamentos:</strong> {{ restauranteSelecionado.metodosPagamento.join(', ') }}</p>
+            <p *ngIf="restauranteSelecionado?.tempoConfecao"><strong>Tempo de Confecção:</strong> {{ restauranteSelecionado.tempoConfecao }} min</p>
+            <p *ngIf="restauranteSelecionado?.tempoEntrega"><strong>Tempo de Entrega:</strong> {{ restauranteSelecionado.tempoEntrega }} min</p>
+            <p *ngIf="restauranteSelecionado?.raioEntregaKm"><strong>Raio de Entrega:</strong> {{ restauranteSelecionado.raioEntregaKm }} km</p>
+            <p *ngIf="restauranteSelecionado?.maxEncomendasPorHora"><strong>Máx. Encomendas/Hora:</strong> {{ restauranteSelecionado.maxEncomendasPorHora }}</p>
+          </div>
+          <div class="col-md-6">
+            <h6 class="fw-bold">Menus Disponíveis</h6>
+            <ul *ngIf="menusSelecionado.length > 0; else semMenus" class="list-group mb-3">
+              <li *ngFor="let menu of menusSelecionado" class="list-group-item">
+                <strong>{{ menu.nome }}</strong> <span *ngIf="menu.preco">- {{ menu.preco | currency:'EUR' }}</span>
+                <div class="small text-muted">{{ menu.descricao }}</div>
+                <div *ngIf="menu.pratos?.length">
+                  <span class="fw-semibold">Pratos:</span>
+                  <ul class="mb-1 ms-3">
+                    <li *ngFor="let prato of menu.pratos">
+                      {{ prato.nome }} <span *ngIf="prato.preco">({{ prato.preco | currency:'EUR' }})</span>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+            <ng-template #semMenus><div class="text-muted">Este restaurante ainda não tem menus públicos.</div></ng-template>
+            <div *ngIf="restauranteSelecionado?.horarioFuncionamento">
+              <h6 class="fw-bold mt-3">Horário de Funcionamento</h6>
+              <ul class="list-group mb-3">
+                <li *ngFor="let h of restauranteSelecionado.horarioFuncionamento" class="list-group-item">
+                  <strong>{{ h.dia }}:</strong>
+                  <span *ngIf="h.fechado">Fechado</span>
+                  <span *ngIf="!h.fechado">Abre às {{ h.abre }} - Fecha às {{ h.fecha }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="fecharModalDetalhes()">Fechar</button>
+        <button type="button" class="btn btn-primary" disabled title="Cria conta para encomendar!">Encomendar (login obrigatório)</button>
+      </div>
+    </div>
+  </div>
+</div>

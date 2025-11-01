@@ -1,0 +1,110 @@
+<div class="container py-5">
+  <div class="text-start mb-4">
+    <button class="btn btn-outline-secondary" (click)="voltarAoDashboard()">
+      ← Voltar ao Dashboard
+    </button>
+  </div>
+
+  <div class="card shadow p-4">
+    <h2 class="text-center mb-4">Criar Novo Menu</h2>
+
+    <div *ngIf="mensagemSucesso" class="alert alert-success text-center">
+      {{ mensagemSucesso }}
+    </div>
+    <div *ngIf="mensagemErro" class="alert alert-danger text-center">
+      {{ mensagemErro }}
+    </div>
+    <form (ngSubmit)="submeterMenu()" #form="ngForm">
+      <!-- Nome -->
+      <div class="mb-3">
+        <label class="form-label">🍽️ Nome do Menu *</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="menu.nome"
+          name="nome"
+          required
+        />
+      </div>
+
+      <!-- Descrição -->
+      <div class="mb-3">
+        <label class="form-label">📝 Descrição</label>
+        <textarea
+          class="form-control"
+          rows="3"
+          [(ngModel)]="menu.descricao"
+          name="descricao"
+        ></textarea>
+      </div>
+
+      <!-- Imagem -->
+      <div class="mb-3">
+        <label class="form-label">🖼️ Imagem do Menu</label>
+        <input
+          type="file"
+          class="form-control"
+          (change)="onFileChange($event)"
+          accept="image/*"
+        />
+        <img
+          *ngIf="imagemPreview"
+          [src]="imagemPreview"
+          class="img-thumbnail mt-3"
+          style="max-height: 150px"
+        />
+      </div>
+
+      <!-- Pratos -->
+      <div class="mb-4">
+        <label class="form-label">🍔 Selecionar Pratos</label>
+        <div class="bg-light border rounded p-3">
+          <div
+            class="form-check d-flex justify-content-between align-items-center mb-2 bg-white px-3 py-2 rounded shadow-sm"
+            *ngFor="let prato of pratos"
+          >
+            <div class="d-flex align-items-center">
+              <input
+                class="form-check-input me-2"
+                type="checkbox"
+                [checked]="menu.pratosSelecionados.includes(prato._id)"
+                (change)="togglePratoSelecionado(prato._id)"
+                [name]="'prato_' + prato._id"
+              />
+              <label class="form-check-label mb-0">
+                {{ prato.nome }}
+              </label>
+            </div>
+            <div class="doses-info small text-muted ms-4">
+              <div *ngFor="let dose of prato.doses">
+                {{ dose.nome }}: €{{ dose.preco.toFixed(2) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-success px-5">Criar Menu</button>
+      </div>
+    </form>
+    <!-- MODAL DE SUCESSO -->
+    <div
+      class="modal-backdrop"
+      *ngIf="menuCriadoComSucesso"
+      (click)="menuCriadoComSucesso = false"
+    >
+      <div class="modal-content-sucesso" (click)="$event.stopPropagation()">
+        <h2>✅ Menu criado com sucesso!</h2>
+        <p>Podes agora ver os menus criados ou voltar ao início.</p>
+        <div class="botoes-modal">
+          <button class="btn-laranja" (click)="irParaListarMenus()">
+            Ver Menus
+          </button>
+          <button class="btn" (click)="voltarAoDashboard()">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

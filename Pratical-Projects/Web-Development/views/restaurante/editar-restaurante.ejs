@@ -1,0 +1,206 @@
+<% layout('layout') %>
+<% title = 'Editar Restaurante' %>
+<% styles = `<link href="/stylesheets/formStyle.css" rel="stylesheet" />` %>
+
+<div class="form-container">
+  <h2 class="text-center mb-4">Editar Restaurante</h2>
+
+  <% if (erro) { %>
+    <div class="alert alert-danger text-center fw-bold"><%= erro %></div>
+  <% } %>
+
+  <form action="/restaurante/editar" method="POST" id="formEditarRestaurante">
+    <div class="mb-3">
+      <label class="form-label">Nome</label>
+      <input type="text" name="nome" class="form-control" value="<%= restaurante.nome || '' %>" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Morada</label>
+      <input type="text" name="morada" class="form-control" value="<%= restaurante.morada || '' %>" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Contacto</label>
+      <input type="text" name="telefone" class="form-control" value="<%= restaurante.telefone || '' %>" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Tipo de Cozinha</label>
+      <select class="form-control" name="tipoCozinha" required>
+        <% ["Portuguesa", "Italiana", "Japonesa", "Vegetariana", "Outro"].forEach(tipo => { %>
+          <option value="<%= tipo %>" <%= restaurante.tipoCozinha === tipo ? 'selected' : '' %>><%= tipo %></option>
+        <% }) %>
+      </select>
+    </div>
+
+    <!-- Entregas -->
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Tempo de Confeção</label>
+        <input type="number" name="tempoConfecao" class="form-control" value="<%= restaurante.tempoConfecao || 0 %>" min="0" required />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Tempo de Entrega</label>
+        <input type="number" name="tempoEntrega" class="form-control" value="<%= restaurante.tempoEntrega || 0 %>" min="0" required />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Raio de Entrega</label>
+        <input type="number" name="raioEntregaKm" class="form-control" value="<%= restaurante.raioEntregaKm || 0 %>" min="0" required />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Máximo de Encomendas/Hora</label>
+        <input type="number" name="maxEncomendasPorHora" class="form-control" value="<%= restaurante.maxEncomendasPorHora || 1 %>" min="1" required />
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label">Métodos de Pagamento</label>
+      <div class="border rounded p-3 bg-light">
+        <% ["Dinheiro", "MB Way", "Cartão de Crédito/Débito", "Multibanco", "Outro"].forEach((metodo) => { %>
+          <div class="form-check mb-2">
+            <input 
+              type="checkbox" 
+              class="form-check-input" 
+              name="metodosDePagamento[]" 
+              value="<%= metodo %>" 
+              id="metodo_<%= metodo %>"
+              <%= restaurante.metodosDePagamento?.includes(metodo) ? 'checked' : '' %>
+            />
+            <label class="form-check-label" for="metodo_<%= metodo %>"><%= metodo %></label>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label">Horário de Funcionamento</label>
+      <div class="border rounded p-3 bg-light">
+        <% const diasSemana = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"]; %>
+        <% diasSemana.forEach((dia, index) => { 
+          const diaFormatado = dia.replace(/\s/g, "").replace("-", "");
+          const horarioDia = restaurante.horarioFuncionamento?.find(h => h.dia === dia) || {};
+        %>
+          <div class="row align-items-center mb-3">
+            <div class="col-md-3">
+              <strong><%= dia %></strong>
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label mb-0">Abre</label>
+              <input 
+                type="time" 
+                name="horario_<%= diaFormatado %>_abre" 
+                class="form-control" 
+                value="<%= horarioDia.abre || '' %>"
+              />
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label mb-0">Fecha</label>
+              <input 
+                type="time" 
+                name="horario_<%= diaFormatado %>_fecha" 
+                class="form-control" 
+                value="<%= horarioDia.fecha || '' %>"
+              />
+            </div>
+
+            <div class="col-md-3 d-flex align-items-center">
+              <input 
+                type="checkbox" 
+                name="horario_<%= diaFormatado %>_fechado" 
+                class="form-check-input me-2 checkbox-fechado" 
+                id="fechado_<%= index %>"
+                <%= horarioDia.fechado ? "checked" : "" %>
+              >
+              <label class="form-check-label" for="fechado_<%= index %>">Fechado</label>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <div class="buttons-container text-center mt-4">
+      <button class="btn btn-warning" type="submit">💾 Guardar Alterações</button>
+      <a href="/restaurante/dashboard" class="btn btn-secondary ms-2">Cancelar</a>
+    </div>
+  </form>
+</div>
+
+<div class="modal fade" id="sucessoModal" tabindex="-1" aria-labelledby="sucessoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="sucessoModalLabel">✅ Alterações guardadas</h5>
+      </div>
+      <div class="modal-body">
+        O restaurante foi editado com sucesso!
+      </div>
+      <div class="modal-footer">
+        <a href="/restaurante/dashboard" class="btn btn-primary">Ir para Dashboard</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if (typeof sucesso !== 'undefined' && sucesso) { %>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const sucessoModal = new bootstrap.Modal(document.getElementById('sucessoModal'));
+    sucessoModal.show();
+  });
+</script>
+<% } %>
+
+<% scripts = `
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("formEditarRestaurante");
+
+  function atualizarCamposFechados() {
+    document.querySelectorAll(".checkbox-fechado").forEach((checkbox) => {
+      const container = checkbox.closest(".row");
+      const inputs = container.querySelectorAll("input[type='time']");
+      inputs.forEach(input => {
+        input.disabled = checkbox.checked;
+      });
+    });
+  }
+
+  atualizarCamposFechados();
+
+  document.querySelectorAll(".checkbox-fechado").forEach((checkbox) => {
+    checkbox.addEventListener("change", atualizarCamposFechados);
+  });
+
+  form.addEventListener("submit", (e) => {
+    const diasSemana = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"];
+
+    for (const dia of diasSemana) {
+      const diaFormatado = dia.replace(/\\s/g, "").replace("-", "");
+      const abre = form.querySelector(\`input[name="horario_\${diaFormatado}_abre"]\`);
+      const fecha = form.querySelector(\`input[name="horario_\${diaFormatado}_fecha"]\`);
+      const fechado = form.querySelector(\`input[name="horario_\${diaFormatado}_fechado"]\`);
+
+      if (!fechado.checked) {
+        if (!abre.value || !fecha.value) {
+          alert(\`Por favor preenche o horário de \${dia}.\`);
+          e.preventDefault();
+          return;
+        }
+        if (abre.value >= fecha.value) {
+          alert(\`No dia \${dia}, a hora de abertura deve ser antes da hora de fecho.\`);
+          e.preventDefault();
+          return;
+        }
+      }
+    }
+  });
+});
+</script>
+` %>

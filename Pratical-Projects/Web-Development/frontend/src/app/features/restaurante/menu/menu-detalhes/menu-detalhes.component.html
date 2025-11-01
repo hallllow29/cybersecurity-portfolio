@@ -1,0 +1,158 @@
+<!-- Cabeçalho do Menu -->
+<section class="bg-white py-5 text-center border-bottom">
+  <div class="container">
+    <h1 class="display-5 fw-bold text-orange">{{ menu?.nome }}</h1>
+    <p class="text-muted">{{ menu?.descricao }}</p>
+  </div>
+</section>
+<!-- Sidebar + Conteúdo -->
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar categorias -->
+    <nav
+      class="col-lg-3 d-none d-lg-block bg-white border-end pt-4 sticky-top"
+      style="height: 100vh"
+    >
+      <ul class="nav flex-column ps-3">
+        <li
+          *ngFor="let categoria of categorias | keyvalue"
+          class="nav-item mb-2"
+        >
+          <a class="nav-link link-dark" [href]="'#' + formatId(categoria.key)">
+            {{ categoria.key }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="col-md-9 col-12 pt-4">
+      <div
+        *ngFor="let categoria of categorias | keyvalue"
+        [attr.id]="formatId(categoria.key)"
+        class="mb-5"
+      >
+        <h3 class="fw-bold text-orange border-bottom pb-2">
+          {{ categoria.key }}
+        </h3>
+
+        <div class="row mt-3">
+          <div
+            class="col-md-4 col-sm-6 mb-4"
+            *ngFor="let prato of categoria.value"
+            (click)="abrirModal(prato)"
+            style="cursor: pointer"
+          >
+            <div class="card border-0 shadow rounded-4 h-100 hover-shadow">
+              <img
+                *ngIf="prato.imagem"
+                [src]="getImagemSrc(prato.imagem)"
+                class="card-img-top rounded-top-4"
+                [alt]="prato.nome"
+                style="object-fit: cover; height: 180px"
+              />
+              <div class="card-body">
+                <h5 class="card-title fw-semibold">{{ prato.nome }}</h5>
+
+                <ul class="list-unstyled small text-muted">
+                  <li *ngFor="let dose of prato.doses">
+                    🍽️ {{ dose.nome }} — €{{ dose.preco?.toFixed(2) }}
+                  </li>
+                </ul>
+
+                <p *ngIf="!prato.doses?.length && prato.preco">
+                  <strong>Preço:</strong> €{{ prato.preco?.toFixed(2) }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão Voltar -->
+      <div class="text-center mt-5">
+        <button
+          class="btn btn-outline-dark rounded-pill px-4"
+          (click)="voltarAoDashboard()"
+        >
+          ⬅ Voltar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal com detalhes do prato -->
+<div
+  class="modal fade show"
+  tabindex="-1"
+  role="dialog"
+  style="display: block; background-color: rgba(0, 0, 0, 0.5)"
+  *ngIf="modalPrato"
+>
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content border-0 rounded-4">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold">{{ modalPrato.nome }}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          (click)="fecharModal()"
+        ></button>
+      </div>
+
+      <div class="modal-body px-4 py-3">
+        <!-- Imagem -->
+        <img
+          *ngIf="modalPrato.imagem"
+          [src]="getImagemSrc(modalPrato.imagem)"
+          class="img-fluid rounded mb-4 w-100"
+          style="max-height: 300px; object-fit: cover"
+        />
+
+        <!-- Descrição -->
+        <p class="mb-4 text-muted">
+          <strong class="d-block mb-1">📄 Descrição</strong>
+          {{ modalPrato.descricao || "Sem descrição." }}
+        </p>
+
+        <!-- Nutrição -->
+        <div *ngIf="modalPrato.infoNutricional" class="mb-4">
+          <strong class="d-block mb-2">🍎 Informação Nutricional</strong>
+          <ul class="list-unstyled small text-muted">
+            <li *ngIf="modalPrato.infoNutricional.calorias">
+              🔥 Calorias: {{ modalPrato.infoNutricional.calorias }}
+            </li>
+            <li *ngIf="modalPrato.infoNutricional.proteinas">
+              💪 Proteínas: {{ modalPrato.infoNutricional.proteinas }}g
+            </li>
+            <li *ngIf="modalPrato.infoNutricional.hidratos">
+              🍞 Hidratos: {{ modalPrato.infoNutricional.hidratos }}g
+            </li>
+            <li *ngIf="modalPrato.infoNutricional.gorduras">
+              🧈 Gorduras: {{ modalPrato.infoNutricional.gorduras }}g
+            </li>
+          </ul>
+        </div>
+
+        <!-- Doses -->
+        <div *ngIf="modalPrato.doses?.length" class="mb-4">
+          <strong class="d-block mb-2">💰 Preço por dose</strong>
+          <ul class="list-unstyled small">
+            <li *ngFor="let dose of modalPrato.doses">
+              🍽️ {{ dose.nome }} — €{{ dose.preco?.toFixed(2) }}
+            </li>
+          </ul>
+        </div>
+
+        <!-- Alergénios -->
+        <div *ngIf="modalPrato.alergenios?.length">
+          <strong class="d-block mb-2">⚠️ Alergénios</strong>
+          <ul class="list-unstyled small">
+            <li *ngFor="let alerg of modalPrato.alergenios">🔸 {{ alerg }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

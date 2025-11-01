@@ -1,0 +1,168 @@
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">
+    <a routerLink="/admin/dashboard" style="text-decoration: none">
+      <img
+        src="/assets/images/website/ServeLogo.png"
+        alt="Serve Point"
+        style="height: 60px; object-fit: contain"
+      />
+    </a>
+  </div>
+
+  <div class="links">
+    <a routerLink="/admin/dashboard">Dashboard</a>
+    <a (click)="logout()">Logout</a>
+  </div>
+
+  <div class="profile-container">
+    <div class="profile-image" (click)="toggleProfileDropdown()">
+      <img src="/assets/images/website/admin-icon.png" alt="Perfil Admin" />
+    </div>
+    <div class="dropdown-menu" [class.show]="showProfileMenu">
+      <a (click)="logout()">Logout</a>
+    </div>
+  </div>
+</div>
+
+<!-- Overlay para fechar dropdown quando clicar fora -->
+<div
+  *ngIf="showProfileMenu"
+  class="dropdown-overlay"
+  (click)="closeProfileMenu()"
+></div>
+
+<!-- Conteúdo -->
+<div class="text-center mb-5">
+  <h1 class="text-primary" style="color: rgb(227, 105, 17) !important">
+    Bem-vindo, Admin!
+  </h1>
+  <p class="text-muted">Aqui podes gerir toda a plataforma.</p>
+</div>
+
+<div class="container">
+  <!-- Botão para mostrar/ocultar logs -->
+  <div class="mb-3 text-center">
+    <button class="btn btn-info" (click)="toggleMostrarLogs()">
+      {{
+        mostrarLogs ? "Esconder Logs de Atividade" : "Mostrar Logs de Atividade"
+      }}
+    </button>
+  </div>
+
+  <!-- Logs -->
+  <div *ngIf="mostrarLogs" class="table-responsive mb-5">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Utilizador</th>
+          <th>Ação</th>
+          <th>Data / Hora</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of logs">
+          <td>{{ log.userId.email }} ({{ log.userId.role }})</td>
+          <td>{{ log.action }}</td>
+          <td>{{ log.createdAt | date : "medium" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container">
+    <!-- Estatísticas -->
+    <div class="row content-container mb-5" id="estatisticas">
+      <div class="container-title">📊 Estatísticas</div>
+      <div class="cards-container">
+        <div class="estatistica-card">
+          <div class="card-title">Utilizadores</div>
+          <div class="valor">{{ utilizadores.length }}</div>
+        </div>
+        <div class="estatistica-card">
+          <div class="card-title">Restaurantes</div>
+          <div class="valor">{{ restaurantes.length }}</div>
+        </div>
+        <div class="estatistica-card">
+          <div class="card-title">Pendentes de Aprovação</div>
+          <div class="valor">{{ pendentesCount }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Listagem de Utilizadores -->
+    <div class="row content-container mb-5" id="utilizadores">
+      <div class="container-title">👥 Utilizadores</div>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th>Email</th>
+              <th>Tipo</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of utilizadores">
+              <td>{{ user.email }}</td>
+              <td>{{ user.role }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-danger"
+                  (click)="removeUser(user._id)"
+                >
+                  Remover
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Listagem de Restaurantes -->
+    <div class="row content-container" id="restaurantes">
+      <div class="container-title">🍽️ Restaurantes</div>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th>Nome</th>
+              <th>Responsável</th>
+              <th>Telefone</th>
+              <th>Validado</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let r of restaurantes">
+              <td>{{ r.nome }}</td>
+              <td>{{ r.pessoaResponsavel }}</td>
+              <td>{{ r.telefone }}</td>
+              <td>{{ r.validado ? "✅" : "❌" }}</td>
+              <td>
+                <button
+                  *ngIf="!r.validado"
+                  type="button"
+                  class="btn btn-sm btn-success"
+                  (click)="validateRestaurant(r._id)"
+                >
+                  Validar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-danger"
+                  (click)="removeRestaurant(r._id)"
+                  [style.margin-left]="!r.validado ? '5px' : '0'"
+                >
+                  Remover
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

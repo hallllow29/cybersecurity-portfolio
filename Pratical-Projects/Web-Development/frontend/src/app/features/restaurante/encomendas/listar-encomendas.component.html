@@ -1,0 +1,141 @@
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>📦 Encomendas Recebidas</h2>
+    <button
+      class="btn btn-secondary"
+      [routerLink]="['/restaurante/dashboard', userId]"
+      *ngIf="userId"
+    >
+      ← Voltar
+    </button>
+  </div>
+
+  <!-- Filtro -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <label class="form-label fw-bold">Filtrar por estado:</label>
+      <select
+        class="form-select"
+        [(ngModel)]="filtroEstado"
+        (change)="carregarEncomendas()"
+      >
+        <option value="">Todas</option>
+        <option *ngFor="let estado of estados" [value]="estado">
+          {{ estado | titlecase }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Erro -->
+  <div *ngIf="erro" class="alert alert-danger text-center">{{ erro }}</div>
+
+  <!-- Lista Vazia -->
+  <div *ngIf="encomendas.length === 0 && !erro" class="text-muted">
+    Nenhuma encomenda encontrada.
+  </div>
+
+  <!-- Lista -->
+  <div
+    *ngFor="let e of encomendas"
+    class="card mb-3 shadow-sm border-0"
+    (click)="e.mostrarDetalhes = !e.mostrarDetalhes"
+    style="cursor: pointer"
+  >
+    <!-- Cabeçalho compacto -->
+    <div
+      class="card-header d-flex justify-content-between align-items-center bg-light"
+    >
+      <div>
+        <strong>{{ e.cliente?.nome || "—" }}</strong
+        ><br />
+        <small class="text-muted">{{ e.criadoEm | date : "short" }}</small>
+      </div>
+
+      <div class="text-end">
+        <span class="badge me-2" [ngClass]="getBadgeClass(e.status)">
+          {{ e.status | titlecase }}
+        </span>
+        <strong>{{ e.total.toFixed(2) }} €</strong>
+      </div>
+    </div>
+
+    <!-- Detalhes -->
+    <div *ngIf="e.mostrarDetalhes" class="card-body">
+      <p><strong>Email:</strong> {{ e.cliente?.email }}</p>
+      <p><strong>Telefone:</strong> {{ e.cliente?.telefone }}</p>
+      <p><strong>Morada:</strong> {{ e.moradaEntrega }}</p>
+      <p><strong>Método de Pagamento:</strong> {{ e.metodoPagamento }}</p>
+
+      <!-- Se for referência multibanco -->
+      <div
+        *ngIf="
+          e.metodoPagamento === 'Referência Multibanco' &&
+          e.dadosPagamento?.referencia
+        "
+      >
+        <p>
+          <strong>Entidade:</strong> {{ e.dadosPagamento.referencia.entidade }}
+        </p>
+        <p>
+          <strong>Referência:</strong>
+          {{ e.dadosPagamento.referencia.referencia }}
+        </p>
+        <p>
+          <strong>Valor:</strong> €{{
+            e.dadosPagamento.referencia.valor.toFixed(2)
+          }}
+        </p>
+      </div>
+
+      <!-- Se for cartão -->
+      <div
+        *ngIf="
+          e.metodoPagamento === 'Cartão de Crédito' &&
+          e.dadosPagamento?.cartao?.numero
+        "
+      >
+        <p>
+          <strong>Cartão:</strong> **** **** ****
+          {{ e.dadosPagamento.cartao.numero.slice(-4) }}
+        </p>
+      </div>
+
+      <!-- Se for MB Way -->
+      <div
+        *ngIf="
+          e.metodoPagamento === 'MB Way' && e.dadosPagamento?.mbway?.telefone
+        "
+      >
+        <p><strong>MB Way:</strong> {{ e.dadosPagamento.mbway.telefone }}</p>
+      </div>
+
+      <div class="mb-2">
+        <label class="fw-bold">Atualizar Estado:</label>
+        <select
+          class="form-select w-auto d-inline-block ms-2"
+          [(ngModel)]="e.status"
+          (click)="$event.stopPropagation()"
+          (change)="atualizarEstado(e._id, e.status)"
+        >
+          <option *ngFor="let estado of estados" [value]="estado">
+            {{ estado | titlecase }}
+          </option>
+        </select>
+      </div>
+
+      <h6 class="mt-3 fw-bold">Pratos:</h6>
+      <ul class="list-group">
+        <li
+          *ngFor="let item of e.pratos"
+          class="list-group-item d-flex justify-content-between"
+        >
+          <div>
+            🍽️ {{ item.prato.nome }} ({{ item.dose }}) × {{ item.quantidade }}
+          </div>
+          <div>€{{ item.precoUnitario.toFixed(2) }}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

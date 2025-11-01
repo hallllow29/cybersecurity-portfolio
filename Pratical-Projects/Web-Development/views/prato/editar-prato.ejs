@@ -1,0 +1,90 @@
+<% layout('layout') %>
+<% title = 'Editar Prato' %>
+<% styles = `<link href="/stylesheets/formStyle.css" rel="stylesheet" />` %>
+
+<div class="form-container">
+  <h2>Editar Prato</h2>
+
+  <% if (erro) { %>
+    <div class="alert alert-danger"><%= erro %></div>
+  <% } %>
+
+  <form action="/prato/editar/<%= prato._id %>" method="POST">
+    <div class="mb-3">
+      <label class="form-label">Nome do Prato</label>
+      <input
+        type="text"
+        name="nome"
+        class="form-control"
+        value="<%= prato.nome || '' %>"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Descrição</label>
+      <textarea name="descricao" class="form-control" rows="3"><%= prato.descricao || '' %></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Preço (€)</label>
+      <input
+        type="number"
+        step="0.01"
+        min="0"
+        name="preco"
+        class="form-control"
+        value="<%= prato.preco || '' %>"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Categoria</label>
+      <select name="categoria" class="form-select" required>
+        <option value="">Seleciona uma categoria</option>
+        <option value="Entrada" <%= prato.categoria === 'Entrada' ? 'selected' : '' %>>Entrada</option>
+        <option value="Prato Principal" <%= prato.categoria === 'Prato Principal' ? 'selected' : '' %>>Prato Principal</option>
+        <option value="Sobremesa" <%= prato.categoria === 'Sobremesa' ? 'selected' : '' %>>Sobremesa</option>
+        <option value="Bebida" <%= prato.categoria === 'Bebida' ? 'selected' : '' %>>Bebida</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Informação Nutricional</label>
+      <textarea name="infoNutricional" class="form-control" rows="2"><%= prato.infoNutricional || '' %></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Alérgenos <small class="text-muted">(separados por vírgula)</small></label>
+      <input
+        type="text"
+        name="alergenios"
+        class="form-control"
+        placeholder="Ex: leite, glúten"
+        value="<%= prato.alergenios || '' %>"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Tipos de Dose <small class="text-muted">(separados por vírgula)</small></label>
+      <input
+        type="text"
+        name="tipoDose"
+        class="form-control"
+        placeholder="Ex: normal, grande"
+        value="<%= prato.tipoDose || '' %>"
+      />
+    </div>
+
+    <div class="buttons-container">
+      <button type="submit" class="create-btn">Editar Prato</button>
+    </div>
+
+    <a href="/prato/listar" class="btn btn-link mt-3 w-100">← Voltar à Lista</a>
+  </form>
+</div>
+
+<% scripts = `
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+` %>

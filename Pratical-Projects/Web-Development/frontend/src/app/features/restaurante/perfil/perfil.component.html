@@ -1,0 +1,65 @@
+<div class="container mt-4" *ngIf="restaurante">
+  <div class="card shadow perfil-card">
+    <!-- Capa -->
+    <div class="bg-capa" [ngStyle]="{ 'background-image': 'url(' + getCapaUrl() + ')' }"></div>
+
+    <!-- Logo e Cabeçalho -->
+    <div class="text-center">
+      <img 
+        [src]="restaurante.logoUrl ? 'http://localhost:3000' + restaurante.logoUrl : '/assets/default-logo.jpg'"
+        class="logo-img" 
+        alt="Logo"
+      >
+      <h2 class="mt-2">{{ restaurante.nome }}</h2>
+      <p class="text-muted">{{ restaurante.tipoCozinha }}</p>
+    </div>
+
+    <div class="card-body perfil-info">
+      <!-- Informações Gerais -->
+      <h5 class="mb-3"><i class="fas fa-info-circle"></i> Informações Gerais</h5>
+      <p><i class="fas fa-user"></i> <strong>Responsável:</strong> {{ restaurante.pessoaResponsavel }}</p>
+      <p><i class="fas fa-envelope"></i> <strong>Email:</strong> {{ restaurante.email || 'Não disponível' }}</p>
+      <p><i class="fas fa-phone"></i> <strong>Telefone:</strong> {{ restaurante.telefone }}</p>
+      <p><i class="fas fa-id-card"></i> <strong>NIF:</strong> {{ restaurante.nif }}</p>
+      <p><i class="fas fa-map-marker-alt"></i> <strong>Morada:</strong> {{ restaurante.morada }}</p>
+      <p><i class="fas fa-credit-card"></i> <strong>Pagamentos:</strong> {{ restaurante.metodosPagamento?.join(', ') || 'Não definidos' }}</p>
+
+      <!-- Horário -->
+      <h5 class="mt-4 mb-3"><i class="fas fa-clock"></i> Funcionamento</h5>
+      <ng-container *ngIf="restaurante.horarioFuncionamento?.length; else semHorario">
+        <p *ngFor="let h of restaurante.horarioFuncionamento">
+          <strong>{{ h.dia }}:</strong>
+          <span *ngIf="h.fechado">Fechado</span>
+          <span *ngIf="!h.fechado">Abre às {{ h.abre }} - Fecha às {{ h.fecha }}</span>
+        </p>
+      </ng-container>
+      <ng-template #semHorario><p>Horário não definido</p></ng-template>
+
+      <!-- Entregas -->
+      <h5 class="mt-4 mb-3"><i class="fas fa-truck"></i> Entregas</h5>
+      <p><strong>Tempo de Confecção:</strong> {{ restaurante.tempoConfecao }} min</p>
+      <p><strong>Tempo de Entrega:</strong> {{ restaurante.tempoEntrega }} min</p>
+      <p><strong>Raio de Entrega:</strong> {{ restaurante.raioEntregaKm }} km</p>
+      <p><strong>Máx. Encomendas/Hora:</strong> {{ restaurante.maxEncomendasPorHora }}</p>
+
+      <!-- Mapa -->
+      <h5 class="mt-4 mb-3"><i class="fas fa-globe"></i> Localização</h5>
+      <div id="map"></div>
+
+      <!-- Estado -->
+      <h5 class="mt-4 mb-3"><i class="fas fa-shield-alt"></i> Estado</h5>
+      <p><strong>Validado:</strong> {{ restaurante.validado ? 'Sim' : 'Não' }}</p>
+      <p><strong>Ativo:</strong> {{ restaurante.ativo ? 'Sim' : 'Não' }}</p>
+    </div>
+
+    <!-- Botões -->
+    <div class="text-center mb-4">
+      <button class="btn btn-warning me-2" (click)="editar()">
+        <i class="fas fa-edit"></i> Editar Perfil
+      </button>
+      <button class="btn btn-secondary" (click)="voltar()">
+        <i class="fas fa-arrow-left"></i> Voltar
+      </button>
+    </div>
+  </div>
+</div>

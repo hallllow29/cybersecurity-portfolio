@@ -1,0 +1,33 @@
+body {
+  background-color: #fffaf5;
+  font-family: "PT Sans", sans-serif;
+  padding: 40px;
+}
+
+.page-title {
+  color: rgb(255, 102, 0);
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.btn-orange {
+  background-color: rgb(255, 102, 0);
+  border-color: rgb(255, 102, 0);
+  color: white;
+}
+
+.btn-orange:hover {
+  background-color: rgb(230, 92, 0);
+  border-color: rgb(230, 92, 0);
+}
+
+.card {
+  border: 1px solid #ffc299;
+  border-radius: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(255, 102, 0, 0.2);
+}

@@ -1,0 +1,49 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #343a40;
+    padding: 10px 20px;
+  }
+  
+  .navbar .logo img {
+    height: 50px;
+  }
+  
+  .navbar .links a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+  }
+  
+  .navbar .profile-container img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .container-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .cards-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .estatistica-card {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .valor {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  

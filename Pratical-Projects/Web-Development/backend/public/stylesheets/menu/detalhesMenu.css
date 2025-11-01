@@ -1,0 +1,155 @@
+body {
+  font-family: "PT Sans", sans-serif;
+  background-color: #fffaf5;
+  padding: 30px;
+}
+
+.menu-header {
+  background-color: #fff3e0;
+  padding: 40px 30px 20px;
+  text-align: center;
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+.menu-header h1 {
+  font-weight: 700;
+  font-size: 2.2em;
+  color: #ff6a00;
+  margin-bottom: 10px;
+}
+
+.menu-header p {
+  font-size: 1.1em;
+  color: #888;
+}
+
+.categoria-bloco {
+  margin-bottom: 30px;
+}
+
+.categoria-titulo {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #ff7a00;
+  margin-bottom: 15px;
+  padding-left: 10px;
+  border-left: 5px solid #ff7a00;
+}
+
+.prato-card {
+  display: flex;
+  align-items: center;
+  background-color: #fffaf5;
+  border-radius: 12px;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.prato-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.prato-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 20px;
+  border: 1px solid #eee;
+}
+
+.prato-info {
+  flex-grow: 1;
+}
+
+.prato-nome {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #333;
+}
+
+.prato-preco {
+  font-weight: bold;
+  color: #ff7a00;
+  font-size: 1em;
+}
+
+.btn-voltar {
+  background-color: #ff7a00;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-voltar:hover {
+  background-color: #e86500;
+  color: white;
+}
+
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  font-family: 'PT Sans', sans-serif;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  height: 200px;
+}
+
+.modal-section {
+  margin-top: 20px;
+}
+
+.text-laranja {
+  color: rgb(255, 102, 0);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,150 @@
+<div class="perfil-card card shadow p-4 mt-4">
+  <h2 class="mb-4">Editar Perfil</h2>
+
+  <form [formGroup]="editarForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <!-- Info básica -->
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Nome</label>
+        <input formControlName="nome" type="text" class="form-control" />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Responsável</label>
+        <input formControlName="pessoaResponsavel" type="text" class="form-control" />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Telefone</label>
+        <input formControlName="telefone" type="tel" class="form-control" />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">NIF</label>
+        <input formControlName="nif" type="text" class="form-control" />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Morada</label>
+        <input formControlName="morada" type="text" class="form-control" />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Código Postal</label>
+        <input formControlName="codigoPostal" type="text" class="form-control" />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Tipo de Cozinha</label>
+        <select formControlName="tipoCozinha" class="form-select">
+          <option value="Portuguesa">Portuguesa</option>
+          <option value="Italiana">Italiana</option>
+          <option value="Japonesa">Japonesa</option>
+          <option value="Vegetariana">Vegetariana</option>
+          <option value="Outro">Outro</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Entregas -->
+    <hr class="my-4" />
+    <h5 class="mb-3">Entregas</h5>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Tempo de Confecção (min)</label>
+        <input formControlName="tempoConfecao" type="number" class="form-control" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Tempo de Entrega (min)</label>
+        <input formControlName="tempoEntrega" type="number" class="form-control" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Raio de Entrega (km)</label>
+        <input formControlName="raioEntregaKm" type="number" class="form-control" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Máx. Encomendas/Hora</label>
+        <input formControlName="maxEncomendasPorHora" type="number" class="form-control" />
+      </div>
+    </div>
+
+   <!-- Métodos de Pagamento -->
+<div class="mt-4">
+  <label class="form-label">Métodos de Pagamento</label>
+  <div class="d-flex flex-wrap gap-3">
+    <div class="form-check" *ngFor="let metodo of metodosDisponiveis">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        [checked]="editarForm.value.metodosDePagamento.includes(metodo)"
+        (change)="onToggleMetodoPagamento(metodo)"
+        [id]="metodo"
+      />
+      <label class="form-check-label" [for]="metodo">{{ metodo }}</label>
+    </div>
+  </div>
+</div>
+    <!-- Horário -->
+    <div class="mt-5">
+      <h5>Horário de Funcionamento</h5>
+      <div
+        *ngFor="let dia of horarioFuncionamento; let i = index"
+        class="mb-3 d-flex align-items-center flex-wrap gap-2"
+      >
+        <label class="form-label me-2" style="width: 100px">{{ dia.dia }}</label>
+
+        <input
+          type="time"
+          class="form-control"
+          style="width: 110px"
+          [(ngModel)]="dia.abre"
+          [disabled]="dia.fechado"
+          name="abre{{ i }}"
+          [ngModelOptions]="{ standalone: true }"
+        />
+
+        <input
+          type="time"
+          class="form-control"
+          style="width: 110px"
+          [(ngModel)]="dia.fecha"
+          [disabled]="dia.fechado"
+          name="fecha{{ i }}"
+          [ngModelOptions]="{ standalone: true }"
+        />
+
+        <div class="form-check ms-3">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            [(ngModel)]="dia.fechado"
+            (change)="onToggleFechado(i)"
+            name="fechado{{ i }}"
+            [ngModelOptions]="{ standalone: true }"
+          />
+          <label class="form-check-label">Fechado</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Imagens -->
+    <hr class="my-4" />
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Logo</label>
+        <input type="file" (change)="onFileChange($event, 'logo')" class="form-control" />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Capa</label>
+        <input type="file" (change)="onFileChange($event, 'capa')" class="form-control" />
+      </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="mt-4 d-flex justify-content-end gap-3">
+      <button type="submit" class="btn btn-primary">Guardar Alterações</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>

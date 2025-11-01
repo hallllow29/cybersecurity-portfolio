@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+// Para aumentar o tamanho da fonte do toast
+.toast {
+  font-size: 1rem !important;
+}
+
+// Estilo específico para sucesso
+.toast-success {
+  background-color: #28a745 !important;
+  color: #fff !important;
+}
+
+// Estilo para erro
+.toast-error {
+  background-color: #dc3545 !important;
+  color: #fff !important;
+}

@@ -1,0 +1,161 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+  border: none;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+      content: '🍽️';
+      font-size: 1.8rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  label.form-label {
+    font-weight: 600;
+    color: #34495e;
+    margin-bottom: 0.5rem;
+  }
+
+  input[type='text'],
+  input[type='file'],
+  textarea {
+    border-radius: 10px;
+    border: 1px solid #dfe6e9;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+
+    &:focus {
+      border-color: #00b894;
+      box-shadow: 0 0 0 4px rgba(0, 184, 148, 0.2);
+      outline: none;
+    }
+  }
+
+  .img-thumbnail {
+    border-radius: 12px;
+    margin-top: 1rem;
+    max-height: 160px;
+    object-fit: contain;
+    border: 1px solid #dcdde1;
+  }
+
+  .bg-light {
+    background-color: #f8f9fa !important;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .form-check {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  
+    input[type='checkbox'] {
+      margin: 0;
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+
+    .form-check-input {
+      margin-right: 0.75rem;
+    }
+
+    .badge {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
+    }
+  }
+
+  .btn-success {
+    background: linear-gradient(135deg, #00b894, #00cec9);
+    border: none;
+    padding: 0.75rem 2.5rem;
+    font-weight: bold;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(135deg, #00cec9, #00b894);
+    }
+  }
+}
+
+.btn-outline-secondary {
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid #636e72;
+  color: #2d3436;
+  transition: background 0.3s, color 0.3s;
+
+  &:hover {
+    background: #2d3436;
+    color: #fff;
+  }
+  
+}
+
+.form-check-label {
+  margin: 0;
+  font-weight: 500;
+}
+
+.doses-info {
+  margin-left: 30px;
+  font-size: 0.85rem;
+  color: #555;
+}
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content-sucesso {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.botoes-modal {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+
+

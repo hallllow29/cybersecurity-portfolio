@@ -1,0 +1,18 @@
+.text-orange {
+  color: #ff7a00;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.modal-content {
+  background-color: #fffdf9;
+  padding: 1.5rem;
+}
+
+.modal-title {
+  color: #ff7a00;
+}

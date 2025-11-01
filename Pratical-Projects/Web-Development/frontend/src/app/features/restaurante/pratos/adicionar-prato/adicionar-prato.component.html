@@ -1,0 +1,263 @@
+<div class="adicionar-prato-container">
+	<h2 class="form-title">🍽️ Adicionar Novo Prato</h2>
+
+	<button type="button" class="btn-voltar" (click)="voltarAoDashboard()">
+		← Voltar
+	</button>
+
+	<form (ngSubmit)="guardarPrato(f)" #f="ngForm" novalidate>
+		<!-- Informação Básica -->
+		<fieldset>
+			<legend>📝 Informação Básica</legend>
+			<div class="form-group">
+				<label>Nome do Prato *</label>
+				<input
+					type="text"
+					[(ngModel)]="prato.nome"
+					name="nome"
+					required
+					#nome="ngModel"
+					(ngModelChange)="onNomeChange($event)"
+				/>
+
+				<!-- IMAGEM SUGERIDA DA API -->
+				<div *ngIf="imagemVemDaApi && prato.imagem" class="imagem-api-preview">
+	<p><strong>Imagem sugerida da API:</strong></p>
+<img [src]="imagemPreview" alt="Imagem sugerida" class="img-preview" />
+
+</div>
+
+	<div *ngIf="!loadingVerificacao && prato.nome?.trim()">
+		<span *ngIf="pratoExisteNaApi" class="msg-verde">
+			✔️ Prato encontrado na base de dados
+		</span>
+		<span *ngIf="!pratoExisteNaApi" class="msg-alerta">
+			⚠️ Prato não encontrado, preencha manualmente
+		</span>
+	</div>
+
+	<span *ngIf="loadingVerificacao" class="loader"></span>
+	<div *ngIf="f.submitted && nome.invalid" class="erro-campo">
+		O nome é obrigatório.
+	</div>
+	</div>
+
+	<div class="form-group">
+		<label>Descrição *</label>
+		<textarea
+			[(ngModel)]="prato.descricao"
+			name="descricao"
+			required
+			#descricao="ngModel"
+		></textarea>
+		<div *ngIf="f.submitted && descricao.invalid" class="erro-campo">
+			A descrição é obrigatória.
+		</div>
+	</div>
+	</fieldset>
+
+	<!-- Categoria -->
+	<fieldset>
+		<legend>🍴 Categoria</legend>
+		<div class="form-group">
+			<label>Categoria Principal *</label>
+			<select
+				[(ngModel)]="categoriaSelecionada"
+				name="categoriaPrincipal"
+				required
+				#categoriaPrincipal="ngModel"
+				(change)="atualizarSubcategorias()"
+			>
+				<option [ngValue]="null" disabled hidden>
+					Seleciona uma categoria principal
+				</option>
+				<option *ngFor="let cat of categoriasPrincipais" [value]="cat">
+					{{ cat }}
+				</option>
+			</select>
+			<div *ngIf="f.submitted && categoriaPrincipal.invalid" class="erro-campo">
+				Categoria obrigatória.
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label>Subcategoria *</label>
+			<select
+				[(ngModel)]="prato.subcategoria"
+				name="subcategoria"
+				required
+				#subcategoria="ngModel"
+			>
+				<option [ngValue]="null" disabled hidden>
+					Seleciona uma subcategoria
+				</option>
+				<option *ngFor="let sub of subcategoriasDisponiveis" [value]="sub">
+					{{ sub }}
+				</option>
+			</select>
+			<div *ngIf="f.submitted && subcategoria.invalid" class="erro-campo">
+				Subcategoria obrigatória.
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- Informação Nutricional -->
+	<fieldset *ngIf="mostrarCamposManuais && prato.infoNutricional">
+		<legend>🍎 Informação Nutricional (manual)</legend>
+		<div class="form-group-grouped">
+			<div class="form-group">
+				<label>Calorias *</label>
+				<input
+					type="number"
+					[(ngModel)]="prato.infoNutricional.calorias"
+					name="calorias"
+					required
+					#calorias="ngModel"
+				/>
+				<div *ngIf="f.submitted && calorias.invalid" class="erro-campo">
+					Calorias são obrigatórias.
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Proteínas (g) *</label>
+				<input
+					type="number"
+					[(ngModel)]="prato.infoNutricional.proteinas"
+					name="proteinas"
+					required
+					#proteinas="ngModel"
+				/>
+				<div *ngIf="f.submitted && proteinas.invalid" class="erro-campo">
+					Proteínas são obrigatórias.
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Hidratos (g) *</label>
+				<input
+					type="number"
+					[(ngModel)]="prato.infoNutricional.hidratos"
+					name="hidratos"
+					required
+					#hidratos="ngModel"
+				/>
+				<div *ngIf="f.submitted && hidratos.invalid" class="erro-campo">
+					Hidratos são obrigatórios.
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Gorduras (g) *</label>
+				<input
+					type="number"
+					[(ngModel)]="prato.infoNutricional.gorduras"
+					name="gorduras"
+					required
+					#gorduras="ngModel"
+				/>
+				<div *ngIf="f.submitted && gorduras.invalid" class="erro-campo">
+					Gorduras são obrigatórias.
+				</div>
+			</div>
+		</div>
+
+		<!-- Alergénios -->
+		<legend>⚠️ Alergénios (manual)</legend>
+		<div class="checkbox-group">
+			<label>
+				<input
+					type="checkbox"
+					[(ngModel)]="semAlergenios"
+					(change)="aoSelecionarSemAlergenios()"
+					name="semAlergenios"
+				/>
+				Sem Alergénios
+			</label>
+			<label
+				*ngFor="let a of ['gluten', 'lactose', 'ovo', 'peixe', 'soja', 'outros']"
+			>
+				<input
+					type="checkbox"
+					[value]="a"
+					(change)="toggleAlergeneo(a)"
+					[disabled]="semAlergenios"
+					[checked]="alergeneosSelecionados.includes(a)"
+				/>
+				{{ a | titlecase }}
+			</label>
+			<input
+				type="text"
+				[(ngModel)]="alergeneoOutroTexto"
+				name="alergeneoOutroTexto"
+				placeholder="Se 'outros', descreve..."
+				[disabled]="semAlergenios"
+			/>
+		</div>
+		<div *ngIf="f.submitted && alergeneosVazios" class="erro-campo">
+			Indica pelo menos um alergénio ou seleciona "Sem Alergénios".
+		</div>
+	</fieldset>
+
+	<!-- Doses -->
+	<fieldset>
+		<legend>🍽️ Tipos de Dose</legend>
+		<div class="dose-container">
+			<div class="form-group" *ngFor="let dose of doses; let i = index">
+				<input
+					type="text"
+					[(ngModel)]="dose.nome"
+					name="doseNome{{ i }}"
+					placeholder="Nome (ex: Normal)"
+					required
+					#doseNome="ngModel"
+				/>
+				<input
+					type="number"
+					[(ngModel)]="dose.preco"
+					name="dosePreco{{ i }}"
+					placeholder="Preço (€)"
+					required
+					#dosePreco="ngModel"
+				/>
+				<button type="button" (click)="removerDose(i)">🗑️</button>
+
+				<div *ngIf="f.submitted && (doseNome.invalid || dosePreco.invalid)" class="erro-campo">
+					Todas as doses devem ter nome e preço válido.
+				</div>
+			</div>
+			<button type="button" (click)="adicionarDose()">+ Adicionar Dose</button>
+		</div>
+	</fieldset>
+
+	<!-- Imagem -->
+	<fieldset *ngIf="!imagemVemDaApi">
+		<legend>🖼️ Imagem do Prato</legend>
+		<div class="form-group">
+			<label>Selecionar imagem *</label>
+			<input
+				type="file"
+				(change)="onFileChange($event)"
+				accept="image/*"
+				[required]="!imagemSelecionada && !imagemVemDaApi"
+			/>
+			<div *ngIf="f.submitted && !imagemSelecionada && !imagemVemDaApi" class="erro-campo">
+				Imagem obrigatória.
+			</div>
+		</div>
+	</fieldset>
+
+	<div *ngIf="erro" class="erro-msg">{{ erro }}</div>
+
+	<button type="submit" class="btn-laranja">Adicionar Prato</button>
+	</form>
+
+	<!-- MODAL DE SUCESSO -->
+	<div class="modal-backdrop" *ngIf="pratoAdicionadoComSucesso" (click)="pratoAdicionadoComSucesso = false">
+		<div class="modal-content-sucesso" (click)="$event.stopPropagation()">
+			<h2>✅ Prato adicionado com sucesso!</h2>
+			<p>Podes agora ver todos os pratos ou voltar ao início.</p>
+			<div class="botoes-modal">
+				<button class="btn-laranja" (click)="irParaListarPratos()">Ver Pratos</button>
+				<button class="btn" (click)="voltarAoDashboard()">Voltar</button>
+			</div>
+		</div>
+	</div>
+</div>

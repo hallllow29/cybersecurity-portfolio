@@ -1,0 +1,533 @@
+<div class="wrapper">
+  <div class="form-container">
+    <form
+      [formGroup]="registoForm"
+      (ngSubmit)="onSubmit()"
+      enctype="multipart/form-data"
+    >
+      <h2>Criar Conta</h2>
+
+      <div *ngIf="errors?.geral" class="alert alert-danger text-center fw-bold">
+        {{ errors.geral }}
+      </div>
+
+      <div class="mb-3">
+        <label>Email</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              registoForm.get('email')?.invalid &&
+              registoForm.get('email')?.touched
+          }"
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            registoForm.get('email')?.hasError('required') &&
+            registoForm.get('email')?.touched
+          "
+        >
+          O email é obrigatório.
+        </div>
+        <div
+          class="text-danger"
+          *ngIf="
+            registoForm.get('email')?.hasError('email') &&
+            registoForm.get('email')?.touched
+          "
+        >
+          Formato de email inválido.
+        </div>
+        <div *ngIf="errors?.email" class="text-danger">
+          {{ errors.email }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Password</label>
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                registoForm.get('password')?.invalid &&
+                registoForm.get('password')?.touched
+            }"
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              registoForm.get('password')?.hasError('required') &&
+              registoForm.get('password')?.touched
+            "
+          >
+            A password é obrigatória.
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="
+              registoForm.get('password')?.hasError('minlength') &&
+              registoForm.get('password')?.touched
+            "
+          >
+            A password deve ter no mínimo 6 caracteres.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Confirmar Password</label>
+          <input
+            type="password"
+            formControlName="conf_password"
+            class="form-control"
+          />
+          <div *ngIf="errors?.conf_password" class="text-danger">
+            {{ errors.conf_password }}
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label>Tipo de Conta</label>
+        <select
+          formControlName="tipo"
+          class="form-control"
+          (change)="onTipoChange()"
+        >
+          <option value="">Seleciona</option>
+          <option value="cliente">Cliente</option>
+          <option value="restaurante">Restaurante</option>
+        </select>
+        <div *ngIf="errors?.tipo" class="text-danger">{{ errors.tipo }}</div>
+      </div>
+
+      <!-- CLIENTE -->
+      <div *ngIf="registoForm.get('tipo')?.value === 'cliente'">
+        <div class="mb-3">
+          <label>Nome</label>
+          <input
+            type="text"
+            formControlName="cliente_nome"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                registoForm.get('cliente_nome')?.invalid &&
+                registoForm.get('cliente_nome')?.touched
+            }"
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              registoForm.get('cliente_nome')?.hasError('required') &&
+              registoForm.get('cliente_nome')?.touched
+            "
+          >
+            O nome é obrigatório.
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Telefone</label>
+            <input
+              type="tel"
+              formControlName="cliente_telefone"
+              class="form-control"
+              [class.is-invalid]="
+                registoForm.get('cliente_telefone')?.invalid &&
+                registoForm.get('cliente_telefone')?.touched
+              "
+            />
+            <div
+              *ngIf="
+                registoForm.get('cliente_telefone')?.hasError('required') &&
+                registoForm.get('cliente_telefone')?.touched
+              "
+              class="text-danger"
+            >
+              O telefone é obrigatório.
+            </div>
+            <div
+              *ngIf="
+                registoForm.get('cliente_telefone')?.hasError('pattern') &&
+                registoForm.get('cliente_telefone')?.touched
+              "
+              class="text-danger"
+            >
+              O telefone deve ter 9 dígitos.
+            </div>
+            <div *ngIf="errors?.cliente_telefone" class="text-danger">
+              {{ errors.cliente_telefone }}
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>NIF</label>
+            <input
+              type="number"
+              formControlName="cliente_nif"
+              class="form-control"
+              [class.is-invalid]="
+                registoForm.get('cliente_nif')?.invalid &&
+                registoForm.get('cliente_nif')?.touched
+              "
+            />
+
+            <div
+              *ngIf="
+                registoForm.get('cliente_nif')?.hasError('required') &&
+                registoForm.get('cliente_nif')?.touched
+              "
+              class="text-danger"
+            >
+              O NIF é obrigatório.
+            </div>
+            <div
+              *ngIf="
+                registoForm.get('cliente_nif')?.hasError('pattern') &&
+                registoForm.get('cliente_nif')?.touched
+              "
+              class="text-danger"
+            >
+              O NIF deve ter exatamente 9 dígitos.
+            </div>
+            <div *ngIf="errors?.cliente_nif" class="text-danger">
+              {{ errors.cliente_nif }}
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label>Morada</label>
+          <input
+            type="text"
+            formControlName="cliente_morada"
+            class="form-control"
+            [class.is-invalid]="
+              registoForm.get('cliente_morada')?.invalid &&
+              registoForm.get('cliente_morada')?.touched
+            "
+          />
+          <div
+            *ngIf="
+              registoForm.get('cliente_morada')?.hasError('pattern') &&
+              registoForm.get('cliente_morada')?.touched
+            "
+            class="text-danger"
+          >
+            A morada é obrigatória
+          </div>
+        </div>
+      </div>
+
+      <!-- RESTAURANTE -->
+      <div *ngIf="registoForm.get('tipo')?.value === 'restaurante'">
+        <div class="mb-3">
+          <label>Nome do Restaurante</label>
+          <input
+            type="text"
+            formControlName="restaurante_nome"
+            class="form-control"
+            [class.is-invalid]="
+              registoForm.get('restaurante_nome')?.invalid &&
+              registoForm.get('restaurante_nome')?.touched
+            "
+          />
+          <div
+            *ngIf="
+              registoForm.get('restaurante_nome')?.hasError('pattern') &&
+              registoForm.get('restaurante_nome')?.touched
+            "
+            class="text-danger"
+          >
+            O nome é obrigatório
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Nome do Responsável</label>
+          <input
+            type="text"
+            formControlName="restaurante_nomeResponsavel"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                registoForm.get('restaurante_nomeResponsavel')?.invalid &&
+                registoForm.get('restaurante_nomeResponsavel')?.touched
+            }"
+          />
+          <div
+            *ngIf="
+              registoForm
+                .get('restaurante_nomeResponsavel')
+                ?.hasError('pattern') &&
+              registoForm.get('restaurante_nomeResponsavel')?.touched
+            "
+            class="text-danger"
+          >
+            O nome do Responsável é obrigatório
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Telefone</label>
+            <input
+              type="tel"
+              formControlName="restaurante_telefone"
+              class="form-control"
+              [class.is-invalid]="
+                registoForm.get('restaurante_telefone')?.invalid &&
+                registoForm.get('restaurante_telefone')?.touched
+              "
+            />
+            <div
+              *ngIf="
+                registoForm.get('restaurante_telefone')?.hasError('required') &&
+                registoForm.get('restaurante_telefone')?.touched
+              "
+              class="text-danger"
+            >
+              O telefone é obrigatório.
+            </div>
+            <div
+              *ngIf="
+                registoForm.get('restaurante_telefone')?.hasError('pattern') &&
+                registoForm.get('restaurante_telefone')?.touched
+              "
+              class="text-danger"
+            >
+              O telefone deve ter 9 dígitos.
+            </div>
+            <div *ngIf="errors?.restaurante_telefone" class="text-danger">
+              {{ errors.restaurante_telefone }}
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>NIF</label>
+            <input
+              type="number"
+              formControlName="restaurante_nif"
+              class="form-control"
+              [class.is-invalid]="
+                registoForm.get('restaurante_nif')?.invalid &&
+                registoForm.get('restaurante_nif')?.touched
+              "
+            />
+            <div
+              *ngIf="
+                registoForm.get('restaurante_nif')?.hasError('required') &&
+                registoForm.get('restaurante_nif')?.touched
+              "
+              class="text-danger"
+            >
+              O NIF é obrigatório.
+            </div>
+            <div
+              *ngIf="
+                registoForm.get('restaurante_nif')?.hasError('pattern') &&
+                registoForm.get('restaurante_nif')?.touched
+              "
+              class="text-danger"
+            >
+              O NIF deve ter exatamente 9 dígitos.
+            </div>
+            <div *ngIf="errors?.restaurante_nif" class="text-danger">
+              {{ errors.restaurante_nif }}
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Morada</label>
+          <input
+            type="text"
+            formControlName="restaurante_morada"
+            class="form-control"
+            [class.is-invalid]="
+              registoForm.get('restaurante_morada')?.invalid &&
+              registoForm.get('restaurante_morada')?.touched
+            "
+          />
+          <div
+            *ngIf="
+              registoForm.get('restaurante_morada')?.hasError('required') &&
+              registoForm.get('restaurante_morada')?.touched
+            "
+            class="text-danger"
+          >
+            A morada é obrigatória
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Código Postal</label>
+          <input
+            type="text"
+            formControlName="restaurante_codigoPostal"
+            class="form-control"
+            placeholder="Ex: 1234-567"
+            [class.is-invalid]="
+              registoForm.get('restaurante_codigoPostal')?.invalid &&
+              registoForm.get('restaurante_codigoPostal')?.touched
+            "
+          />
+          <div
+            *ngIf="
+              registoForm
+                .get('restaurante_codigoPostal')
+                ?.hasError('required') &&
+              registoForm.get('restaurante_codigoPostal')?.touched
+            "
+            class="text-danger"
+          >
+            O código postal é obrigatório.
+          </div>
+          <div
+            *ngIf="
+              registoForm
+                .get('restaurante_codigoPostal')
+                ?.hasError('pattern') &&
+              registoForm.get('restaurante_codigoPostal')?.touched
+            "
+            class="text-danger"
+          >
+            O formato deve ser 1234-567.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Tipo de Cozinha</label>
+          <select
+            formControlName="restaurante_tipoCozinha"
+            class="form-control"
+            [class.is-invalid]="
+              registoForm.get('restaurante_tipoCozinha')?.invalid &&
+              registoForm.get('restaurante_tipoCozinha')?.touched
+            "
+          >
+            <option value="Portuguesa">Portuguesa</option>
+            <option value="Italiana">Italiana</option>
+            <option value="Japonesa">Japonesa</option>
+            <option value="Vegetariana">Vegetariana</option>
+            <option value="Outros">Outro</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Tempo de Confeção</label>
+            <input
+              type="number"
+              formControlName="restaurante_tempoConfecao"
+              class="form-control"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Tempo de Entrega</label>
+            <input
+              type="number"
+              formControlName="restaurante_tempoEntrega"
+              class="form-control"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Raio de Entrega</label>
+            <input
+              type="number"
+              formControlName="restaurante_raioEntrega"
+              class="form-control"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Máximo de Encomendas Por Hora</label>
+            <input
+              type="number"
+              formControlName="restaurante_maxEncomendas"
+              class="form-control"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="fw-bold">Horário de Funcionamento</label>
+          <div
+            *ngFor="let dia of horarioFuncionamento; let i = index"
+            class="mb-2 d-flex align-items-center gap-2"
+          >
+            <label style="width: 120px">{{ dia.dia }}</label>
+
+            <input
+              type="time"
+              class="form-control"
+              style="width: 110px"
+              [(ngModel)]="horarioFuncionamento[i].abre"
+              [name]="'abre' + i"
+              [disabled]="horarioFuncionamento[i].fechado"
+              [ngModelOptions]="{ standalone: true }"
+            />
+
+            <input
+              type="time"
+              class="form-control"
+              style="width: 110px"
+              [name]="'fecha' + i"
+              [(ngModel)]="horarioFuncionamento[i].fecha"
+              [disabled]="horarioFuncionamento[i].fechado"
+              [ngModelOptions]="{ standalone: true }"
+            />
+
+            <div class="form-check ms-2">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                [name]="'fechado' + i"
+                [(ngModel)]="horarioFuncionamento[i].fechado"
+                (change)="onToggleFechado(i)"
+                [ngModelOptions]="{ standalone: true }"
+              />
+              <label class="form-check-label">Fechado</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Logo</label>
+          <input
+            type="file"
+            (change)="onFileChange($event, 'logo')"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          <label>Capa</label>
+          <input
+            type="file"
+            (change)="onFileChange($event, 'capa')"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label>Métodos de Pagamento</label><br />
+          <div *ngFor="let metodo of metodosPagamento; trackBy: trackByMetodo">
+            <input
+              type="checkbox"
+              [value]="metodo"
+              (change)="onPagamentoChange($event)"
+            />
+            {{ metodo }}
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Criar Conta</button>
+      </div>
+    </form>
+  </div>
+</div>

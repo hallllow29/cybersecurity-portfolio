@@ -1,0 +1,82 @@
+<section
+  class="hero-banner text-white d-flex align-items-center justify-content-center"
+>
+  <div class="text-center">
+    <h1 class="display-4 fw-bold">📋 Menus do Restaurante</h1>
+    <p class="lead">Filtra e organiza os menus disponíveis</p>
+  </div>
+</section>
+
+<div class="container py-5 text-center">
+  <div class="text-start mb-4">
+    <button class="btn btn-outline-secondary" (click)="voltarAoDashboard()">
+      ← Voltar
+    </button>
+  </div>
+
+  <!-- Filtros -->
+  <div class="row mb-5">
+    <div class="col-md-4 mb-2">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="🔍 Nome do menu..."
+        [(ngModel)]="filtro.nome"
+      />
+    </div>
+    <div class="col-md-4 mb-2">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="📍 Localização..."
+        [(ngModel)]="filtro.localizacao"
+      />
+    </div>
+    <div class="col-md-4 mb-2">
+      <select class="form-select" [(ngModel)]="filtro.ordenarPor">
+        <option value="">Ordenar por...</option>
+        <option value="preco_asc">Preço ↑</option>
+        <option value="preco_desc">Preço ↓</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Listagem -->
+  <div class="row">
+    <div
+      class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+      *ngFor="let menu of menusFiltrados"
+    >
+      <div class="card border-0 shadow-sm h-100">
+        <img
+          [src]="'http://localhost:3000' + menu.imagem"
+          class="card-img-top img-fluid p-3"
+          alt="{{ menu.nome }}"
+          style="max-height: 160px; object-fit: contain"
+        />
+        <div class="card-body">
+          <h5 class="card-title fw-semibold">{{ menu.nome }}</h5>
+          <p *ngIf="menu.restaurante?.localizacao" class="text-muted small">
+            📍 {{ menu.restaurante.localizacao }}
+          </p>
+          <p class="text-muted small">
+            💰 Preço médio: {{ menu.preco || "—" }} €
+          </p>
+        </div>
+        <div
+          class="card-footer bg-transparent border-0 text-center d-flex justify-content-around"
+        >
+          <button class="btn btn-primary" (click)="verDetalhes(menu._id)">
+            Ver detalhes
+          </button>
+          <button class="btn btn-warning" (click)="editarMenu(menu._id)">
+            Editar
+          </button>
+          <button class="btn btn-danger" (click)="apagarMenu(menu._id)">
+            Apagar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+body {
+    background-color: #fffaf5;
+    font-family: "PT Sans", sans-serif;
+    padding: 40px;
+  }
+
+  .titulo {
+    color: rgb(255, 102, 0);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .form-container {
+    background: #ffffff;
+    border: 1px solid #ffc299;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 700px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.1);
+  }
+
+  .form-label {
+    font-weight: 600;
+  }
+
+  .btn-laranja {
+    background-color: rgb(255, 102, 0);
+    border-color: rgb(255, 102, 0);
+    color: white;
+  }
+
+  .btn-laranja:hover {
+    background-color: rgb(230, 92, 0);
+    border-color: rgb(230, 92, 0);
+  }
+
+  .form-check {
+    margin-bottom: 8px;
+  }

@@ -1,0 +1,63 @@
+// Layout geral
+.container {
+  max-width: 1100px;
+}
+
+.list-group {
+  border-radius: 12px;
+  overflow: hidden;
+
+  .list-group-item {
+    border: none;
+    padding: 14px 20px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &.active {
+      background-color: #000;
+      color: white;
+    }
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+}
+
+// Avatar
+img.rounded-circle {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 3px solid #ccc;
+}
+
+// Botões de secção
+button.btn-outline-dark {
+  border-radius: 30px;
+  padding: 8px 20px;
+}
+
+// Cartões
+.card {
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+  }
+}
+
+// Responsivo para telemóvel
+@media (max-width: 768px) {
+  .list-group {
+    margin-bottom: 20px;
+  }
+
+  .btn-outline-dark {
+    width: 100%;
+  }
+}

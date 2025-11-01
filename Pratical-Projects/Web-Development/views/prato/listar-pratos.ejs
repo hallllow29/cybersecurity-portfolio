@@ -1,0 +1,81 @@
+<% layout('layout') %>
+<% title = 'Lista de Pratos' %>
+<% styles = `<link href="/stylesheets/prato/listarPrato.css" rel="stylesheet" />` %>
+
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="page-title">🍽️ Pratos do Restaurante</h1>
+    <div>
+      <a href="/restaurante/dashboard" class="btn btn-orange me-2">🔙 Dashboard</a>
+      <a href="/prato/adicionar" class="btn btn-success">➕ Adicionar Prato</a>
+    </div>
+  </div>
+
+  <% if (pratos.length === 0) { %>
+    <div class="alert alert-info text-center">Ainda não tens pratos no menu.</div>
+  <% } else { %>
+    <div class="row">
+      <% pratos.forEach(prato => { %>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card h-100 shadow-sm p-3">
+            <h5 class="card-title"><%= prato.nome %></h5>
+            <p class="card-text"><%= prato.descricao ? prato.descricao.substring(0, 100) + '...' : 'Sem descrição' %></p>
+            <p><strong>€<%= prato.preco.toFixed(2) %></strong></p>
+            <p class="text-muted">Categoria: <%= prato.categoria %></p>
+
+            <div class="d-flex justify-content-between mt-3">
+              <button 
+                type="button" 
+                class="btn btn-sm btn-info text-white" 
+                data-bs-toggle="modal" 
+                data-bs-target="#modal-<%= prato._id %>">
+                🔍 Ver
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Bootstrap -->
+        <div class="modal fade" id="modal-<%= prato._id %>" tabindex="-1" aria-labelledby="modalLabel-<%= prato._id %>" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel-<%= prato._id %>"><%= prato.nome %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+              </div>
+              <div class="modal-body">
+                <% if (prato.imagem) { %>
+                  <img src="<%= prato.imagem %>" class="img-fluid rounded mb-3" alt="Imagem do prato">
+                <% } %>
+
+                <p><strong>Descrição:</strong> <%= prato.descricao || 'Sem descrição disponível' %></p>
+                <p><strong>Informação Nutricional:</strong> <%= prato.infoNutricional || 'N/A' %></p>
+                <p><strong>Preço:</strong> €<%= prato.preco.toFixed(2) %></p>
+                <p><strong>Categoria:</strong> <%= prato.categoria %></p>
+
+                <% if (prato.alergenios && prato.alergenios.length) { %>
+                  <p><strong>Alergénios:</strong> <%= prato.alergenios.join(', ') %></p>
+                <% } %>
+
+                <% if (prato.tipoDose && prato.tipoDose.length) { %>
+                  <p><strong>Tipo de Dose:</strong> <%= prato.tipoDose.join(', ') %></p>
+                <% } %>
+              </div>
+              <div class="modal-footer">
+                <a href="/prato/editar/<%= prato._id %>" class="btn btn-warning">✏️ Editar</a>
+                <form action="/prato/apagar/<%= prato._id %>" method="POST" onsubmit="return confirm('Tens a certeza que queres apagar este prato?')" class="d-inline">
+                  <button type="submit" class="btn btn-danger">🗑 Apagar</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<% scripts = `
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+` %>

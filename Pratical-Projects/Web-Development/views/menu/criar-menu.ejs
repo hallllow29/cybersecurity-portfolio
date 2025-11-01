@@ -1,0 +1,88 @@
+<% layout('layout') %> <% title = 'Criar Menu' %> <% styles = `<link
+  href="/stylesheets/formStyle.css"
+  rel="stylesheet"
+/>` %>
+
+<div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white text-center">
+      <h3 class="fw-bold mb-0" style="color: #f8f4f4">🍽️ Criar Novo Menu</h3>
+    </div>
+
+    <div class="card-body">
+      <% if (typeof erro !== 'undefined' && erro) { %>
+      <div class="alert alert-danger text-center"><%= erro %></div>
+      <% } %>
+
+      <form method="POST" action="/menu/criar" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label class="form-label">Nome do Menu</label>
+          <input type="text" class="form-control" name="nome" required />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Descrição</label>
+          <textarea class="form-control" name="descricao" rows="3" placeholder="Ex: Menu especial de almoço..."></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Imagem do Menu</label>
+          <input type="file" class="form-control" name="imagemMenu" accept="image/*"/>
+        </div>
+        <div class="form-check mb-2">
+          <label class="form-label">Selecionar Pratos</label>
+          <div
+            class="border rounded p-3 bg-light"
+            style="max-height: 300px; overflow-y: auto"
+          >
+            <% if (pratos && pratos.length > 0) { %> <% pratos.forEach(p => { %>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="pratos"
+                value="<%= p._id %>"
+                id="prato_<%= p._id %>"
+              />
+              <label class="form-check-label d-flex justify-content-between" for="prato_<%= p._id %>">
+                <span><strong><%= p.nome %></strong></span>
+                <span class="badge bg-warning text-dark">€<%= p.preco.toFixed(2) %></span>
+              </label>
+            </div>
+            <% }) %> <% } else { %>
+            <p class="text-muted">Nenhum prato disponível.</p>
+            <% } %>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-success px-5" id="criar-btn" type="submit">
+            <span id="btn-text">Criar Menu</span>
+            <span id="btn-spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="text-center mt-3">
+    <a href="/menu/listar" class="btn btn-secondary"
+      >⬅ Voltar à Lista de Menus</a
+    >
+  </div>
+</div>
+
+<% scripts = `
+<script>
+  const form = document.querySelector("form");
+  const btn = document.getElementById("criar-btn");
+  const btnText = document.getElementById("btn-text");
+  const btnSpinner = document.getElementById("btn-spinner");
+
+  form.addEventListener("submit", () => {
+    btn.disabled = true;
+    btnText.textContent = "A criar...";
+    btnSpinner.classList.remove("d-none");
+  });
+</script>
+` %>

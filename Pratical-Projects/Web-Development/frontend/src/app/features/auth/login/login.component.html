@@ -1,0 +1,98 @@
+<div class="content">
+  <div class="second-column">
+    <h2 class="title title-second">Entrar</h2>
+
+    <!-- Erro geral -->
+    <p class="error-message text-center" *ngIf="errors?.['geral']">
+      {{ errors['geral'] }}
+    </p>
+
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- EMAIL -->
+      <label
+        class="label-input"
+        [ngClass]="{
+          'input-error': (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) || errors['email']
+        }"
+      >
+        <i class="far fa-envelope icon-modify"></i>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Email"
+          autocomplete="email"
+        />
+      </label>
+      <p class="error-message" *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
+        O email é obrigatório.
+      </p>
+      <p class="error-message" *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched">
+        Email inválido.
+      </p>
+      <p class="error-message" *ngIf="errors?.['email']">
+        {{ errors['email'] }}
+      </p>
+
+      <!-- PASSWORD -->
+      <label
+        class="label-input"
+        [ngClass]="{
+          'input-error': (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) || errors['password']
+        }"
+      >
+        <i class="fas fa-lock icon-modify"></i>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Password"
+          autocomplete="current-password"
+        />
+      </label>
+      <p class="error-message" *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+        A password é obrigatória.
+      </p>
+      <p class="error-message" *ngIf="errors?.['password']">
+        {{ errors['password'] }}
+      </p>
+
+      <!-- LINK PASSWORD -->
+      <div class="text-end mb-2">
+        <a routerLink="/recuperar-password" class="text-muted small">Esqueceu-se da password?</a>
+      </div>
+
+      <!-- BOTÃO -->
+      <button
+        class="btn btn-second"
+        type="submit"
+        [disabled]="loginForm.invalid || isLoading"
+      >
+        <span *ngIf="!isLoading" id="btn-text">Entrar</span>
+        <span
+          *ngIf="isLoading"
+          id="btn-spinner"
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+        ></span>
+      </button>
+    </form>
+  </div>
+
+  <div class="first-column">
+    <h2 class="title title-primary">Junte-se a Nós</h2>
+    <p class="description">Ainda não faz parte?</p>
+    <p class="description">Não perca mais tempo!</p>
+    <p class="description">
+      Crie a sua conta agora e descubra todas as vantagens
+    </p>
+    <a
+      routerLink="/registo"
+      class="btn btn-primary mt-3"
+      style="text-decoration: none"
+    >
+      Registar
+    </a>
+  </div>
+</div>
