@@ -1,0 +1,9 @@
+{   
+    "types": [
+        "clothing",
+        "medicine",
+        "perishable food",
+        "non perishable food",
+        "books"   
+    ]
+}

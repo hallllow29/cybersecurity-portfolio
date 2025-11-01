@@ -1,0 +1,137 @@
+[
+  {
+    "code": "ABC123",
+    "capacity": {
+      "clothing": 3,
+      "medicine": 2,
+      "perishable food": 2,
+      "non perishable food": 3
+    }
+  },
+  {
+    "code": "XYZ456",
+    "capacity": {
+      "clothing": 2,
+      "medicine": 4,
+      "perishable food": 1,
+      "non perishable food": 3
+    }
+  },
+  {
+    "code": "DEF789",
+    "capacity": {
+      "clothing": 4,
+      "medicine": 1,
+      "perishable food": 2,
+      "non perishable food": 3
+    }
+  },
+  {
+    "code": "GHI234",
+    "capacity": {
+      "clothing": 3,
+      "medicine": 2,
+      "perishable food": 2,
+      "non perishable food": 3
+    }
+  },
+  {
+    "code": "JKL567",
+    "capacity": {
+      "clothing": 3,
+      "medicine": 3,
+      "perishable food": 1,
+      "non perishable food": 3
+    }
+  },
+  {
+    "code": "MNO890",
+    "capacity": {
+      "clothing": 2,
+      "medicine": 2,
+      "perishable food": 3,
+      "non perishable food": 3
+    }
+  },
+  {
+    "code": "PQR123",
+    "capacity": {
+      "clothing": 3,
+      "medicine": 1,
+      "perishable food": 2,
+      "non perishable food": 4
+    }
+  },
+  {
+    "code": "STU456",
+    "capacity": {
+      "clothing": 2,
+      "medicine": 3,
+      "perishable food": 2,
+      "non perishable food": 3
+    }
+  },
+  {
+    "code": "VWX789",
+    "capacity": {
+      "clothing": 1,
+      "medicine": 4,
+      "perishable food": 3,
+      "non perishable food": 2
+    }
+  },
+  {
+    "code": "YZA012",
+    "capacity": {
+      "clothing": 3,
+      "medicine": 2,
+      "perishable food": 1,
+      "non perishable food": 4
+    }
+  },
+  {
+    "code": "BCD345",
+    "capacity": {
+      "clothing": 4,
+      "medicine": 2,
+      "perishable food": 1,
+      "non perishable food": 3
+    }
+  },
+  {
+    "code": "EFG678",
+    "capacity": {
+      "clothing": 2,
+      "medicine": 3,
+      "perishable food": 2,
+      "non perishable food": 3
+    }
+  },
+  {
+    "code": "HIJ901",
+    "capacity": {
+      "clothing": 1,
+      "medicine": 3,
+      "perishable food": 3,
+      "non perishable food": 3
+    }
+  },
+  {
+    "code": "KLM234",
+    "capacity": {
+      "clothing": 3,
+      "medicine": 1,
+      "perishable food": 3,
+      "non perishable food": 3
+    }
+  },
+  {
+    "code": "NOP567",
+    "capacity": {
+      "clothing": 2,
+      "medicine": 2,
+      "perishable food": 2,
+      "non perishable food": 4
+    }
+  }
+]

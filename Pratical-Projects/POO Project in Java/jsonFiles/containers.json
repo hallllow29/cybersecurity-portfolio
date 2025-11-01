@@ -1,0 +1,590 @@
+[{
+  "code": "N1EI",
+  "capacity": 500,
+  "type": "non perishable food"
+},
+{
+  "code": "V116",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "MY6L",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "PL7KI",
+  "capacity": 120,
+  "type": "perishable food"
+},
+{
+  "code": "NLIK",
+  "capacity": 400,
+  "type": "non perishable food"
+},
+{
+  "code": "V76L",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "MQQ6",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "N1Y0",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "V11L",
+  "capacity": 530,
+  "type": "clothing"
+},
+{
+  "code": "MY7Y",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "PL9E0",
+  "capacity": 100,
+  "type": "perishable food"
+},
+{
+  "code": "N100",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "V099",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "PL66K",
+  "capacity": 100,
+  "type": "perishable food"
+},
+{
+  "code": "N10L",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "V0QQ",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "M6Q1",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "PL6Q1",
+  "capacity": 70,
+  "type": "perishable food"
+},
+{
+  "code": "N7YL",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "V6E1",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "MQL1",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "PQE0",
+  "capacity": 100,
+  "type": "perishable food"
+},
+{
+  "code": "N106",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "V0EK",
+  "capacity": 900,
+  "type": "clothing"
+},
+{
+  "code": "M69E",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "N7YK",
+  "capacity": 1200,
+  "type": "non perishable food"
+},
+{
+  "code": "V1Y0",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "MYEI",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "PPIK",
+  "capacity": 100,
+  "type": "perishable food"
+},
+{
+  "code": "N9Y7",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "V6Q0",
+  "capacity": 500,
+  "type": "clothing"
+},
+{
+  "code": "MQQ0",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "P6Q0",
+  "capacity": 100,
+  "type": "perishable food"
+},
+{
+  "code": "N6Q0",
+  "capacity": 300,
+  "type": "non perishable food"
+},
+{
+  "code": "V11Q",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "MY9E",
+  "capacity": 660,
+  "type": "medicine"
+},
+{
+  "code": "PLIQL",
+  "capacity": 100,
+  "type": "perishable food"
+},
+{
+  "code": "N110",
+  "capacity": 1000,
+  "type": "non perishable food"
+},
+{
+  "code": "V106",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "M70L",
+  "capacity": 600,
+  "type": "medicine"
+},
+{
+  "code": "PPL70L",
+  "capacity": 100,
+  "type": "perishable food"
+},
+{
+  "code": "NYI7",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "VLIK",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "MY00",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "NLKQ",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "V7KI",
+  "capacity": 400,
+  "type": "clothing"
+},
+{
+  "code": "MQQQ",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "NYK0",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "VQE1",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "MY17",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "NQE0",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "V9E0",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "MQQY",
+  "capacity": 900,
+  "type": "medicine"
+},
+{
+  "code": "NYI6",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "VIQQ",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "MQYL",
+  "capacity": 350,
+  "type": "medicine"
+},
+{
+  "code": "NYIQ",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "VQE0",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "MY07",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "NQE1",
+  "capacity": 350,
+  "type": "non perishable food"
+},
+{
+  "code": "VIQL",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "MQY6",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "N111",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "V111",
+  "capacity": 280,
+  "type": "clothing"
+},
+{
+  "code": "ME0I",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "PLE0I",
+  "capacity": 100,
+  "type": "perishable food"
+},
+{
+  "code": "N7KI",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "V1QL",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "MYE6",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "PLIQQ",
+  "capacity": 80,
+  "type": "perishable food"
+},
+{
+  "code": "P123",
+  "capacity": 100,
+  "type": "perishable food"
+},
+{
+  "code": "P456",
+  "capacity": 150,
+  "type": "perishable food"
+},
+{
+  "code": "P789",
+  "capacity": 120,
+  "type": "perishable food"
+},
+{
+  "code": "P101",
+  "capacity": 100,
+  "type": "perishable food"
+},
+{
+  "code": "P202",
+  "capacity": 130,
+  "type": "perishable food"
+},
+{
+  "code": "P303",
+  "capacity": 140,
+  "type": "perishable food"
+},
+{
+  "code": "P404",
+  "capacity": 110,
+  "type": "perishable food"
+},
+{
+  "code": "P505",
+  "capacity": 90,
+  "type": "perishable food"
+},
+{
+  "code": "P606",
+  "capacity": 160,
+  "type": "perishable food"
+},
+{
+  "code": "P707",
+  "capacity": 150,
+  "type": "perishable food"
+},
+{
+  "code": "M123",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "M456",
+  "capacity": 600,
+  "type": "medicine"
+},
+{
+  "code": "M789",
+  "capacity": 550,
+  "type": "medicine"
+},
+{
+  "code": "M101",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "M202",
+  "capacity": 530,
+  "type": "medicine"
+},
+{
+  "code": "M303",
+  "capacity": 540,
+  "type": "medicine"
+},
+{
+  "code": "M404",
+  "capacity": 510,
+  "type": "medicine"
+},
+{
+  "code": "M505",
+  "capacity": 490,
+  "type": "medicine"
+},
+{
+  "code": "M606",
+  "capacity": 560,
+  "type": "medicine"
+},
+{
+  "code": "M707",
+  "capacity": 550,
+  "type": "medicine"
+},
+{
+  "code": "V123",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "V456",
+  "capacity": 800,
+  "type": "clothing"
+},
+{
+  "code": "V789",
+  "capacity": 700,
+  "type": "clothing"
+},
+{
+  "code": "V101",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "B202",
+  "capacity": 780,
+  "type": "books"
+},
+{
+  "code": "V303",
+  "capacity": 740,
+  "type": "clothing"
+},
+{
+  "code": "V404",
+  "capacity": 710,
+  "type": "clothing"
+},
+{
+  "code": "V505",
+  "capacity": 790,
+  "type": "clothing"
+},
+{
+  "code": "V606",
+  "capacity": 760,
+  "type": "clothing"
+},
+{
+  "code": "V707",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "N123",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "B456",
+  "capacity": 650,
+  "type": "books"
+},
+{
+  "code": "N789",
+  "capacity": 550,
+  "type": "non perishable food"
+},
+{
+  "code": "N101",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "N202",
+  "capacity": 630,
+  "type": "non perishable food"
+},
+{
+  "code": "N303",
+  "capacity": 640,
+  "type": "non perishable food"
+},
+{
+  "code": "N404",
+  "capacity": 610,
+  "type": "non perishable food"
+},
+{
+  "code": "N505",
+  "capacity": 590,
+  "type": "non perishable food"
+},
+{
+  "code": "N606",
+  "capacity": 660,
+  "type": "non perishable food"
+},
+{
+  "code": "N707",
+  "capacity": 550,
+  "type": "non perishable food"
+},
+{
+  "code": "P808",
+  "capacity": 120,
+  "type": "perishable food"
+},
+{
+  "code": "B808",
+  "capacity": 500,
+  "type": "books"
+},
+{
+  "code": "V808",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "N808",
+  "capacity": 600,
+  "type": "non perishable food"
+},
+{
+  "code": "P909",
+  "capacity": 100,
+  "type": "perishable food"
+},
+{
+  "code": "M909",
+  "capacity": 500,
+  "type": "medicine"
+},
+{
+  "code": "V909",
+  "capacity": 750,
+  "type": "clothing"
+},
+{
+  "code": "B909",
+  "capacity": 600,
+  "type": "books"
+}]

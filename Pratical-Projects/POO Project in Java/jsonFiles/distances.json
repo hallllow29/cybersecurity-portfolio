@@ -1,0 +1,2201 @@
+[{
+  
+  "from": "CAIXF33",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 4558,
+      "duration": 415
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 8558,
+      "duration": 715
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 2426,
+      "duration": 337
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 8218,
+      "duration": 785
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 6746,
+      "duration": 694
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 7754,
+      "duration": 798
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 5234,
+      "duration": 593
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 3494,
+      "duration": 345
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 7691,
+      "duration": 647
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 10888,
+      "duration": 929
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 9377,
+      "duration": 809
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 7867,
+      "duration": 665
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 8618,
+      "duration": 684
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 11311,
+      "duration": 915
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 10956,
+      "duration": 1024
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 11126,
+      "duration": 917
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 1291,
+      "duration": 241
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 7128,
+      "duration": 669
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 8813,
+      "duration": 941
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 8067,
+      "duration": 844
+    }
+  ]
+},
+{
+  "from": "CAIXF46",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 7558,
+      "duration": 615
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 5104,
+      "duration": 564
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 12155,
+      "duration": 1059
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 15852,
+      "duration": 1125
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 19532,
+      "duration": 1426
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 18060,
+      "duration": 1335
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 11988,
+      "duration": 1049
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 12552,
+      "duration": 1132
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 10671,
+      "duration": 1049
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 7822,
+      "duration": 838
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 9882,
+      "duration": 1001
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 8371,
+      "duration": 881
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 6861,
+      "duration": 737
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 3459,
+      "duration": 464
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 620,
+      "duration": 209
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 5724,
+      "duration": 593
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 12159,
+      "duration": 1051
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 14705,
+      "duration": 1267
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 14598,
+      "duration": 1388
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 11590,
+      "duration": 1031
+    }
+  ]
+},
+{
+  "from": "CAIXF36",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 10558,
+      "duration": 915
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 16464,
+      "duration": 1058
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 7546,
+      "duration": 715
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 5616,
+      "duration": 516
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 5067,
+      "duration": 465
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 6020,
+      "duration": 571
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 4911,
+      "duration": 494
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 7868,
+      "duration": 681
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 9928,
+      "duration": 938
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 12773,
+      "duration": 1208
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 11040,
+      "duration": 994
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 10197,
+      "duration": 1006
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 16525,
+      "duration": 1028
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 19217,
+      "duration": 1258
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 20150,
+      "duration": 1385
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 13319,
+      "duration": 1228
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 8178,
+      "duration": 741
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 2700,
+      "duration": 269
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 3733,
+      "duration": 401
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 6589,
+      "duration": 640
+    }
+  ]
+},
+{
+  "from": "CAIXF40",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 7558,
+      "duration": 515
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 3915,
+      "duration": 478
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 6254,
+      "duration": 621
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 6153,
+      "duration": 634
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 15082,
+      "duration": 963
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 9912,
+      "duration": 903
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 4287,
+      "duration": 428
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 4851,
+      "duration": 511
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 4376,
+      "duration": 470
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 4950,
+      "duration": 530
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 3439,
+      "duration": 411
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 1929,
+      "duration": 267
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 3975,
+      "duration": 448
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 6668,
+      "duration": 678
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 7600,
+      "duration": 806
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 5465,
+      "duration": 544
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 4980,
+      "duration": 562
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 7003,
+      "duration": 646
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 6896,
+      "duration": 767
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 3889,
+      "duration": 410
+    }
+  ]
+},
+{
+  "from": "CAIXF39",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 2558,
+      "duration": 115
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 7317,
+      "duration": 676
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 3204,
+      "duration": 328
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 2774,
+      "duration": 268
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 8309,
+      "duration": 699
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 6837,
+      "duration": 608
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 4749,
+      "duration": 472
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 2942,
+      "duration": 309
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 4488,
+      "duration": 488
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 7857,
+      "duration": 777
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 6124,
+      "duration": 562
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 5281,
+      "duration": 575
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 7377,
+      "duration": 645
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 10069,
+      "duration": 876
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 11002,
+      "duration": 1003
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 8403,
+      "duration": 796
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 1899,
+      "duration": 198
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 4954,
+      "duration": 465
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 5808,
+      "duration": 615
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 4573,
+      "duration": 499
+    }
+  ]
+},
+{
+  "from": "CAIXF34",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 14558,
+      "duration": 1115
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 10507,
+      "duration": 845
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 2035,
+      "duration": 258
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 6785,
+      "duration": 606
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 5314,
+      "duration": 515
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 6741,
+      "duration": 640
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 4221,
+      "duration": 435
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 3231,
+      "duration": 309
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 6822,
+      "duration": 700
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 10191,
+      "duration": 989
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 8458,
+      "duration": 774
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 7614,
+      "duration": 787
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 10567,
+      "duration": 815
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 13260,
+      "duration": 1045
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 12905,
+      "duration": 1154
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 10736,
+      "duration": 1008
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 2667,
+      "duration": 284
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 5696,
+      "duration": 491
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 7752,
+      "duration": 772
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 7262,
+      "duration": 719
+    }
+  ]
+},
+{
+  "from": "CAIXF37",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 5328,
+      "duration": 615
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 8594,
+      "duration": 680
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 9333,
+      "duration": 771
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 6804,
+      "duration": 669
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 10596,
+      "duration": 926
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 6020,
+      "duration": 555
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 3423,
+      "duration": 383
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 5028,
+      "duration": 505
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 4520,
+      "duration": 463
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 7365,
+      "duration": 734
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 5632,
+      "duration": 519
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 4788,
+      "duration": 532
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 8654,
+      "duration": 649
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 11347,
+      "duration": 880
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 12280,
+      "duration": 1007
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 7910,
+      "duration": 753
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 6928,
+      "duration": 702
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 4685,
+      "duration": 468
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 2600,
+      "duration": 337
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 560,
+      "duration": 68
+    }
+  ]
+},
+{
+  "from": "CAIXF35",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 4921,
+      "duration": 467
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 17297,
+      "duration": 1133
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 8379,
+      "duration": 789
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 6448,
+      "duration": 590
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 5160,
+      "duration": 489
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 10436,
+      "duration": 937
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 9118,
+      "duration": 844
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 8701,
+      "duration": 756
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 16430,
+      "duration": 1065
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 19627,
+      "duration": 1346
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 13928,
+      "duration": 1221
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 16605,
+      "duration": 1083
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 17357,
+      "duration": 1102
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 20050,
+      "duration": 1333
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 20982,
+      "duration": 1460
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 19865,
+      "duration": 1334
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 9011,
+      "duration": 816
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 6907,
+      "duration": 619
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 8092,
+      "duration": 798
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 11005,
+      "duration": 1006
+    }
+  ]
+},
+{
+  "from": "CAIXF51",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 11215,
+      "duration": 862
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 8196,
+      "duration": 667
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 8935,
+      "duration": 758
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 6406,
+      "duration": 656
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 11165,
+      "duration": 997
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 6589,
+      "duration": 626
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 560,
+      "duration": 69
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 3727,
+      "duration": 425
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 4630,
+      "duration": 492
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 4122,
+      "duration": 451
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 6967,
+      "duration": 721
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 5234,
+      "duration": 506
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 4390,
+      "duration": 519
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 8257,
+      "duration": 636
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 10949,
+      "duration": 867
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 11882,
+      "duration": 994
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 7512,
+      "duration": 741
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 6530,
+      "duration": 690
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 5880,
+      "duration": 560
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 3169,
+      "duration": 408
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 0,
+      "duration": 0
+    }
+  ]
+},
+{
+  "from": "CAIXF44",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 6912,
+      "duration": 741
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 2863,
+      "duration": 280
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 8902,
+      "duration": 656
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 12599,
+      "duration": 722
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 16279,
+      "duration": 1023
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 14807,
+      "duration": 932
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 8735,
+      "duration": 646
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 9299,
+      "duration": 729
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 7418,
+      "duration": 646
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 4569,
+      "duration": 435
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 6629,
+      "duration": 598
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 5119,
+      "duration": 478
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 3608,
+      "duration": 334
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 2899,
+      "duration": 302
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 3831,
+      "duration": 429
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 3484,
+      "duration": 309
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 8906,
+      "duration": 648
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 11452,
+      "duration": 864
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 11345,
+      "duration": 985
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 8337,
+      "duration": 628
+    }
+  ]
+},
+{
+  "from": "CAIXF47",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 1345,
+      "duration": 231
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 2797,
+      "duration": 230
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 11349,
+      "duration": 853
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 10234,
+      "duration": 947
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 18726,
+      "duration": 1220
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 17254,
+      "duration": 1129
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 7884,
+      "duration": 726
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 8448,
+      "duration": 808
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 8458,
+      "duration": 783
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 5696,
+      "duration": 558
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 5400,
+      "duration": 455
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 4722,
+      "duration": 413
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 3555,
+      "duration": 330
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 3484,
+      "duration": 299
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 5541,
+      "duration": 455
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 6474,
+      "duration": 582
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 11353,
+      "duration": 844
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 10601,
+      "duration": 944
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 10493,
+      "duration": 1064
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 7486,
+      "duration": 707
+    }
+  ]
+},
+{
+  "from": "CAIXF45",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 7214,
+      "duration": 861
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 4867,
+      "duration": 427
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 11652,
+      "duration": 888
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 15349,
+      "duration": 954
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 19029,
+      "duration": 1255
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 17557,
+      "duration": 1164
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 11485,
+      "duration": 878
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 12049,
+      "duration": 960
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 10168,
+      "duration": 878
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 7319,
+      "duration": 666
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 9379,
+      "duration": 829
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 7868,
+      "duration": 710
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 6358,
+      "duration": 566
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 2956,
+      "duration": 293
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 1920,
+      "duration": 255
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 5488,
+      "duration": 456
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 11656,
+      "duration": 880
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 14202,
+      "duration": 1096
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 14095,
+      "duration": 1216
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 11087,
+      "duration": 859
+    }
+  ]
+},
+{
+  "from": "CAIXF42",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 10000,
+      "duration": 1100
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 5489,
+      "duration": 483
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 9622,
+      "duration": 767
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 7980,
+      "duration": 718
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 13515,
+      "duration": 1149
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 10872,
+      "duration": 932
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 5246,
+      "duration": 457
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 5810,
+      "duration": 540
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 6204,
+      "duration": 554
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 3670,
+      "duration": 423
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 2121,
+      "duration": 234
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 1600,
+      "duration": 189
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 5182,
+      "duration": 484
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 7875,
+      "duration": 714
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 8807,
+      "duration": 842
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 4722,
+      "duration": 411
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 8103,
+      "duration": 752
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 7963,
+      "duration": 675
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 7856,
+      "duration": 796
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 4849,
+      "duration": 439
+    }
+  ]
+},
+{
+  "from": "CAIXF43",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 6191,
+      "duration": 398
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 3612,
+      "duration": 405
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 8112,
+      "duration": 659
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 7112,
+      "duration": 733
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 15489,
+      "duration": 1026
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 14017,
+      "duration": 935
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 4762,
+      "duration": 512
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 5326,
+      "duration": 595
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 5336,
+      "duration": 569
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 2160,
+      "duration": 314
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 3111,
+      "duration": 319
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 1600,
+      "duration": 200
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 3672,
+      "duration": 375
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 6364,
+      "duration": 605
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 7297,
+      "duration": 733
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 3555,
+      "duration": 342
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 8116,
+      "duration": 650
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 7479,
+      "duration": 731
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 7371,
+      "duration": 851
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 4364,
+      "duration": 494
+    }
+  ]
+},
+{
+  "from": "CAIXF48",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 9864,
+      "duration": 816
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 8485,
+      "duration": 717
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 1291,
+      "duration": 240
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 3019,
+      "duration": 343
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 8810,
+      "duration": 791
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 7338,
+      "duration": 700
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 6648,
+      "duration": 670
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 4586,
+      "duration": 499
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 1899,
+      "duration": 198
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 5143,
+      "duration": 597
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 10815,
+      "duration": 930
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 8023,
+      "duration": 760
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 7794,
+      "duration": 666
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 8545,
+      "duration": 686
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 11238,
+      "duration": 916
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 10883,
+      "duration": 1025
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 11053,
+      "duration": 918
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 7720,
+      "duration": 676
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 7707,
+      "duration": 813
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 6472,
+      "duration": 697
+    }
+  ]
+},
+{
+  "from": "CAIXF32",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 2971,
+      "duration": 215
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 8781,
+      "duration": 673
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 12478,
+      "duration": 739
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 16157,
+      "duration": 1040
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 14686,
+      "duration": 949
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 8614,
+      "duration": 663
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 9178,
+      "duration": 746
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 7297,
+      "duration": 663
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 4448,
+      "duration": 452
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 5561,
+      "duration": 546
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 4997,
+      "duration": 496
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 3487,
+      "duration": 352
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 2863,
+      "duration": 290
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 4920,
+      "duration": 446
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 5853,
+      "duration": 573
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 2797,
+      "duration": 254
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 8785,
+      "duration": 665
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 11331,
+      "duration": 882
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 11224,
+      "duration": 1002
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 8216,
+      "duration": 645
+    }
+  ]
+},
+{
+  "from": "CAIXF41",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 12987,
+      "duration": 1694
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 5561,
+      "duration": 560
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 11133,
+      "duration": 910
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 9688,
+      "duration": 945
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 18510,
+      "duration": 1277
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 11852,
+      "duration": 1085
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 7367,
+      "duration": 688
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 7931,
+      "duration": 771
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 7912,
+      "duration": 781
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 5181,
+      "duration": 565
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 2121,
+      "duration": 232
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 3111,
+      "duration": 331
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 6693,
+      "duration": 626
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 9385,
+      "duration": 856
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 10318,
+      "duration": 984
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 4893,
+      "duration": 468
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 11137,
+      "duration": 901
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 10084,
+      "duration": 907
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 9569,
+      "duration": 978
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 6969,
+      "duration": 670
+    }
+  ]
+},
+{
+  "from": "CAIXF49",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 14558,
+      "duration": 1856
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 10003,
+      "duration": 946
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 7928,
+      "duration": 703
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 5998,
+      "duration": 504
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 6814,
+      "duration": 584
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 2962,
+      "duration": 279
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 4522,
+      "duration": 443
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 2264,
+      "duration": 254
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 5023,
+      "duration": 482
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 7282,
+      "duration": 698
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 10127,
+      "duration": 968
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 8394,
+      "duration": 753
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 7550,
+      "duration": 766
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 10063,
+      "duration": 915
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 12756,
+      "duration": 1146
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 13688,
+      "duration": 1273
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 10672,
+      "duration": 988
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 6409,
+      "duration": 667
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 2179,
+      "duration": 338
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 5091,
+      "duration": 513
+    }
+  ]
+},
+{
+  "from": "CAIXF38",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 6643,
+      "duration": 489
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 7806,
+      "duration": 784
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 5234,
+      "duration": 559
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 3738,
+      "duration": 400
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 9025,
+      "duration": 810
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 5173,
+      "duration": 505
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 3207,
+      "duration": 353
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 2917,
+      "duration": 316
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 5085,
+      "duration": 535
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 7930,
+      "duration": 806
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 6197,
+      "duration": 591
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 5354,
+      "duration": 604
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 7867,
+      "duration": 753
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 10559,
+      "duration": 983
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 11492,
+      "duration": 1111
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 8476,
+      "duration": 825
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 4516,
+      "duration": 486
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 2264,
+      "duration": 248
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 3687,
+      "duration": 494
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 3728,
+      "duration": 432
+    }
+  ]
+},
+{
+  "from": "CAIXF50",
+  "to": [
+    {
+      "name": "Base",
+      "distance": 9828,
+      "duration": 961
+    },
+    {
+      "name": "CAIXF32",
+      "distance": 11204,
+      "duration": 1015
+    },
+    {
+      "name": "CAIXF33",
+      "distance": 9279,
+      "duration": 933
+    },
+    {
+      "name": "CAIXF34",
+      "distance": 7783,
+      "duration": 775
+    },
+    {
+      "name": "CAIXF35",
+      "distance": 7998,
+      "duration": 777
+    },
+    {
+      "name": "CAIXF36",
+      "distance": 3733,
+      "duration": 393
+    },
+    {
+      "name": "CAIXF37",
+      "distance": 2600,
+      "duration": 334
+    },
+    {
+      "name": "CAIXF38",
+      "distance": 3287,
+      "duration": 512
+    },
+    {
+      "name": "CAIXF39",
+      "distance": 6380,
+      "duration": 640
+    },
+    {
+      "name": "CAIXF40",
+      "distance": 7130,
+      "duration": 799
+    },
+    {
+      "name": "CAIXF41",
+      "distance": 9289,
+      "duration": 1043
+    },
+    {
+      "name": "CAIXF42",
+      "distance": 8241,
+      "duration": 855
+    },
+    {
+      "name": "CAIXF43",
+      "distance": 7398,
+      "duration": 867
+    },
+    {
+      "name": "CAIXF44",
+      "distance": 11264,
+      "duration": 985
+    },
+    {
+      "name": "CAIXF45",
+      "distance": 13957,
+      "duration": 1215
+    },
+    {
+      "name": "CAIXF46",
+      "distance": 14889,
+      "duration": 1343
+    },
+    {
+      "name": "CAIXF47",
+      "distance": 10520,
+      "duration": 1089
+    },
+    {
+      "name": "CAIXF48",
+      "distance": 8279,
+      "duration": 838
+    },
+    {
+      "name": "CAIXF49",
+      "distance": 2179,
+      "duration": 324
+    },
+    {
+      "name": "CAIXF50",
+      "distance": 0,
+      "duration": 0
+    },
+    {
+      "name": "CAIXF51",
+      "distance": 3169,
+      "duration": 404
+    }
+  ]
+}]
