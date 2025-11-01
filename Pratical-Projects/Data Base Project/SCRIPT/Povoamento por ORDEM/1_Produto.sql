@@ -1,0 +1,22 @@
+-- Inserir dados na tabela Produto (focado em calçado)
+INSERT INTO Produto (modelo, variante, cor, nome, descricao) VALUES
+('Bota', 'Cano Alto', 'Preta', 'Bota de Couro Cano Alto Preta', 'Bota de couro genuíno preta com cano alto.'),
+('Bota', 'Cano Curto', 'Castanha', 'Bota de Couro Cano Curto Castanha', 'Bota de couro genuíno castanha com cano curto.'),
+('Bota', 'Tática', 'Preta', 'Bota Tática Impermeável Preta', 'Bota tática resistente e impermeável em preto.'),
+('Bota', 'Montanha', 'Castanha/Preta', 'Bota de Montanha Aventura', 'Bota robusta para caminhadas e montanhismo.'),
+('Sandália', 'Verão', 'Castanha', 'Sandália de Couro Verão', 'Sandália de couro confortável para os dias quentes.'),
+('Sandália', 'Desportiva', 'Azul/Cinza', 'Sandália Desportiva Ajustável', 'Sandália desportiva com tiras ajustáveis para maior suporte.'),
+('Sandália', 'Plataforma', 'Bege', 'Sandália Plataforma Elegante', 'Sandália de plataforma bege para ocasiões especiais.'),
+('Ténis', 'Corrida', 'Branco/Azul', 'Ténis de Corrida Performance', 'Ténis leves e com bom amortecimento para corrida.'),
+('Ténis', 'Casual', 'Preto/Branco', 'Ténis Casual Urbanos', 'Ténis pretos e brancos para uso diário com estilo.'),
+('Ténis', 'Desportivo', 'Cinzento/Verde', 'Ténis Desportivo Treino', 'Ténis confortáveis para diversas atividades físicas.'),
+('Sapatos', 'Social', 'Preto', 'Sapato Social Clássico Preto', 'Sapato social de couro preto elegante.'),
+('Sapatos', 'Social', 'Castanho', 'Sapato Social Clássico Castanho', 'Sapato social de couro castanho sofisticado.'),
+('Sapatos', 'Mocassim', 'Castanho', 'Mocassim de Couro Confortável', 'Mocassim de couro macio para um look casual elegante.'),
+('Sapatos', 'Oxford', 'Preto', 'Sapato Oxford Formal Preto', 'Sapato Oxford preto ideal para eventos formais.'),
+('Chinelos', 'Piscina', 'Azul', 'Chinelos de Piscina Antiderrapantes', 'Chinelos azuis antiderrapantes para uso em piscinas e praias.'),
+('Chinelos', 'Casa', 'Cinzento', 'Chinelos de Casa Confortáveis', 'Chinelos cinzentos e quentinhos para usar em casa.'),
+('Espadrilles', 'Verão', 'Bege', 'Espadrilles de Lona Bege', 'Espadrilles leves de lona bege com sola de corda.'),
+('Alpargatas', 'Casual', 'Azul Marinho', 'Alpargatas de Tecido Azul Marinho', 'Alpargatas de tecido azul marinho para um look descontraído.'),
+('Sabrinas', 'Clássicas', 'Pretas', 'Sabrinas Clássicas Pretas', 'Sabrinas pretas elegantes e confortáveis.'),
+('Sabrinas', 'Coloridas', 'Vermelhas', 'Sabrinas Coloridas Vermelhas', 'Sabrinas vermelhas vibrantes para um toque de cor.');

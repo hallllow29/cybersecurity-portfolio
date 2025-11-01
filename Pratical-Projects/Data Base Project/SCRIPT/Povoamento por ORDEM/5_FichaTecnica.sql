@@ -1,0 +1,22 @@
+-- Inserir dados na tabela FichaTecnica (relacionados com os produtos criados)
+INSERT INTO FichaTecnica (produtoID, origem, descricao, estado) VALUES
+(1, 'interna', 'Ficha técnica para Bota de Couro Cano Alto Preta.', 'ativa'),
+(2, 'interna', 'Especificações da Bota de Couro Cano Curto Castanha.', 'ativa'),
+(3, 'externa', 'Instruções da Bota Tática Impermeável Preta.', 'ativa'),
+(4, 'interna', 'Processo de montagem da Bota de Montanha Aventura.', 'ativa'),
+(5, 'interna', 'Ficha técnica da Sandália de Couro Verão.', 'ativa'),
+(6, 'externa', 'Especificações da Sandália Desportiva Ajustável.', 'ativa'),
+(7, 'interna', 'Ficha de produção da Sandália Plataforma Elegante.', 'inativa'),
+(8, 'interna', 'Especificações do Ténis de Corrida Performance.', 'ativa'),
+(9, 'interna', 'Detalhes da produção do Ténis Casual Urbano.', 'ativa'),
+(10, 'externa', 'Ficha técnica do Ténis Desportivo Treino.', 'ativa'),
+(11, 'interna', 'Processo de fabrico do Sapato Social Clássico Preto.', 'ativa'),
+(12, 'interna', 'Especificações do Sapato Social Clássico Castanho.', 'ativa'),
+(13, 'interna', 'Detalhes da montagem do Mocassim de Couro Confortável.', 'ativa'),
+(14, 'externa', 'Ficha técnica do Sapato Oxford Formal Preto.', 'ativa'),
+(15, 'interna', 'Processo de fabrico dos Chinelos de Piscina Antiderrapantes.', 'ativa'),
+(16, 'interna', 'Especificações dos Chinelos de Casa Confortáveis.', 'ativa'),
+(17, 'interna', 'Detalhes da produção das Espadrilles de Lona Bege.', 'ativa'),
+(18, 'externa', 'Ficha técnica das Alpargatas de Tecido Azul Marinho.', 'ativa'),
+(19, 'interna', 'Processo de fabrico das Sabrinas Clássicas Pretas.', 'ativa'),
+(20, 'interna', 'Especificações das Sabrinas Coloridas Vermelhas.', 'ativa');

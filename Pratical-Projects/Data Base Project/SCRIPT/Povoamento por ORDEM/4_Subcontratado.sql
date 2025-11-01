@@ -1,0 +1,22 @@
+-- Inserir dados na tabela Subcontratado
+INSERT INTO Subcontratado (nome, morada, contacto, custoServico) VALUES
+('Oficina de Costura Silva', 'Rua das Flores, 123, Lisboa', '911223344', 1.50),
+('Montagem Rápida Lda.', 'Avenida Central, 45, Porto', '933445566', 0.80),
+('Cortes Precisos Unipessoal', 'Travessa da Indústria, 789, Braga', '966778899', 0.50),
+('Acabamentos de Qualidade SA', 'Largo do Comércio, 10, Setúbal', '922334455', 0.30),
+('Colagens Industriais Oliveira', 'Zona Industrial, Lote 5, Aveiro', '955667788', 0.25),
+('Pespontos Modernos', 'Rua Nova, 234, Guimarães', '944556677', 0.40),
+('Embalagens Seguras Lda', 'Parque Empresarial, Edifício A, Faro', '977889900', 0.15),
+('Controlo de Qualidade Total', 'Rua Direita, 567, Coimbra', '988990011', 0.20),
+('Etiquetas Personalizadas', 'Avenida dos Descobrimentos, 89, Lagos', '912345678', 0.05),
+('Subcontratação de Mão de Obra Especializada', 'Rua da Liberdade, 112, Évora', '934567890', 2.00),
+('Serviços de Costura Fina', 'Rua Augusta, 321, Viana do Castelo', '967890123', 1.75),
+('Unidade de Montagem Avançada', 'Avenida Marginal, 654, Matosinhos', '923456789', 0.90),
+('Corte a Laser Industrial', 'Zona Industrial da Maia, Lote 10, Maia', '956789012', 0.60),
+('Acabamentos Manuais Profissionais', 'Rua do Bonfim, 43, Vila do Conde', '947890123', 0.35),
+('Colagem de Precisão', 'Estrada Nacional 109, Figueira da Foz', '978901234', 0.30),
+('Pespontos Criativos', 'Rua da Igreja, 76, Barcelos', '919012345', 0.45),
+('Embalagens Ecológicas', 'Parque Industrial de Famalicão, Lote 8, Vila Nova de Famalicão', '930123456', 0.18),
+('Inspeção de Qualidade Rigorosa', 'Rua do Souto, 98, Braga', '961234567', 0.22),
+('Etiquetagem Automática', 'Avenida da República, 150, Espinho', '924567891', 0.07),
+('Fornecedor de Serviços de Subcontratação', 'Rua da Alfândega, 200, Lisboa', '957891234', 1.20);
