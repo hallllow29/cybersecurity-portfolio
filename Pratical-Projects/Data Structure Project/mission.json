@@ -1,0 +1,48 @@
+{
+    "cod-missao": "pata de coelho",
+    "versao": 1,
+    "edificio": ["Heliporto", "Escada 6", "Camaratas", "Armazém", "Escada 5",
+    "Laboratório", "Escritório 3", "Escada 4", "WC", "Corredor 2",
+    "Segurança", "Hall", "Escada 3", "Escritório 1", "Escritório 2",
+    "Escada de Emergência", "Corredor 1", "Escada 2", "Porteiro",
+    "Escada 1", "Garagem"],
+    "ligacoes": [
+    ["Garagem", "Escada 1"],
+    ["Garagem", "Escada de Emergência"],
+    ["Escritório 1", "Escada de Emergência"],
+    ["Porteiro", "Escada 1"],
+    ["Porteiro", "Escada 2"],
+    ["Corredor 1", "Escada 2"],
+    ["Corredor 1", "Escritório 1"],
+    ["Corredor 1", "Escritório 2"],
+    ["Corredor 1", "Escada 3"],
+    ["Hall", "Escada 3"],
+    ["Hall", "Segurança"],
+    ["Corredor 2", "Segurança"],
+    ["Corredor 2", "WC"],
+    ["Corredor 2", "Escada 4"],
+    ["Escritório 3", "Escada 4"],
+    ["Escritório 3", "Escada 5"],
+    ["Laboratório", "Escada 5"],
+    ["Armazém", "Escada 5"],
+    ["Camaratas", "Escada 5"],
+    ["Camaratas", "Escada 6"],
+    ["Heliporto", "Escada 6"]
+    ],
+    "inimigos": [
+    {"nome": "badguy1", "poder": 10, "divisao": "Garagem"},
+    {"nome": "badguy2", "poder": 15, "divisao": "Corredor 1"},
+    {"nome": "badguy3", "poder": 15, "divisao": "Heliporto"},
+    {"nome": "badguy4", "poder": 10, "divisao": "Laboratório"},
+    {"nome": "badguy5", "poder": 5, "divisao": "Heliporto"}
+    ],
+    "entradas-saidas": ["Escada de Emergência", "Garagem", "Heliporto", "Porteiro"],
+    "alvo": {"divisao": "Laboratório", "tipo": "quimico"},
+    "itens":[
+    {"divisao": "WC", "pontos-recuperados": 20, "tipo":"kit de vida"},
+    {"divisao": "Escritório 1", "pontos-recuperados": 15, "tipo":"kit de vida"},{"divisao": "Escritório 1", "pontos-recuperados": 15, "tipo":"kit de vida"},
+        {"divisao": "Laboratório", "pontos-recuperados": 15, "tipo":"colete"},
+        {"divisao": "Heliporto", "pontos-recuperados": 15, "tipo":"colete"},
+        {"divisao": "Escada 5", "pontos-recuperados": 15, "tipo":"colete"},
+    {"divisao": "Escada 2", "pontos-extra": 25, "tipo":"colete"} ]
+    }

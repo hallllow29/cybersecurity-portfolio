@@ -1,0 +1,186 @@
+{
+    "cod-missao": "rato de aco",
+    "versao": 1,
+    "edificio": [
+        "Heliporto",
+        "Escada A",
+        "Armazém Central",
+        "Dormitórios",
+        "Laboratório 2",
+        "Escritório Alpha",
+        "Escada B",
+        "Sala de Controlo",
+        "WC Principal",
+        "Corredor Oeste",
+        "Segurança",
+        "Hall de Entrada",
+        "Escada C",
+        "Sala de Reuniões",
+        "Escritório Beta",
+        "Escada de Emergência",
+        "Cofre",
+        "Escada D",
+        "Garagem Subterrânea"
+    ],
+    "ligacoes": [
+        [
+            "Garagem Subterrânea",
+            "Escada D"
+        ],
+        [
+            "Garagem Subterrânea",
+            "Escada de Emergência"
+        ],
+        [
+            "Escritório Alpha",
+            "Escada de Emerg\u00eancia"
+        ],
+        [
+            "Laboratório 2",
+            "Escada B"
+        ],
+        [
+            "Laboratório 2",
+            "Escada A"
+        ],
+        [
+            "Corredor Oeste",
+            "Escada B"
+        ],
+        [
+            "Corredor Oeste",
+            "Escritório Alpha"
+        ],
+        [
+            "Corredor Oeste",
+            "Sala de Controlo"
+        ],
+        [
+            "Corredor Oeste",
+            "Escada C"
+        ],
+        [
+            "Hall de Entrada",
+            "Escada C"
+        ],
+        [
+            "Hall de Entrada",
+            "Segurança"
+        ],
+        [
+            "Corredor Oeste",
+            "Segurança"
+        ],
+        [
+            "Cofre",
+            "Escada D"
+        ],
+        [
+            "Dormitórios",
+            "Escada A"
+        ],
+        [
+            "Armazém Central",
+            "Escada A"
+        ],
+        [
+            "Sala de Controlo",
+            "Escada B"
+        ],
+        [
+            "Sala de Reuniões",
+            "Escada C"
+        ],
+        [
+            "Heliporto",
+            "Escada A"
+        ]
+    ],
+    "inimigos": [
+        {
+            "nome": "inimigo1",
+            "poder": 10,
+            "divisao": "Heliporto"
+        },
+        {
+            "nome": "inimigo2",
+            "poder": 20,
+            "divisao": "Heliporto"
+        },
+        {
+            "nome": "inimigo3",
+            "poder": 30,
+            "divisao": "Laboratório 2"
+        },
+        {
+            "nome": "inimigo4",
+            "poder": 25,
+            "divisao": "Segurança"
+        },
+        {
+            "nome": "inimigo5",
+            "poder": 15,
+            "divisao": "Corredor Oeste"
+        },
+        {
+            "nome": "inimigo6",
+            "poder": 40,
+            "divisao": "Sala de Controlo"
+        },
+        {
+            "nome": "inimigo7",
+            "poder": 50,
+            "divisao": "Cofre"
+        }
+    ],
+    "entradas-saidas": [
+        "Escada de Emergência",
+        "Garagem Subterrânea",
+        "Heliporto",
+        "Hall de Entrada"
+    ],
+    "alvo": {
+        "divisao": "Cofre",
+        "tipo": "documentos"
+    },
+    "itens": [
+        {
+            "divisao": "Heliporto",
+            "pontos-recuperados": 30,
+            "tipo": "kit de vida"
+        },
+        {
+            "divisao": "Heliporto",
+            "pontos-recuperados": 20,
+            "tipo": "kit de vida"
+        },
+        {
+            "divisao": "Heliporto",
+            "pontos-recuperados": 30,
+            "tipo": "kit de vida"
+        },
+        {
+            "divisao": "Heliporto",
+            "pontos-recuperados": 30,
+            "tipo": "kit de vida"
+        },
+
+        {
+            "divisao": "Heliporto",
+            "pontos-extra": 40,
+            "tipo": "colete"
+        },
+
+        {
+            "divisao": "Heliporto",
+            "pontos-recuperados": 30,
+            "tipo": "kit de vida"
+        },
+
+        {
+            "divisao": "Heliporto",
+            "pontos-recuperados": 30,
+            "tipo": "kit de vida"
+        }
+    ]
+}
